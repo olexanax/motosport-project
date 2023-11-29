@@ -17,7 +17,7 @@ const PageMainBanner = () => {
           <h1 className={classNames(global.pageTitle)}>
             Ivan Peklin
           </h1>
-          <p className={styles.subTitle}>
+          <p className={global.smallTitle}>
             “Racing is life. Anything before or after is just waiting.” – Steve McQueen
           </p>
           <div className={classNames(global.primaryButton, styles.btn)}>
