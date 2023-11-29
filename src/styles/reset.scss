@@ -64,13 +64,13 @@ audio,
 video,
 details,
 summary {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font-weight: normal;
-    vertical-align: baseline;
-    background: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent;
 }
 
 main,
@@ -83,126 +83,127 @@ nav,
 section,
 details,
 summary {
-    display: block;
+  display: block;
 }
 
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 } /* we'll restore bullets as needed for content */
 
 blockquote,
 q {
-    quotes: none;
+  quotes: none;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-    content: "";
-    content: none;
+  content: "";
+  content: none;
 }
 
 a {
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
 }
 
 del {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 abbr[title],
 dfn[title] {
-    border-bottom: 1px dotted #000;
-    cursor: help;
+  border-bottom: 1px dotted #000;
+  cursor: help;
 }
 
 table {
-    border-collapse: separate;
-    border-spacing: 0;
-    text-align: left;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
 }
 th {
-    font-weight: bold;
-    vertical-align: bottom;
+  font-weight: bold;
+  vertical-align: bottom;
 }
 td {
-    font-weight: normal;
-    vertical-align: top;
+  font-weight: normal;
+  vertical-align: top;
 }
 td img {
-    vertical-align: top;
+  vertical-align: top;
 }
 
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #999;
-    margin: 1rem 0;
-    padding: 0;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #999;
+  margin: 1rem 0;
+  padding: 0;
 }
 
 input,
 select {
-    vertical-align: middle;
+  vertical-align: middle;
+  box-sizing: border-box;
 }
 
 pre {
-    white-space: pre-line;
+  white-space: pre-line;
 }
 
 input[type="radio"] {
-    vertical-align: text-bottom;
+  vertical-align: text-bottom;
 }
 input[type="checkbox"] {
-    vertical-align: bottom;
+  vertical-align: bottom;
 }
 
 small {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 sub,
 sup {
-    font-size: 0.8rem;
-    line-height: 0;
-    position: relative;
+  font-size: 0.8rem;
+  line-height: 0;
+  position: relative;
 }
 sup {
-    top: -0.5rem;
+  top: -0.5rem;
 }
 sub {
-    bottom: -0.25rem;
+  bottom: -0.25rem;
 }
 
 pre,
 code,
 kbd,
 samp {
-    font-family: monospace, sans-serif;
+  font-family: monospace, sans-serif;
 }
 
 label,
@@ -210,62 +211,63 @@ input[type="button"],
 input[type="submit"],
 input[type="file"],
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 button,
 input,
 select,
 textarea {
-    margin: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 ins {
-    background-color: var(--highlight-color);
-    color: #000;
-    text-decoration: none;
+  background-color: var(--highlight-color);
+  color: #000;
+  text-decoration: none;
 }
 mark {
-    background-color: var(--highlight-color);
-    color: #000;
-    font-style: italic;
-    font-weight: bold;
+  background-color: var(--highlight-color);
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
 }
 
 blockquote {
-    padding: 2rem;
-    border-left: 1px solid #333;
+  padding: 2rem;
+  border-left: 1px solid #333;
 }
 
 .clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 } /* https://css-tricks.com/snippets/css/clear-fix/ */
 
 /* ———— END THE GENERIC RESETS ———— */
 
 :root {
-    --font-system: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* https://css-tricks.com/snippets/css/system-font-stack */
-    --text-color: #333;
-    --featured-color: #03f;
-    --featured-color-hover: #69f;
-    --highlight-color: #fcd700;
+  --font-system: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* https://css-tricks.com/snippets/css/system-font-stack */
+  --text-color: #333;
+  --featured-color: #03f;
+  --featured-color-hover: #69f;
+  --highlight-color: #fcd700;
 }
 
 body {
-    font-size: 16px;
-    font-family: var(--font-system);
-    color: var(--text-color);
+  font-size: 16px;
+  font-family: var(--font-system);
+  color: var(--text-color);
 }
 
 a {
-    color: var(--featured-color);
-    text-decoration: none;
+  color: var(--featured-color);
+  text-decoration: none;
 }
 a:hover .link:hover {
-    color: var(--featured-color-hover);
+  color: var(--featured-color-hover);
 }
 
 @media screen and (max-width: 480px) {
@@ -275,19 +277,19 @@ a:hover .link:hover {
 }
 input,
 textarea {
-    all: unset;
+  all: unset;
 }
 a {
     color: #fff;
     cursor: pointer;
 }
 .ant-select-dropdown {
-    min-width: 400px !important;
+  min-width: 400px !important;
+  width: 80% !important;
+  max-width: 700px !important;
+  @media (max-width: 500px) {
+    min-width: 200px !important;
     width: 80% !important;
     max-width: 700px !important;
-    @media (max-width: 500px) {
-        min-width: 200px !important;
-        width: 80% !important;
-        max-width: 700px !important;
-    }
+  }
 }

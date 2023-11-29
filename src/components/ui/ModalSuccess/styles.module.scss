@@ -1,0 +1,40 @@
+@import "@/styles/variables";
+
+.container {
+  padding: 0px 60px 60px 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.textWrapper {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.title {
+  @include titleFont;
+  color: $black;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+}
+
+.text {
+  @include titleFont;
+  color: $black;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+}
+
+.submitBtn {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}

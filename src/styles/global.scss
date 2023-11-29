@@ -3,39 +3,39 @@
 
 //Unbounded
 @font-face {
-    font-family: "Unbounded";
-    src: url("../../fonts/Unbounded/static/Unbounded-Bold.ttf");
-    font-weight: 700;
-    font-style: normal;
+  font-family: "Unbounded";
+  src: url("../../fonts/Unbounded/static/Unbounded-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
 }
 @font-face {
-    font-family: "Unbounded";
-    src: url("../../fonts/Unbounded/static/Unbounded-SemiBold.ttf");
-    font-weight: 600;
-    font-style: normal;
+  font-family: "Unbounded";
+  src: url("../../fonts/Unbounded/static/Unbounded-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
 }
 //Inter
 @font-face {
-    font-family: "Inter";
-    src: url("../../fonts/Inter/static/Inter-Bold.ttf");
-    font-weight: 600;
-    font-style: normal;
+  font-family: "Inter";
+  src: url("../../fonts/Inter/static/Inter-Bold.ttf");
+  font-weight: 600;
+  font-style: normal;
 }
 @font-face {
-    font-family: "Inter";
-    src: url("../../fonts/Inter/static/Inter-Medium.ttf");
-    font-weight: 500;
-    font-style: normal;
+  font-family: "Inter";
+  src: url("../../fonts/Inter/static/Inter-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
 }
 @font-face {
-    font-family: "Inter";
-    src: url("../../fonts/Inter/static/Inter-Regular.ttf");
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Inter";
+  src: url("../../fonts/Inter/static/Inter-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
 }
 
 html {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -58,12 +58,16 @@ body {
 }
 
 main {
-    flex: 1 1 auto;
-    overflow-x: hidden;
+  flex: 1 1 auto;
+  overflow-x: hidden;
 }
 
 #root {
-    overflow-x: hidden;
+  overflow-x: hidden;
+}
+
+.react-international-phone-country-selector {
+  display: none;
 }
 
 //slider customization
