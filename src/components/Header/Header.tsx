@@ -21,7 +21,7 @@ const languages = ['en', 'ua']
 
 function Header({ lng }: { lng: string }) {
   const [isLangOpen, setIsLangOpen] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const pathname = usePathname()
 

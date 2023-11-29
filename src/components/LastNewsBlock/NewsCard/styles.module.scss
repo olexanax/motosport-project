@@ -1,0 +1,28 @@
+@import "@/styles/variables.scss";
+
+.container {
+    border-radius: 10px 10px 0px 0px;
+    background: rgba(30, 30, 30, 0.7);
+    padding: 42px 21px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    width: 321px;
+    @media (max-width: $tabletSize) {
+        max-width: 90%;
+        width: 330px;
+        padding: 12px;
+        border-radius: 10px;
+        gap: 24px;
+    }
+}
+.title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+}
+.link {
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration-line: underline;
+}
