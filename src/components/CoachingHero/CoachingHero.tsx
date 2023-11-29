@@ -9,10 +9,10 @@ import global from "@/styles/global.module.scss";
 // components
 import Image from "next/image";
 import ModalWindow from "../ui/Modal/Modal";
-import ContactUsForm from "../ContactUsForm/ContactUsForm";
+import ModalSuccess from "../ui/ModalSuccess/ModalSuccess";
+import CoachingModal from "../CoachingModal/CoachingModal";
 // images
 import instagramLogo from "../../../public/images/icons/instagramLogoRed.png";
-import ModalSuccess from "../ui/ModalSuccess/ModalSuccess";
 
 interface CoachingHeroProps {
   title: string;
@@ -34,6 +34,11 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title }) => {
   const onFormSuccess = () => {
     setIsModal(false);
     setIsSuccess(true);
+  };
+
+  const onClickOkay = () => {
+    setIsModal(false);
+    setIsSuccess(false);
   };
 
   return (
@@ -66,12 +71,12 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title }) => {
       </div>
       {isModal && (
         <ModalWindow onClose={closeModal}>
-          <ContactUsForm onSuccess={onFormSuccess} />
+          <CoachingModal onSuccess={onFormSuccess} />
         </ModalWindow>
       )}
       {isSuccess && (
         <ModalWindow onClose={() => setIsSuccess(false)}>
-          <ModalSuccess />
+          <ModalSuccess onSuccess={onClickOkay} />
         </ModalWindow>
       )}
     </div>

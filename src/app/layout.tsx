@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 //components
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header';
+import { Toaster } from 'sonner';
 //styles
 import "@/styles/global.scss";
 //images
@@ -26,6 +27,7 @@ export default function RootLayout({
         <main>
           {children}
         </main>
+        <Toaster richColors closeButton />
         <Footer />
       </body>
     </html>

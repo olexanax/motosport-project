@@ -3,9 +3,11 @@ import React from "react";
 import styles from "./styles.module.scss";
 import global from "@/styles/global.module.scss";
 
-interface ModalSuccessProps {}
+interface ModalSuccessProps {
+  onSuccess: () => void;
+}
 
-const ModalSuccess: React.FC<ModalSuccessProps> = ({}) => {
+const ModalSuccess: React.FC<ModalSuccessProps> = ({ onSuccess }) => {
   return (
     <div className={styles.container}>
       <div className={styles.textWrapper}>
@@ -15,7 +17,9 @@ const ModalSuccess: React.FC<ModalSuccessProps> = ({}) => {
         <p className={styles.text}>We will get in contact with you soon!</p>
       </div>
       <div className={styles.submitBtn}>
-        <button className={global.primaryButton}>Okay</button>
+        <button className={global.primaryButton} onClick={onSuccess}>
+          Okay
+        </button>
       </div>
     </div>
   );

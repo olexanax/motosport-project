@@ -1,3 +1,5 @@
+@import "@/styles/variables";
+
 .textarea {
   display: flex;
   min-height: 80px;
@@ -7,6 +9,7 @@
   background: #fff;
   padding: 0.5rem 0.75rem;
   box-sizing: border-box;
+  color: $black;
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

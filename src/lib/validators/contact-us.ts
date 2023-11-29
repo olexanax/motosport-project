@@ -7,13 +7,13 @@ export const ContactUsValidator = z.object({
       required_error: ValidationError.Required,
     })
     .min(1, ValidationError.MinLength)
-    .max(55, ValidationError.MaxLength),
+    .max(40, ValidationError.MaxLength),
   surname: z
     .string({
       required_error: ValidationError.Required,
     })
     .min(1, ValidationError.MinLength)
-    .max(55, ValidationError.MaxLength),
+    .max(40, ValidationError.MaxLength),
   email: z
     .string({
       required_error: ValidationError.Required,
@@ -24,8 +24,8 @@ export const ContactUsValidator = z.object({
       required_error: ValidationError.Required,
     })
     .min(8, ValidationError.MinLength)
-    .max(55, ValidationError.MaxLength),
-  notes: z.string(),
+    .max(15, ValidationError.MaxLength),
+  notes: z.string().max(500, ValidationError.MaxLength),
 });
 
 export type ContactUsSchema = z.infer<typeof ContactUsValidator>;

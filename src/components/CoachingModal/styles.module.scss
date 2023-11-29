@@ -1,0 +1,103 @@
+@import "@/styles/variables";
+
+.form {
+  padding: 0px 60px 60px 60px;
+  width: 100%;
+
+  @media (max-width: $tabletSize) {
+    padding: 0px 46px 46px 46px;
+  }
+
+  &Title {
+    @include titleFont;
+    color: $black;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 48px;
+    text-align: center;
+
+    @media (max-width: $mobileSize) {
+      font-size: 28px;
+    }
+  }
+
+  &Container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 128px;
+    margin-top: 82px;
+    box-sizing: border-box;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      margin-top: 21px;
+      gap: 36px;
+    }
+  }
+
+  &Left {
+    display: flex;
+    flex-direction: column;
+    max-width: calc(40% - 20px);
+    width: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 1024px) {
+      max-width: 100%;
+
+      img {
+        height: auto !important;
+        min-height: 258px;
+      }
+    }
+
+    img {
+      border-radius: 5px;
+      display: block;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+  }
+
+  &Right {
+    max-width: calc(60% - 20px);
+    width: 100%;
+
+    @media (max-width: 1024px) {
+      max-width: 100%;
+    }
+  }
+
+  &Name {
+    @include titleFont;
+    color: $black;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    margin-top: 20px;
+
+    @media (max-width: 1024px) {
+      text-align: center;
+    }
+
+    @media (max-width: $mobileSize) {
+      font-size: 24px;
+    }
+  }
+
+  &Subtitle {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    color: $black;
+
+    @media (max-width: 1024px) {
+      text-align: center;
+    }
+
+    @media (max-width: $mobileSize) {
+      font-size: 16px;
+    }
+  }
+}

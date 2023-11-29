@@ -1,0 +1,126 @@
+@import "@/styles/variables";
+
+.wrapper {
+  background: url("../../../public/images/become-partner-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.overlay {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.container {
+  padding: 112px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+  max-width: 873px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  @include titleFont;
+  color: $white;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 48px;
+  text-align: center;
+}
+
+.text {
+  color: $white;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.instagramLogo {
+  border-radius: 99999;
+  width: 52px;
+  height: 52px;
+}
+
+.form {
+  padding: 0px 60px 60px 60px;
+  width: 100%;
+
+  &Title {
+    @include titleFont;
+    color: $black;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 48px;
+    text-align: center;
+  }
+
+  &Container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 182px;
+    margin-top: 82px;
+  }
+
+  &Left {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      border-radius: 5px;
+    }
+  }
+
+  &Name {
+    @include titleFont;
+    color: $black;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    margin-top: 20px;
+  }
+
+  &Subtitle {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    color: $black;
+  }
+
+  &ItemsWrapper {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+
+  &Inner {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  &Item {
+    &Input {
+      width: auto;
+    }
+  }
+
+  &Footer {
+    margin-top: 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.formWrapper {
+  max-width: 511px;
+  margin: 0 auto;
+}
