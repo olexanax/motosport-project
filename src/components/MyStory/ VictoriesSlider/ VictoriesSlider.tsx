@@ -41,12 +41,11 @@ interface ReviewsSliderProps {
 const VictoriesSlider: FC<ReviewsSliderProps> = ({
 }) => {
 
-
+  const [isMobileListOpent, setIsMobileListOpent] = useState(false)
   const sliderRefDesctop = useRef<Splide>(null);
   const sliderRefMobile = useRef<Splide>(null);
 
   useEffect(() => {
-
     // Simulate swipe after component mounts
     const timer = setTimeout(() => {
       if (sliderRefDesctop.current) {
@@ -67,6 +66,9 @@ const VictoriesSlider: FC<ReviewsSliderProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.content}>
+        <h4 className={classNames(styles.blockTitle, global.subTitle)}>
+          Victories
+        </h4>
         <div className={styles.DesctpopSliderWrapper}>
           {
             <Splide
@@ -92,6 +94,24 @@ const VictoriesSlider: FC<ReviewsSliderProps> = ({
                 </SplideSlide>
               ))}
             </Splide>
+          }
+        </div>
+        <div className={styles.mobileWrapper}>
+          {(isMobileListOpent ? images : images?.slice(0, 3)).map((image, i) => (
+            <div key={i} className={styles.slideContent}>
+              <h6 className={classNames(styles.title, global.subTitle)}>
+                {image.period}
+              </h6>
+              <span className={styles.divider}></span>
+              <div className={classNames(styles.text, global.text2)}>
+                {image.text}
+              </div>
+            </div>
+          ))}
+          {!isMobileListOpent &&
+            <div onClick={() => setIsMobileListOpent(true)} className={classNames(styles.btn, global.primaryButton)}>
+              More
+            </div>
           }
         </div>
       </div>

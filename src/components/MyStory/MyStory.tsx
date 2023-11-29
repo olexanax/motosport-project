@@ -82,12 +82,9 @@ const MyStory = () => {
               }
             </div>
           </div>
-          <h4 className={classNames(styles.blockTitle, global.subTitle)}>
-            Victories
-          </h4>
-          <VictoriesSlider />
         </div>
       </div>
+      <VictoriesSlider />
     </>
   )
 }
