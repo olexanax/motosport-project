@@ -1,15 +1,14 @@
 import styles from "@/styles/mainPage.module.scss"
-
-
+//components
+import PageMainBanner from "@/components/PageMainBanner/PageMainBanner"
+import AboutMe from "@/components/AboutMe/AboutMe"
+import MyStory from "@/components/MyStory/MyStory"
 export default function Home() {
   return (
-    <div style={{
-      height: "400px",
-      paddingTop: "86px",
-      backgroundColor: "#000",
-      width: "100vw",
-    }} className={styles.container}>
-      HOME
-    </div>
+    <>
+      <PageMainBanner />
+      <AboutMe />
+      <MyStory />
+    </>
   )
 }

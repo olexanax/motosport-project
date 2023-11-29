@@ -1,0 +1,30 @@
+@import "@/styles/variables";
+
+.container {
+    @include pageWrapper;
+    overflow: hidden;
+    position: relative;
+}
+.content {
+    @include pageContent;
+    overflow: visible;
+    padding: 0px;
+}
+
+.DesctpopSliderWrapper {
+    width: 100%;
+    display: block;
+    overflow: visible;
+}
+
+.slide {
+    height: 325px;
+    img {
+        height: 100%;
+        width: 100vw !important;
+        object-fit: cover;
+    }
+    @media (max-width: $tabletSize) {
+        height: 290px;
+    }
+}

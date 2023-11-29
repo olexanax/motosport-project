@@ -1,0 +1,40 @@
+@import "@/styles/variables.scss";
+
+.container {
+    @include pageWrapper;
+    padding-top: 94px;
+    background-color: $black;
+    background: url("../../../public/images/banners/Frame1501.png") center
+        top/100% 100% no-repeat;
+    background-size: cover;
+
+    @media (max-width: $tabletSize) {
+        background: url("../../../public/images/banners/Frame1501.png") center
+            center/100% 100% no-repeat;
+        background-size: cover;
+    }
+}
+.content {
+    @include pageContent;
+    padding: 244px 80px 0px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 127px;
+    @media (max-width: $tabletSize) {
+        padding: 105px 16px 0px 16px;
+        gap: 112px;
+    }
+}
+.textBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.subTitle {
+    color: #fff;
+    font-family: Unbounded;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}

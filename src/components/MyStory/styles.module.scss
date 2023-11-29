@@ -1,0 +1,46 @@
+@import "@/styles/variables.scss";
+
+.container {
+    @include pageWrapper;
+    background-color: $black;
+}
+.content {
+    @include pageContent;
+    padding-top: 130px;
+    padding-bottom: 125;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    align-items: center;
+    @media (max-width: $tabletSize) {
+        padding: 39px 42px 16px 42px;
+        flex-wrap: wrap;
+    }
+}
+.blockTitle {
+    text-align: center;
+}
+.cardsBlock {
+    display: flex;
+    gap: 27px;
+    justify-content: center;
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        gap: 46px;
+    }
+}
+.leftCol {
+    display: flex;
+    flex-direction: column;
+    gap: 46px;
+}
+.rightCol {
+    margin-top: 223px;
+    display: flex;
+    flex-direction: column;
+    gap: 46px;
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        margin-top: 0px;
+    }
+}
