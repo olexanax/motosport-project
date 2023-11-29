@@ -1,0 +1,138 @@
+@import "@/styles/variables.scss";
+
+.container {
+    @include pageWrapper;
+    background-color: $black;
+    @media (max-width: $tabletSize) {
+    }
+}
+.content {
+    @include pageContent;
+    padding-top: 37px;
+    padding-bottom: 37px;
+    border-top: 2px solid rgba(255, 255, 255, 0.22);
+    display: flex;
+    flex-direction: column;
+    @media (max-width: $tabletSize) {
+        padding: 39px 42px 16px 42px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+.topRow {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+    @media (max-width: $tabletSize) {
+        margin-bottom: 46px;
+        justify-content: center;
+        width: 100%;
+    }
+}
+.logo {
+    object-fit: cover;
+    @media (max-width: $tabletSize) {
+        height: 12.635px;
+        width: auto;
+    }
+}
+.instLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1px solid $grey;
+    img {
+        width: 48px;
+        height: 48px;
+    }
+    @media (max-width: $tabletSize) {
+        display: none;
+    }
+}
+.nav {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 70px;
+    margin-bottom: 60px;
+    @media (max-width: $tabletSize) {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        align-self: flex-start;
+        width: 30%;
+    }
+    @media (max-width: 435px) {
+        width: 100%;
+        margin-bottom: 16px;
+    }
+}
+.navItem {
+    color: $white;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px; /* 125% */
+}
+.bottomBlock {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    flex-direction: column;
+    @media (max-width: $tabletSize) {
+        display: none;
+    }
+}
+.phoneLink {
+    color: rgba(255, 255, 255, 0.8);
+    align-self: flex-end;
+    @media (max-width: 435px) {
+        align-self: flex-start;
+    }
+}
+.textRow {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.bottomRowText {
+    color: rgba(255, 255, 255, 0.8);
+}
+//MOBILE BLOCKS
+.mobileContactsBlock {
+    display: none;
+    max-width: 70%;
+    flex: 1 1 auto;
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-end;
+    @media (max-width: $tabletSize) {
+        display: flex;
+    }
+    @media (max-width: 435px) {
+        width: 100%;
+        max-width: 100%;
+        align-items: flex-start;
+        margin-bottom: 36px;
+    }
+}
+.mobileinstLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1px solid $grey;
+    img {
+        width: 48px;
+        height: 48px;
+    }
+}
+.mobileBottomBlock {
+    display: none;
+    @media (max-width: $tabletSize) {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+}

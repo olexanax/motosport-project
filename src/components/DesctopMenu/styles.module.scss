@@ -1,0 +1,11 @@
+@import "@/styles/variables";
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+}
+.activeLink {
+    border-bottom: 1px solid #fff;
+    width: max-content;
+}

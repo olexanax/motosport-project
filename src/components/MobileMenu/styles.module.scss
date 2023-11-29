@@ -1,0 +1,87 @@
+@import "@/styles/variables";
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 30%;
+    bottom: 0;
+    min-width: 286px;
+    z-index: 100;
+    padding: 35px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background-color: $black;
+    color: $white;
+}
+.topBlock {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.navBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.navItem {
+    color: $white;
+}
+
+.bottomBlock {
+    border-top: 2px solid rgba(255, 255, 255, 0.22);
+    padding-top: 32px;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.instLink {
+    border-radius: 1px solid $grey;
+    img {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.bottomRowText {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.langBlock {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.langItem {
+    color: $white;
+}
+.currentLangItem {
+    color: $white;
+}
+.activeLink {
+    border-bottom: 1px solid #000;
+    width: max-content;
+}
+.currLocale {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+}
+.dropdown {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+}
+.localeItem {
+    color: #fff;
+    cursor: pointer;
+}

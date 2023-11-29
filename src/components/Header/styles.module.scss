@@ -1,0 +1,70 @@
+@import "@/styles/variables.scss";
+
+.container {
+    @include pageWrapper;
+}
+.content {
+    @include pageContent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    position: absolute;
+    color: #fff;
+    a {
+        color: #fff;
+    }
+    @media (max-width: 1024px) {
+    }
+}
+.logoLink {
+    height: 17px;
+    width: auto;
+    img {
+        height: 17px;
+        width: auto;
+    }
+    @media (max-width: 542px) {
+        height: 14px;
+        img {
+            height: 14px;
+        }
+    }
+}
+.DesctopMenuContainer {
+    @media (max-width: 1024px) {
+        display: none;
+    }
+}
+.mopbileMenuToggler {
+    display: none;
+    @media (max-width: 1024px) {
+        display: block;
+    }
+}
+.langPicker {
+    position: relative;
+    display: block;
+    @media (max-width: 1024px) {
+        display: none;
+    }
+}
+.currLocale {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+}
+.dropdown {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+}
+.localeItem {
+    color: #fff;
+    cursor: pointer;
+}

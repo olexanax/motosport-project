@@ -1,0 +1,25 @@
+$white: #fff;
+$grey: #cbcbcb;
+$red: #a10f0f;
+$black: #161616;
+$blue: #2267a7;
+$yellow: #f4b91f;
+
+$baseImageUrl: "https://icap-group-images.fra1.cdn.digitaloceanspaces.com/sieben-umzuege/images";
+$baseDynamicImageURL: "http://sieben-api.info/media";
+
+$tabletSize: 768px;
+$mobileSize: 425px;
+
+@mixin pageWrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+@mixin pageContent {
+    box-sizing: content-box;
+    width: 100%;
+    max-width: 1232px;
+    padding: 0 16px;
+    box-sizing: border-box;
+}

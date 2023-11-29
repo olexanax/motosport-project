@@ -1,0 +1,150 @@
+@import "@/styles/reset";
+@import "@/styles/variables";
+
+//Unbounded
+@font-face {
+    font-family: "Unbounded";
+    src: url("../../fonts/Unbounded/static/Unbounded-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Unbounded";
+    src: url("../../fonts/Unbounded/static/Unbounded-SemiBold.ttf");
+    font-weight: 600;
+    font-style: normal;
+}
+//Inter
+@font-face {
+    font-family: "Inter";
+    src: url("../../fonts/Inter/static/Inter-Bold.ttf");
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Inter";
+    src: url("../../fonts/Inter/static/Inter-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Inter";
+    src: url("../../fonts/Inter/static/Inter-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    color: #000;
+    font-family: "Inter";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    padding: relative;
+}
+
+main {
+    flex: 1 1 auto;
+    overflow-x: hidden;
+}
+
+#root {
+    overflow-x: hidden;
+}
+
+//slider customization
+// li[role="presentation"] button.is-active {
+//     background-color: $Blue !important;
+// }
+// .splide__pagination__page {
+//     position: relative;
+//     top: 30px;
+// }
+
+//ANT
+
+// .ant-picker-cell-selected {
+//     > div {
+//         background: $Blue !important;
+//         color: $White;
+//     }
+// }
+
+// .ant-picker-cell {
+//     color: #89939e !important;
+//     font-size: 12px !important;
+//     font-family: "Poppins" !important;
+//     text-align: center !important;
+// }
+
+// .ant-picker-cell-in-view {
+//     color: #333 !important;
+// }
+
+// .ant-select-selector {
+//     min-height: 24px !important;
+//     height: 44px !important;
+// }
+
+// .ant-select-selection-search {
+//     input {
+//         border-radius: 8px !important;
+//         background: #fff !important;
+//         font-size: 14px !important;
+//         font-weight: 400 !important;
+//         min-height: 24px !important;
+//         @media (max-width: $tabletSize) {
+//             font-size: 14px;
+//             font-weight: 400;
+//             line-height: 24px;
+//         }
+//         &::placeholder {
+//             color: #bdbdbd;
+//         }
+//     }
+// }
+
+// .ant-affix {
+//     @media (max-width: 890px) {
+//         position: static !important;
+//     }
+
+//     &-container {
+//         > div {
+//             width: auto !important; // to prevent affix on mobile devices
+//             height: auto !important; // to prevent affix on mobile devices
+//         }
+//     }
+// }
+
+// .ant-float-btn {
+//     width: 249px !important;
+//     height: 44px !important;
+//     background: $Blue !important;
+// }
+
+// .ant-float-btn-body {
+//     background: $Blue !important;
+// }
+
+// .ant-float-btn-description {
+//     color: $White !important;
+//     font-size: 16px !important;
+// }
+
+// #pewl {
+//     margin-bottom: 50px;
+// }
