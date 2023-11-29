@@ -17,7 +17,7 @@ const NewsCard: FC<NewsCardProps> = ({ title, slug }) => {
       <h5 className={classNames(global.smallTitle, styles.title)}>
         {title}
       </h5>
-      <Link className={styles.link} href={`/${slug}`}>
+      <Link className={styles.link} href={`/news/${slug}`}>
         Learn More
       </Link>
     </div>

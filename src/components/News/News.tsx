@@ -45,7 +45,7 @@ const News = () => {
 
 
   return (
-    <div className={styles.container}>
+    <div id="news" className={styles.container}>
       <div className={styles.content}>
         <h2 className={classNames(global.sectionTitle, styles.title)}>
           News
@@ -68,7 +68,7 @@ const News = () => {
                     <p className={classNames(styles.title, global.text2)}>
                       {image.title}
                     </p>
-                    <Link href={"/"} className={styles.learnMoreBtn}>
+                    <Link href={"/news/slug"} className={styles.learnMoreBtn}>
                       Learn More
                     </Link>
                   </div>

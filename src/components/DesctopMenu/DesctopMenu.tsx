@@ -2,7 +2,7 @@
 //components
 import Link from "next/link"
 //libs
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import classNames from "classnames"
 //styles
 import styles from "./styles.module.scss"
@@ -12,10 +12,11 @@ import global from "@/styles/global.module.scss"
 
 const DesctopMenu = ({ lng }: { lng: string }) => {
   const pathname = usePathname()
+  const router = useRouter()
 
   const NAV_ITEMS = [
     {
-      path: "#about-Us",
+      path: "#about-us",
       name: "About Us"
     },
     {
@@ -35,7 +36,6 @@ const DesctopMenu = ({ lng }: { lng: string }) => {
       name: "Become a Partner"
     }
   ]
-
   const getClassName = (path: string) => {
     if (path === "/") {
       return pathname === "/en" || pathname === "/de" || pathname === "/" ? styles.activeLink : ''
@@ -44,11 +44,15 @@ const DesctopMenu = ({ lng }: { lng: string }) => {
     } else return ''
   }
 
+
   return (
     <nav className={styles.content}>
       {
         NAV_ITEMS.map(({ path, name }, i) => (
-          <Link className={classNames(global.Body3Medium, getClassName(path))} key={i} href={`/${path}`}>{name}</Link>
+          <Link
+            className={classNames(global.Body3Medium, getClassName(path))}
+            key={i}
+            href={`/${path}`}>{name}</Link>
         ))
       }
     </nav>

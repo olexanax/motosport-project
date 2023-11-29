@@ -20,7 +20,7 @@ const IMAGES = [
 const Gallery = () => {
   const [isOpen, setIsOpen] = useState(false)
   return (
-    <div className={styles.container}>
+    <div id="gallery" className={styles.container}>
       <div className={styles.content}>
         <h2 className={classNames(global.sectionTitle, styles.title)}>
           Gallery

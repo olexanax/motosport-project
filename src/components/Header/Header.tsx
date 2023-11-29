@@ -42,7 +42,7 @@ function Header({ lng }: { lng: string }) {
   return (
     <header className={styles.container}>
       <div className={styles.content}>
-        <Link className={styles.logoLink} href={`/${lng}`}>
+        <Link className={styles.logoLink} href={`/`}>
           <Image priority width={202} height={17} src={logo} alt="logo" />
         </Link>
         <div className={styles.DesctopMenuContainer}>

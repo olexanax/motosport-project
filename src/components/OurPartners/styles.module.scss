@@ -1,0 +1,42 @@
+@import "@/styles/variables";
+
+.container {
+    @include pageWrapper;
+    overflow: hidden;
+    position: relative;
+    background-color: $white;
+}
+.content {
+    @include pageContent;
+    display: flex;
+    flex-direction: column;
+    padding-top: 96px;
+    padding-bottom: 132px;
+    width: 100%;
+    @media (max-width: $tabletSize) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+.title {
+    margin-bottom: 64px;
+    text-align: center;
+    color: $black;
+}
+.logoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 83px 63px;
+    justify-content: center;
+}
+.imageWrapper {
+    height: 83px;
+    width: max-content;
+}
+.image {
+    max-width: 100%;
+    max-width: 256px;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}

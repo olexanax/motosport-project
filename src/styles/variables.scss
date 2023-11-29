@@ -11,15 +11,23 @@ $baseDynamicImageURL: "http://sieben-api.info/media";
 $tabletSize: 768px;
 $mobileSize: 425px;
 
+@mixin titleFont {
+  font-family: "Unbounded";
+}
+@mixin bodyFont {
+  font-family: "Inter";
+}
+
 @mixin pageWrapper {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 @mixin pageContent {
-    box-sizing: content-box;
-    width: 100%;
-    max-width: 1232px;
-    padding: 0 16px;
-    box-sizing: border-box;
+  box-sizing: content-box;
+  width: 100%;
+  max-width: 1232px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
