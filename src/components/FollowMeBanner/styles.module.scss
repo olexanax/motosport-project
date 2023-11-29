@@ -1,0 +1,39 @@
+@import "@/styles/variables";
+
+.container {
+    @include pageWrapper;
+    overflow: hidden;
+    position: relative;
+}
+.content {
+    @include pageContent;
+    display: flex;
+    flex-direction: column;
+    padding-top: 96px;
+    padding-bottom: 132px;
+    width: 100%;
+    @media (max-width: $tabletSize) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+.title {
+    margin-bottom: 64px;
+    text-align: center;
+}
+.imagesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 14px;
+}
+.image {
+    object-fit: cover;
+    flex: 1 1 auto;
+    height: 318px;
+}
+.btn {
+    align-self: center;
+    margin-top: 24px;
+}

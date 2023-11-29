@@ -5,7 +5,7 @@
     width: max-content;
     padding: 23px 38px;
     border-radius: 8px;
-    border: 1px solid rgba(209, 209, 209, 0.3);
+    border: 1px solid rgba(216, 75, 75, 0.3);
     background: #f3f3f3;
     display: flex;
     flex-direction: column;
@@ -14,7 +14,6 @@
     max-width: 485px;
     @media (max-width: $tabletSize) {
         width: 100%;
-        max-width: 100%;
         padding: 28px 22px;
     }
 }

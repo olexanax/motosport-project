@@ -152,6 +152,9 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess }) => {
                 name="notes"
                 render={({ field }) => (
                   <Textarea
+                    style={{
+                      color: "#161616"
+                    }}
                     className={classNames({
                       [global.redBorder]: errors.notes,
                     })}

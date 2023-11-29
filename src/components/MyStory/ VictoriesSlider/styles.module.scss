@@ -10,12 +10,20 @@
     @include pageContent;
     overflow: visible;
     padding: 0px;
+    display: flex;
+    flex-direction: column;
 }
-
+.blockTitle {
+    text-align: center;
+    margin-bottom: 32px;
+}
 .DesctpopSliderWrapper {
     width: 100%;
     display: block;
     overflow: visible;
+    @media (max-width: $tabletSize) {
+        display: none;
+    }
 }
 
 .slide {
@@ -78,4 +86,19 @@
 .title {
     position: relative;
     z-index: 4;
+}
+.mobileWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: max-content;
+    justify-content: center;
+    align-self: center;
+    display: none;
+    @media (max-width: $tabletSize) {
+        display: flex;
+    }
+}
+.btn {
+    align-self: center;
 }

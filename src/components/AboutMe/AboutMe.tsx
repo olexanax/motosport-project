@@ -24,7 +24,7 @@ const STAT_DATA = [
 const AboutMe = () => {
   return (
     <>
-      <div className={styles.container}>
+      <div id="about-us" className={styles.container}>
         <div className={styles.content}>
           <div className={styles.divider}>
             <div className={styles.dividerFirstLine}></div>

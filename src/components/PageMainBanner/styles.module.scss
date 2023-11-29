@@ -4,8 +4,8 @@
     @include pageWrapper;
     padding-top: 94px;
     background-color: $black;
-    background: url("../../../public/images/banners/Frame1501.png") center
-        top/100% 100% no-repeat;
+    background: url("../../../public/images/banners/Frame1501.png") center -300px/100%
+        100% no-repeat;
     background-size: cover;
 
     @media (max-width: $tabletSize) {

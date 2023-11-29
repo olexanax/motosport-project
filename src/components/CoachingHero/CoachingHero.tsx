@@ -37,7 +37,7 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title }) => {
   };
 
   return (
-    <div className={classNames(global.container, styles.wrapper)}>
+    <div id="couching" className={classNames(global.container, styles.wrapper)}>
       <div className={styles.overlay}>
         <div className={global.content}>
           <div className={styles.container}>
@@ -71,7 +71,7 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title }) => {
       )}
       {isSuccess && (
         <ModalWindow onClose={() => setIsSuccess(false)}>
-          <ModalSuccess/>
+          <ModalSuccess />
         </ModalWindow>
       )}
     </div>

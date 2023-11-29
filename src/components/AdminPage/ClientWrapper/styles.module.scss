@@ -1,0 +1,23 @@
+@import "@/styles/variables.scss";
+
+.container {
+    @include pageWrapper;
+    @media (max-width: $tabletSize) {
+    }
+}
+.content {
+    @include pageContent;
+    padding-top: 258px;
+    padding-bottom: 258px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+.topRow {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}

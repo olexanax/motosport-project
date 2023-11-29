@@ -1,0 +1,20 @@
+@import "@/styles/variables.scss";
+
+.container {
+    padding: 4px;
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    align-self: flex-start;
+}
+.tab {
+    width: max-content;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #a10f0f;
+}
+.activeTab {
+    color: #fff;
+    background-color: $red;
+    border-radius: 20px;
+}
