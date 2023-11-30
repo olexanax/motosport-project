@@ -52,7 +52,7 @@ const DesctopMenu = ({ lng }: { lng: string }) => {
           <Link
             className={classNames(global.Body3Medium, getClassName(path))}
             key={i}
-            href={`/${path}`}>{name}</Link>
+            href={`/${lng}/${path}`}>{name}</Link>
         ))
       }
     </nav>

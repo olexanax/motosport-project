@@ -9,7 +9,10 @@ import Gallery from "@/components/Gallery/Gallery";
 import OurPartners from "@/components/OurPartners/OurPartners";
 import FollowMeBanner from "@/components/FollowMeBanner/FollowMeBanner";
 import News from "@/components/News/News";
-export default function Home() {
+//i18n
+import { I18PageProps } from "@/types/i18NextTypes";
+
+export default async function Home({ params: { lng } }: I18PageProps) {
   return (
     <>
       <PageMainBanner />
