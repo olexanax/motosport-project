@@ -3,6 +3,13 @@ import { store } from "@/redux/store";
 export type RootStateType = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
+
+//LOGIN
+export interface LoginFormInputs {
+    username: string;
+    password: string;
+}
+
 //GALLERY
 export interface GalleryItemType {
     id: number;
