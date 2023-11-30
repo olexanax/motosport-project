@@ -2,6 +2,7 @@
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header';
 import { Toaster } from 'sonner';
+import { ReduxProvider } from '@/lib/validators/ReduxProvider';
 //libs
 import { dir } from "i18next";
 import { languages } from "../i18n/settings";
@@ -35,12 +36,14 @@ export default function RootLayout({
   return (
     <html lang={lng} dir={dir(lng)}>
       <body>
-        <Header {...{ lng }} />
-        <main>
-          {children}
-        </main>
-        <Toaster richColors closeButton />
-        <Footer />
+        <ReduxProvider>
+          <Header {...{ lng }} />
+          <main>
+            {children}
+          </main>
+          <Toaster richColors closeButton />
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   )
