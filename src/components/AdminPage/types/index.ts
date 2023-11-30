@@ -8,4 +8,10 @@ export enum IAdminPagesType {
     "News" = "News",
     "Gallery" = "Gallery",
     "Static Info" = "Static Info",
+    "Partners" = "Partners",
+}
+export interface AdminPageQuries {
+    victoryId?: string;
+    victoryAddNew?: string;
+    lang?: LangsTypeEnum;
 }

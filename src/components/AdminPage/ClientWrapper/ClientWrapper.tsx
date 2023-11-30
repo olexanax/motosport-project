@@ -1,8 +1,8 @@
 "use client"
 //types
-import { Metadata } from 'next';
+import { AdminPageQuries } from '@/components/AdminPage/types';
 //libs
-"use client"
+import { useRouter } from 'next/navigation';
 import classNames from 'classnames';
 import { ReactNode, useState, useEffect } from 'react';
 //components
@@ -16,37 +16,55 @@ import { IAdminPagesType, LangsTypeEnum } from "@/components/AdminPage/types/ind
 //components
 import Gallery from '../PageContent/Gallery';
 import AboutMe from '@/components/AdminPage/PageContent/AboutMe';
-
-const content: Record<IAdminPagesType, ReactNode> = {
-  // Тут ви можете визначити значення для кожного ключа з IAdminPagesType
-  // Наприклад:
-  [IAdminPagesType.Gallery]: <Gallery />,
-  [IAdminPagesType['About Me']]: <AboutMe />,
-  [IAdminPagesType.News]: <p>TEST</p>,
-  [IAdminPagesType.Victories]: <p>TEST</p>,
-  [IAdminPagesType['Static Info']]: <p>TEST</p>,
-
-};
+import Partners from '@/components/AdminPage/PageContent/Partners';
+import Victories from '@/components/AdminPage/PageContent/Victories';
 
 
 
-const ClientWrapper = () => {
+const ClientWrapper = ({ victoryId, victoryAddNew, lang }: AdminPageQuries) => {
   const [currTable, setCurrTable] = useState<IAdminPagesType>(IAdminPagesType['Gallery'])
   const [currLang, setCurrLang] = useState<LangsTypeEnum>(LangsTypeEnum['en'])
+
+  const router = useRouter();
 
   useEffect(() => {
     localStorage.getItem('currTable') && setCurrTable(localStorage.getItem('currTable') as IAdminPagesType)
     localStorage.getItem('currLang') && setCurrLang(localStorage.getItem('currLang') as LangsTypeEnum)
+    const query = new URLSearchParams();
+    query.set("lang", localStorage.getItem('currLang') || currLang);
+    router.push(`${window.location.pathname}?${query.toString()}`)
   }, [])
 
   const onTableClick = (arg: IAdminPagesType) => {
     localStorage.setItem('currTable', arg)
+    const query = new URLSearchParams();
+    query.delete("victoryAddNew");
+    query.delete("victoryId");
+    lang && query.set("lang", lang);
+    router.push(`${window.location.pathname}?${query.toString()}`)
     setCurrTable(arg)
   }
   const onLangClick = (arg: LangsTypeEnum) => {
     localStorage.setItem('currLang', arg)
     setCurrLang(arg)
+    const query = new URLSearchParams();
+    victoryId && query.set("victoryId", victoryId)
+    victoryAddNew && query.set("victoryAddNew", victoryAddNew.toString())
+    query.set("lang", arg)
+    router.push(`${window.location.pathname}?${query.toString()}`)
   }
+
+  const content: Record<IAdminPagesType, ReactNode> = {
+    [IAdminPagesType.Gallery]: <Gallery />,
+    [IAdminPagesType['About Me']]: <AboutMe />,
+    [IAdminPagesType.News]: <p>TEST</p>,
+    [IAdminPagesType.Victories]: <Victories {...{ victoryAddNew, victoryId, lang }} />,
+    [IAdminPagesType['Static Info']]: <p>TEST</p>,
+    [IAdminPagesType.Partners]: <Partners />,
+
+  };
+
+
   return (
     <div id="about-us" className={styles.container}>
       <div className={styles.content}>

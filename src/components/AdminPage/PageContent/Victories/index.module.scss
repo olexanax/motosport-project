@@ -1,0 +1,47 @@
+@import "@/styles/variables";
+
+.container {
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    width: 100%;
+}
+.addBtn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: $white;
+    background-color: $black;
+    align-self: flex-end;
+    position: relative;
+    top: -90px;
+    cursor: pointer;
+}
+.primaryButton {
+    padding: 16px 34px;
+    border-radius: 10px;
+    background: #00538e;
+    color: #fff;
+    border: 1px solid #00538e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    width: 166px;
+    text-align: center;
+}
+.secondaryButton {
+    padding: 16px 34px;
+    border-radius: 10px;
+    background: #fff;
+    color: #00538e;
+    border: 1px solid #00538e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    text-align: center;
+}

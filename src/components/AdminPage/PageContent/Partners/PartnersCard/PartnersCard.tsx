@@ -4,13 +4,13 @@ import { Controller, useForm } from "react-hook-form";
 import styles from "./index.module.scss";
 import classNames from "classnames";
 // //redux
-import { deleteGallery, updateGallery } from "@/redux/slices/gallery.slice";
+import { deletePartners, updatePartners } from "@/redux/slices/partners.slice";
 import { AppDispatch } from "@/redux/types";
 import { useDispatch, useSelector } from 'react-redux'
 // //components
 import ImageUploader from "@/components/ImageUploader/ImageUploader";
 // //type
-import { GalleryItemType } from "@/redux/types";
+import { PartnersItemType } from "@/redux/types";
 //images
 import deleteBtn from "../../../../../../public/images/icons/deleteBtn.svg"
 import editIcon from "../../../../../../public/images/icons/editIcon.svg"
@@ -22,11 +22,11 @@ type Inputs = {
   image: File | string;
 };
 
-interface Props extends GalleryItemType {
+interface Props extends PartnersItemType {
   imagesLength: number;
 }
 
-const GalleryCard: FC<Props> = ({ image, imagesLength, order, id }) => {
+const PartnersCard: FC<Props> = ({ image, imagesLength, order, id }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const { control } = useForm<Inputs>({
@@ -36,7 +36,7 @@ const GalleryCard: FC<Props> = ({ image, imagesLength, order, id }) => {
   });
 
   const onDelete = () => {
-    dispatch(deleteGallery(id))
+    dispatch(deletePartners(id))
   };
 
 
@@ -47,7 +47,7 @@ const GalleryCard: FC<Props> = ({ image, imagesLength, order, id }) => {
       const formData = new FormData();
       formData.append("image", file);
       formData.append("order", order.toString());
-      dispatch(updateGallery({ id, formData }))
+      dispatch(updatePartners({ id, formData }))
     }
   };
 
@@ -99,4 +99,4 @@ const GalleryCard: FC<Props> = ({ image, imagesLength, order, id }) => {
   );
 };
 
-export default GalleryCard;
+export default PartnersCard;
