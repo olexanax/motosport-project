@@ -55,6 +55,8 @@
     gap: 8px;
     align-items: center;
     width: 100%;
+    position: relative;
+    z-index: 100;
 }
 .dropdown {
     margin-top: 12px;

@@ -15,8 +15,8 @@ import global from "@/styles/global.module.scss"
 //images
 import logo from "../../../public/images/icons/logo.svg"
 import arrow from "../../../public/images/icons/dropdownArr.svg"
-
-const languages = ['en', 'ua']
+//i18n
+import { languages } from "@/app/i18n/settings"
 
 
 function Header({ lng }: { lng: string }) {

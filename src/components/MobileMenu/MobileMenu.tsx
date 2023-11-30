@@ -13,14 +13,15 @@ import styles from "./styles.module.scss"
 //images
 import instagramLogo from "../../../public/images/icons/instagramLogo.svg"
 import arrow from "../../../public/images/icons/dropdownArr.svg"
+//i18n
+import { languages } from "@/app/i18n/settings"
+
 
 type Props = {
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (arg: boolean) => void;
   lng: string;
 }
-
-const languages = ['en', 'ua']
 
 
 const MobileMenu: FC<Props> = ({ isMobileMenuOpen, setIsMobileMenuOpen, lng }) => {
