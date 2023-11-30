@@ -7,11 +7,15 @@ export enum IAdminPagesType {
     "Victories" = "Victories",
     "News" = "News",
     "Gallery" = "Gallery",
-    "Static Info" = "Static Info",
     "Partners" = "Partners",
+    "My story" = "My story",
+    "Static Info" = "Static Info",
 }
 export interface AdminPageQuries {
     victoryId?: string;
     victoryAddNew?: string;
+
+    myStoryId?: string;
+    myStoryAddNew?: string;
     lang?: LangsTypeEnum;
 }

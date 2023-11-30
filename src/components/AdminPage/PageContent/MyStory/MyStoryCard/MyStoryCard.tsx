@@ -6,7 +6,7 @@ import styles from "./index.module.scss";
 import global from "@/styles/global.module.scss";
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { deleteVictories } from "@/redux/slices/victories.slice";
+import { deleteMyStory } from "@/redux/slices/myStory.slice";
 // //type
 import { VictoriesItemType } from "@/redux/types";
 import { AppDispatch, RootStateType } from "@/redux/types";
@@ -16,7 +16,7 @@ interface Props extends VictoriesItemType {
   query: AdminPageQuries
 }
 
-const VictoriesCard: FC<Props> = ({ id, image, description, title, query: { lang } }) => {
+const MyStoryCard: FC<Props> = ({ id, image, description, title, query: { lang } }) => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const [deleteBtnValue, setDeleteBtnValue] = useState<"loading..." | "Delete">(
@@ -25,15 +25,15 @@ const VictoriesCard: FC<Props> = ({ id, image, description, title, query: { lang
 
   const onEdit = () => {
     const query = new URLSearchParams();
-    query.set("victoryId", id.toString());
+    query.set("myStoryId", id.toString());
     lang && query.set("lang", lang);
-    query.delete("victoryAddNew");
+    query.delete("myStoryAddNew");
 
     router.push(`${window.location.pathname}?${query.toString()}`)
   };
   const onDelete = () => {
     setDeleteBtnValue("loading...");
-    dispatch(deleteVictories(id));
+    dispatch(deleteMyStory(id));
   };
 
   return (
@@ -57,4 +57,4 @@ const VictoriesCard: FC<Props> = ({ id, image, description, title, query: { lang
   );
 };
 
-export default VictoriesCard;
+export default MyStoryCard;

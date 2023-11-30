@@ -69,3 +69,22 @@ export interface CreateVictoriesItemType {
     formData: FormData;
 }
 export type VictoriesResponse = VictoriesItemType[];
+
+// my story
+
+export interface MyStoryItemType {
+    id: number;
+    image: string;
+    order: string;
+    title: string;
+    description: string;
+    language: languagesType;
+}
+export interface UpdateMyStoryItemType {
+    id: number;
+    formData: FormData;
+}
+export interface CreateMyStoryItemType {
+    formData: FormData;
+}
+export type MyStoryResponse = MyStoryItemType[];

@@ -18,10 +18,10 @@ import Gallery from '../PageContent/Gallery';
 import AboutMe from '@/components/AdminPage/PageContent/AboutMe';
 import Partners from '@/components/AdminPage/PageContent/Partners';
 import Victories from '@/components/AdminPage/PageContent/Victories';
+import MyStory from '@/components/AdminPage/PageContent/MyStory';
 
 
-
-const ClientWrapper = ({ victoryId, victoryAddNew, lang }: AdminPageQuries) => {
+const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryId }: AdminPageQuries) => {
   const [currTable, setCurrTable] = useState<IAdminPagesType>(IAdminPagesType['Gallery'])
   const [currLang, setCurrLang] = useState<LangsTypeEnum>(LangsTypeEnum['en'])
 
@@ -61,12 +61,13 @@ const ClientWrapper = ({ victoryId, victoryAddNew, lang }: AdminPageQuries) => {
     [IAdminPagesType.Victories]: <Victories {...{ victoryAddNew, victoryId, lang }} />,
     [IAdminPagesType['Static Info']]: <p>TEST</p>,
     [IAdminPagesType.Partners]: <Partners />,
+    [IAdminPagesType['My story']]: <MyStory {...{ myStoryAddNew, myStoryId, lang }} />
 
   };
 
 
   return (
-    <div id="about-us" className={styles.container}>
+    <div id="about-us" className={styles.container} >
       <div className={styles.content}>
         <div className={styles.topRow}>
           <h1 className={classNames(global.pageTitle, styles.title)}>
@@ -79,7 +80,7 @@ const ClientWrapper = ({ victoryId, victoryAddNew, lang }: AdminPageQuries) => {
           content[currTable]
         }
       </div>
-    </div>
+    </div >
   )
 }
 
