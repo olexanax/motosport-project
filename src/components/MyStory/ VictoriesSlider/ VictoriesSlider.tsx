@@ -1,47 +1,21 @@
-"use client"
+"use client";
 //styles
-import global from '@/styles/global.module.scss'
-import styles from './styles.module.scss'
+import global from "@/styles/global.module.scss";
+import styles from "./styles.module.scss";
+import classNames from "classnames";
 import "@splidejs/react-splide/css";
-//components
-import Image from 'next/image';
-//libs
-import { useState, useEffect, useRef, FC } from 'react';
-import classNames from 'classnames';
+
+import { useState, useEffect, useRef, FC } from "react";
 // @ts-ignore
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-//images
-import slide1 from '../../../../public/images/aboutMeSlider/aboutMeSlider.png'
-const images = [
-  {
-    image: slide1,
-    period: "2023",
-    text: 'GTC Race Oschersleben '
-  },
-  {
-    image: slide1,
-    period: "2023",
-    text: 'GTC Race Oschersleben '
-  },
-  {
-    image: slide1,
-    period: "2023",
-    text: 'GTC Race Oschersleben '
-  },
-  {
-    image: slide1,
-    period: "2023",
-    text: 'GTC Race Oschersleben '
-  },
-]
-interface ReviewsSliderProps {
-
+import { Victory } from "@/actions/get-victories";
+import image from "../../../../public/images/aboutMeSlider/aboutMeSlider.png";
+interface VictoriesSliderProps {
+  victories: Victory[] | undefined;
 }
 
-const VictoriesSlider: FC<ReviewsSliderProps> = ({
-}) => {
-
-  const [isMobileListOpent, setIsMobileListOpent] = useState(false)
+const VictoriesSlider: FC<VictoriesSliderProps> = ({ victories }) => {
+  const [isMobileListOpen, setIsMobileListOpen] = useState(false);
   const sliderRefDesctop = useRef<Splide>(null);
   const sliderRefMobile = useRef<Splide>(null);
 
@@ -69,54 +43,66 @@ const VictoriesSlider: FC<ReviewsSliderProps> = ({
         <h4 className={classNames(styles.blockTitle, global.subTitle)}>
           Victories
         </h4>
-        <div className={styles.DesctpopSliderWrapper}>
-          {
-            <Splide
-              ref={sliderRefDesctop}
-              options={{
-                rewind: true,
-                type: "loop",
-                perPage: 4,
-              }}
-              className={styles.slider}
-            >
-              {images?.map((image, i) => (
-                <SplideSlide className={styles.slide} key={i}>
-                  <div className={styles.slideContent}>
+        {victories && !!victories.length && (
+          <>
+            <div className={styles.DesctpopSliderWrapper}>
+              <Splide
+                ref={sliderRefDesctop}
+                options={{
+                  rewind: true,
+                  type: "loop",
+                  perPage: 4,
+                }}
+                className={styles.slider}
+              >
+                {victories.map((victory) => (
+                  <SplideSlide className={styles.slide} key={victory.id}>
+                    <div
+                      className={styles.slideContent}
+                      style={{
+                        background: `url("${victory.image}") center top / 100% 100% no-repeat`,
+                      }}
+                    >
+                      <h6 className={classNames(styles.title, global.subTitle)}>
+                        {victory.title}
+                      </h6>
+                      <span className={styles.divider}></span>
+                      <div className={classNames(styles.text, global.text2)}>
+                        {victory.description}
+                      </div>
+                    </div>
+                  </SplideSlide>
+                ))}
+              </Splide>
+            </div>
+            <div className={styles.mobileWrapper}>
+              {(isMobileListOpen ? victories : victories.slice(0, 3)).map(
+                (victory) => (
+                  <div key={victory.id} className={styles.slideContent}>
                     <h6 className={classNames(styles.title, global.subTitle)}>
-                      {image.period}
+                      {victory.title}
                     </h6>
                     <span className={styles.divider}></span>
                     <div className={classNames(styles.text, global.text2)}>
-                      {image.text}
+                      {victory.description}
                     </div>
                   </div>
-                </SplideSlide>
-              ))}
-            </Splide>
-          }
-        </div>
-        <div className={styles.mobileWrapper}>
-          {(isMobileListOpent ? images : images?.slice(0, 3)).map((image, i) => (
-            <div key={i} className={styles.slideContent}>
-              <h6 className={classNames(styles.title, global.subTitle)}>
-                {image.period}
-              </h6>
-              <span className={styles.divider}></span>
-              <div className={classNames(styles.text, global.text2)}>
-                {image.text}
-              </div>
+                )
+              )}
+              {!isMobileListOpen && (
+                <div
+                  onClick={() => setIsMobileListOpen(true)}
+                  className={classNames(styles.btn, global.primaryButton)}
+                >
+                  More
+                </div>
+              )}
             </div>
-          ))}
-          {!isMobileListOpent &&
-            <div onClick={() => setIsMobileListOpent(true)} className={classNames(styles.btn, global.primaryButton)}>
-              More
-            </div>
-          }
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
 };
 
-export default VictoriesSlider
+export default VictoriesSlider;

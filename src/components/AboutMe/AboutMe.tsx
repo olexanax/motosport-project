@@ -1,27 +1,29 @@
-import classNames from 'classnames'
+import classNames from "classnames";
 //components
-import AboutMeSlider from './AboutMeSlider/AboutMeSlider'
+import AboutMeSlider from "./AboutMeSlider/AboutMeSlider";
 //styles
-import global from '@/styles/global.module.scss'
-import styles from './styles.module.scss'
-
+import global from "@/styles/global.module.scss";
+import styles from "./styles.module.scss";
+import { getAboutMe } from "@/actions/get-about-me";
 
 const STAT_DATA = [
   {
     value: 42,
-    title: 'Number of Wins ',
+    title: "Number of Wins ",
   },
   {
     value: 15,
-    title: 'Years in Motorsport  ',
+    title: "Years in Motorsport  ",
   },
   {
     value: 23,
-    title: 'Raced on Circuits ',
-  }
-]
+    title: "Raced on Circuits ",
+  },
+];
 
-const AboutMe = () => {
+const AboutMe = async () => {
+  const aboutMe = await getAboutMe();
+
   return (
     <>
       <div id="about-us" className={styles.container}>
@@ -37,8 +39,11 @@ const AboutMe = () => {
             <div className={styles.textBlock}>
               <div className={classNames(styles.leftCol, global.text2)}>
                 <p>
-                  My name is Ivan Peklin, I am a professional racing driver from Ukraine.
-                  I have been involved in motorsports since 2008, and throughout my career, I’ve gained loads of experience in many different racing series, from go-karting to single-seaters and GT series.
+                  My name is Ivan Peklin, I am a professional racing driver from
+                  Ukraine. I have been involved in motorsports since 2008, and
+                  throughout my career, I’ve gained loads of experience in many
+                  different racing series, from go-karting to single-seaters and
+                  GT series.
                 </p>
                 <br />
                 <div>
@@ -55,45 +60,31 @@ const AboutMe = () => {
               </div>
               <ul className={classNames(styles.rightCol, global.text2)}>
                 <li>
-                  <span className={styles.boldtext}>
-                    Date of Birth:
-                  </span>
+                  <span className={styles.boldtext}>Date of Birth:</span>
                   Date of Birth:
                 </li>
                 <li>
-                  <span className={styles.boldtext}>
-                    Place of Birth:
-                  </span>
+                  <span className={styles.boldtext}>Place of Birth:</span>
                   Kyiv, Ukraine
                 </li>
                 <li>
-                  <span className={styles.boldtext}>
-                    Currently living in:
-                  </span>
+                  <span className={styles.boldtext}>Currently living in:</span>
                   Germany, Eifel
                 </li>
                 <li>
-                  <span className={styles.boldtext}>
-                    FIA Categorisation:
-                  </span>
+                  <span className={styles.boldtext}>FIA Categorisation:</span>
                   Silver Driver
                 </li>
                 <li>
-                  <span className={styles.boldtext}>
-                    Other:
-                  </span>
+                  <span className={styles.boldtext}>Other:</span>
                   Permit A Nordschleife
                 </li>
                 <li>
-                  <span className={styles.boldtext}>
-                    Height:
-                  </span>
+                  <span className={styles.boldtext}>Height:</span>
                   1.86m
                 </li>
                 <li>
-                  <span className={styles.boldtext}>
-                    Other interests:
-                  </span>
+                  <span className={styles.boldtext}>Other interests:</span>
                   Sim-racing, Cycling, Tennis.
                 </li>
               </ul>
@@ -102,27 +93,23 @@ const AboutMe = () => {
               Explore my full racing career in the sections below.
             </p>
             <div className={styles.statBlock}>
-              {
-                STAT_DATA.map((item, i) => (
-                  <div key={i} className={styles.statItem}>
-                    <div className={styles.statValue}>
-                      <span>
-                        {item.value}
-                      </span>
-                    </div>
-                    <div className={classNames(styles.statName, global.text2)}>
-                      {item.title}
-                    </div>
+              {STAT_DATA.map((item, i) => (
+                <div key={i} className={styles.statItem}>
+                  <div className={styles.statValue}>
+                    <span>{item.value}</span>
                   </div>
-                ))
-              }
+                  <div className={classNames(styles.statName, global.text2)}>
+                    {item.title}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
-      <AboutMeSlider />
+      <AboutMeSlider aboutMe={aboutMe} />
     </>
-  )
-}
+  );
+};
 
-export default AboutMe
+export default AboutMe;

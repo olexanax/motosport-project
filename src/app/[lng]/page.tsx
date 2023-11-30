@@ -18,12 +18,12 @@ export default async function Home({ params: { lng } }: I18PageProps) {
       <PageMainBanner />
       <AboutMe />
       <MyStory />
-      <News />
       <CoachingHero
         title="Coaching"
         text="As an experienced racing driver, I am happy to share my knowledge with anyone, who is aspiring to improve their racing skills and achieve higher results. I offer individual coaching sessions, where we would work on and improve areas that are specific to the needs of each driver. 
         If you are interested in my coaching programme, please fill out the form below. You can also find more information on my Instagram page specifically about coaching."
       />
+      <News />
       <Gallery />
       <OurPartners />
       <BecomePartner
