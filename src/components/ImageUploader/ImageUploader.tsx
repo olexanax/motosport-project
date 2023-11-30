@@ -1,6 +1,5 @@
-import { FC } from 'react';
-import './styles.css'
-
+import { FC } from "react";
+import "./styles.css";
 
 interface ImgUploadProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -8,30 +7,59 @@ interface ImgUploadProps {
   width: number;
   height: number;
   styles?: {
-    [key: string]: string | number | undefined
+    [key: string]: string | number | undefined;
   };
   id: number;
   propForUpdate?: any;
   srcType?: "string" | "file";
-  cahce?: boolean
+  cahce?: boolean;
 }
 
-const ImageUploader: FC<ImgUploadProps> = ({ onChange, src, width, height, styles, id, srcType, cahce }) => {
-  const uniqueSrc = cahce && srcType === "string" ? src + '?timestamp=' + new Date().getTime() : src
-
+const ImageUploader: FC<ImgUploadProps> = ({
+  onChange,
+  src,
+  width,
+  height,
+  styles,
+  id,
+  srcType,
+  cahce,
+}) => {
+  const uniqueSrc =
+    cahce && srcType === "string"
+      ? src + "?timestamp=" + new Date().getTime()
+      : src;
 
   return (
-    <label htmlFor={`photo-upload${id}`} className="custom-file-upload fas" >
-      <div className="img-wrap img-upload" style={{ width: width, height: height, ...styles }}>
+    <label htmlFor={`photo-upload${id}`} className="custom-file-upload fas">
+      <div
+        className="img-wrap img-upload"
+        style={{ width: width, height: height, ...styles }}
+      >
         {src ? (
-          <img style={{ width: width, height: height, ...styles }} className="avatar-img" src={uniqueSrc} alt="" />
+          <img
+            style={{ width: width, height: height, ...styles }}
+            className="avatar-img"
+            src={uniqueSrc}
+            alt=""
+          />
         ) : (
-          <span style={{ width: width, height: height, ...styles }} className="add-photo-text">Foto </span>
+          <span
+            style={{ width: width, height: height, ...styles }}
+            className="add-photo-text"
+          >
+            Foto{" "}
+          </span>
         )}
       </div>
-      <input className='photo-upload' id={`photo-upload${id}`} type="file" onChange={onChange} />
-    </label >
+      <input
+        className="photo-upload"
+        id={`photo-upload${id}`}
+        type="file"
+        onChange={onChange}
+      />
+    </label>
   );
-}
+};
 
 export default ImageUploader;

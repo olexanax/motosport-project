@@ -25,8 +25,6 @@ const MyStory = ({ lang, myStoryAddNew, myStoryId }: AdminPageQuries) => {
     router.push(`${window.location.pathname}?${query.toString()}`)
   };
 
-
-  console.log(myStoryAddNew);
   if (myStoryId || myStoryAddNew) return <MyStoryForm {...{ myStoryAddNew, myStoryId, lang }} />;
 
   return (

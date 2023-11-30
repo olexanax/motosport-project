@@ -4,6 +4,12 @@ export type AppDispatch = typeof store.dispatch;
 
 type languagesType = "en" | "ua";
 
+//LOGIN
+export interface LoginFormInputs {
+    username: string;
+    password: string;
+}
+
 //GALLERY
 export interface GalleryItemType {
     id: number;
