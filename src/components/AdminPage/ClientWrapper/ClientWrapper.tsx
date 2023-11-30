@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 //libs
 "use client"
 import classNames from 'classnames';
-import { useState } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 //components
 import PagePicker from '../PagePicker/PagePicker';
 import LangPicker from '../LangPicker/LangPicker';
@@ -13,13 +13,30 @@ import global from '@/styles/global.module.scss'
 import styles from './styles.module.scss'
 //types
 import { IAdminPagesType, LangsTypeEnum } from "@/components/AdminPage/types/index"
+//components
+import Gallery from '../PageContent/Gallery';
+
+const content: Record<IAdminPagesType, ReactNode> = {
+  // Тут ви можете визначити значення для кожного ключа з IAdminPagesType
+  // Наприклад:
+  [IAdminPagesType.Gallery]: <Gallery />,
+  [IAdminPagesType['About Me']]: <p>TEST</p>,
+  [IAdminPagesType.News]: <p>TEST</p>,
+  [IAdminPagesType.Victories]: <p>TEST</p>,
+  [IAdminPagesType['Static Info']]: <p>TEST</p>,
+
+};
+
 
 
 const ClientWrapper = () => {
-  const [currTable, setCurrTable] = useState<IAdminPagesType>(
-    typeof window !== "undefined" && localStorage.getItem('currTable') as IAdminPagesType || IAdminPagesType['About Me'])
-  const [currLang, setCurrLang] = useState<LangsTypeEnum>(
-    typeof window !== "undefined" && localStorage.getItem('currLang') as LangsTypeEnum || LangsTypeEnum['en'])
+  const [currTable, setCurrTable] = useState<IAdminPagesType>(IAdminPagesType['Gallery'])
+  const [currLang, setCurrLang] = useState<LangsTypeEnum>(LangsTypeEnum['en'])
+
+  useEffect(() => {
+    localStorage.getItem('currTable') && setCurrTable(localStorage.getItem('currTable') as IAdminPagesType)
+    localStorage.getItem('currLang') && setCurrLang(localStorage.getItem('currLang') as LangsTypeEnum)
+  }, [])
 
   const onTableClick = (arg: IAdminPagesType) => {
     localStorage.setItem('currTable', arg)
@@ -39,6 +56,9 @@ const ClientWrapper = () => {
           <LangPicker {...{ activeTab: currLang, onTabClick: onLangClick }} />
         </div>
         <PagePicker {...{ activeTab: currTable, onTabClick: onTableClick }} />
+        {
+          content[currTable]
+        }
       </div>
     </div>
   )

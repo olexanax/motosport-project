@@ -25,7 +25,7 @@ const Gallery = () => {
         <h2 className={classNames(global.sectionTitle, styles.title)}>
           Gallery
         </h2>
-        <div className={styles.imagesList}>
+        <div className={classNames(styles.imagesList, isOpen ? styles.shadow : "")}>
           {
             (isOpen ? IMAGES : IMAGES.slice(0, 16)).map((img, i) => <Image className={styles.image} key={i} src={img} alt='' />)
           }

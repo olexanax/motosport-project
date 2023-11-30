@@ -15,7 +15,7 @@ import { I18PageProps } from "@/types/i18NextTypes";
 export default async function Home({ params: { lng } }: I18PageProps) {
   return (
     <>
-      <PageMainBanner />
+      <PageMainBanner {...{ lng }} />
       <AboutMe />
       <MyStory />
       <News />
