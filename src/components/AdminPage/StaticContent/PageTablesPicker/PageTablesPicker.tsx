@@ -1,23 +1,21 @@
-"use client"
-
 //styles
-import styles from "./index.module.scss";
+import styles from "./styles.module.scss";
 //libs
 import React from "react";
 //types
-import { IAdminPagesType } from "@/components/AdminPage/types/index";
 import classNames from "classnames";
+import { WebPagesTableType } from "../Tables/types";
 
-const PagePicker = ({
+const PageTablesPicker = ({
   onTabClick,
   activeTab,
 }: {
-  onTabClick: (arg: IAdminPagesType) => void;
-  activeTab: IAdminPagesType;
+  onTabClick: (arg: string) => void;
+  activeTab: string;
 }) => {
   return (
     <div className={styles.container}>
-      {Object.entries(IAdminPagesType).map((page, i) => (
+      {Object.entries(WebPagesTableType).map((page, i) => (
         <React.Fragment key={i}>
           <div
             className={classNames(
@@ -28,10 +26,13 @@ const PagePicker = ({
           >
             {page[1]}
           </div>
+          {i !== Object.entries(WebPagesTableType).length - 1 && (
+            <span className={styles.divider}></span>
+          )}
         </React.Fragment>
       ))}
     </div>
   );
 };
 
-export default PagePicker;
+export default PageTablesPicker;
