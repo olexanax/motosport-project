@@ -1,17 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import { baseApi } from "./api/base/slice";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import gallery from "@/redux/slices/gallery.slice";
+import aboutMe from "@/redux/slices/aboutMe.slice";
 
-const store = configureStore({
-    reducer: {
-        baseApi: baseApi.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(baseApi.middleware),
+const rootReducer = combineReducers({
+    gallery,
+    aboutMe,
 });
 
-export default store;
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const store = configureStore({
+    reducer: rootReducer,
+});

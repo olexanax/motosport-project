@@ -15,12 +15,13 @@ import styles from './styles.module.scss'
 import { IAdminPagesType, LangsTypeEnum } from "@/components/AdminPage/types/index"
 //components
 import Gallery from '../PageContent/Gallery';
+import AboutMe from '@/components/AdminPage/PageContent/AboutMe';
 
 const content: Record<IAdminPagesType, ReactNode> = {
   // Тут ви можете визначити значення для кожного ключа з IAdminPagesType
   // Наприклад:
   [IAdminPagesType.Gallery]: <Gallery />,
-  [IAdminPagesType['About Me']]: <p>TEST</p>,
+  [IAdminPagesType['About Me']]: <AboutMe />,
   [IAdminPagesType.News]: <p>TEST</p>,
   [IAdminPagesType.Victories]: <p>TEST</p>,
   [IAdminPagesType['Static Info']]: <p>TEST</p>,
