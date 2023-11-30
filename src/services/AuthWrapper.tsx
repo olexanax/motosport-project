@@ -10,7 +10,7 @@ import { AdminPageQuries } from '@/components/AdminPage/types';
 import { refreshToken, setIsLogged, setIsUnauthorizedRequest } from "@/redux/slices/login.slice";
 
 
-export default function withAuth(WrappedComponent: FC): FC {
+const withAuth = (WrappedComponent: FC) =>  {
   return function WithAuth(props: Record<string, any>): ReactElement {
     const isLogged = useSelector((state: RootStateType) => state.login.isLogged);
     const isUnauthorizedReq = useSelector((state: RootStateType) => state.login.isUnauthorizedRequest);
@@ -52,3 +52,5 @@ export default function withAuth(WrappedComponent: FC): FC {
     return <WrappedComponent {...props} />;
   };
 }
+
+export default withAuth;
