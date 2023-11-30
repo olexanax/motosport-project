@@ -1,36 +1,28 @@
-"use client"
+"use client";
 //styles
-import global from '@/styles/global.module.scss'
-import styles from './styles.module.scss'
+import global from "@/styles/global.module.scss";
+import styles from "./styles.module.scss";
 import "@splidejs/react-splide/css";
 //components
-import Image from 'next/image';
+import Image from "next/image";
 //libs
-import { useState, useEffect, useRef, FC } from 'react';
-import classNames from 'classnames';
+import { useState, useEffect, useRef, FC } from "react";
+import classNames from "classnames";
 // @ts-ignore
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 //images
-import slide1 from '../../../../public/images/aboutMeSlider/aboutMeSlider.png'
-const images = [
-  slide1,
-  slide1,
-  slide1
-]
+import slide1 from "../../../../public/images/aboutMeSlider/aboutMeSlider.png";
+import { AboutMe } from "@/actions/get-about-me";
+const images = [slide1, slide1, slide1];
 interface ReviewsSliderProps {
-
+  aboutMe: AboutMe[] | undefined;
 }
 
-const AboutMeSlider: FC<ReviewsSliderProps> = ({
-}) => {
-
-
+const AboutMeSlider: FC<ReviewsSliderProps> = ({ aboutMe }) => {
   const sliderRefDesctop = useRef<Splide>(null);
   const sliderRefMobile = useRef<Splide>(null);
 
   useEffect(() => {
-
-
     // Simulate swipe after component mounts
     const timer = setTimeout(() => {
       if (sliderRefDesctop.current) {
@@ -50,29 +42,27 @@ const AboutMeSlider: FC<ReviewsSliderProps> = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.content}>
+      {aboutMe && !!aboutMe.length && (
         <div className={styles.DesctpopSliderWrapper}>
-          {
-            <Splide
-              ref={sliderRefDesctop}
-              options={{
-                rewind: true,
-                type: "loop",
-                perPage: 1,
-              }}
-              className={styles.slider}
-            >
-              {images?.map((image, i) => (
-                <SplideSlide className={styles.slide} key={i}>
-                  <Image src={image} fill alt='' />
-                </SplideSlide>
-              ))}
-            </Splide>
-          }
+          <Splide
+            ref={sliderRefDesctop}
+            options={{
+              rewind: true,
+              type: "loop",
+              perPage: 1,
+            }}
+            className={styles.slider}
+          >
+            {aboutMe.map((image) => (
+              <SplideSlide className={styles.slide} key={image.id}>
+                <Image src={image.image} fill alt="" />
+              </SplideSlide>
+            ))}
+          </Splide>
         </div>
-      </div>
+      )}
     </div>
   );
 };
 
-export default AboutMeSlider
+export default AboutMeSlider;
