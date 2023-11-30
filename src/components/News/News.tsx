@@ -9,7 +9,6 @@ import { getNews } from "@/actions/get-news";
 
 const News: FC = async () => {
   const news = await getNews();
-
   return (
     <div id="news" className={styles.container}>
       <div className={styles.content}>

@@ -2,6 +2,8 @@ import styles from "./styles.module.scss"
 //compoennts
 import NewsCard from "./NewsCard/NewsCard"
 import classNames from "classnames"
+import { getNews } from "@/actions/get-news";
+
 
 const NEWS = [
   {
@@ -21,17 +23,18 @@ const NEWS = [
   }
 ]
 
-const LastNewsBlock = () => {
+const LastNewsBlock = async () => {
+  const news = await getNews();
   return (
     <>
       <div className={classNames(styles.container, styles.desctop)}>
         {
-          NEWS.map((news, i) => <NewsCard {...news} />)
+          news && news.map((news, i) => <NewsCard {...news} />)
         }
       </div>
       <div className={classNames(styles.container, styles.mobile)}>
         {
-          NEWS.slice(0, 2).map((news, i) => <NewsCard {...news} />)
+          news && news.slice(0, 2).map((news, i) => <NewsCard {...news} />)
         }
       </div>
     </>

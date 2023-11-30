@@ -9,6 +9,8 @@ import Gallery from "@/components/Gallery/Gallery";
 import OurPartners from "@/components/OurPartners/OurPartners";
 import FollowMeBanner from "@/components/FollowMeBanner/FollowMeBanner";
 import News from "@/components/News/News";
+import ErrorBoundary from "@/components/ErrorBoundary/ErrorBoundary";
+
 //i18n
 import { I18PageProps } from "@/types/i18NextTypes";
 
@@ -16,24 +18,39 @@ export default async function Home({ params: { lng } }: I18PageProps) {
   return (
     <>
       <PageMainBanner {...{ lng }} />
-      <AboutMe />
-      <MyStory />
-      <CoachingHero
-        title="Coaching"
-        text="As an experienced racing driver, I am happy to share my knowledge with anyone, who is aspiring to improve their racing skills and achieve higher results. I offer individual coaching sessions, where we would work on and improve areas that are specific to the needs of each driver. 
+      <ErrorBoundary>
+        <AboutMe />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <MyStory />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <CoachingHero
+          title="Coaching"
+          text="As an experienced racing driver, I am happy to share my knowledge with anyone, who is aspiring to improve their racing skills and achieve higher results. I offer individual coaching sessions, where we would work on and improve areas that are specific to the needs of each driver. 
         If you are interested in my coaching programme, please fill out the form below. You can also find more information on my Instagram page specifically about coaching."
-      />
-      <News />
-      <Gallery />
-      <OurPartners />
-      <BecomePartner
-        title="Become a Partner"
-        text="If you were inspired by my motorsport journey and would love to become a part of it, please fill out the form below. 
+        />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Gallery />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <OurPartners />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <BecomePartner
+          title="Become a Partner"
+          text="If you were inspired by my motorsport journey and would love to become a part of it, please fill out the form below. 
 Partnership is a crucial part of success in any sport, especially motorsport, so I am open to new partnership offers. 
 If you would like to get more information regarding partnership or sponsorship, please press the “Download” button below or fill out the contact form.
-"
-      />
-      <FollowMeBanner />
+"/>
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <News />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <FollowMeBanner />
+      </ErrorBoundary>
     </>
   );
 }

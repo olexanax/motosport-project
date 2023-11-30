@@ -4,6 +4,8 @@ import styles from "./styles.module.scss";
 import global from "@/styles/global.module.scss";
 import classNames from "classnames";
 import { getNewsBySlug } from "@/actions/get-new-by-slug";
+//utils
+import makePargraphs from "@/utils/makePargraphs";
 
 interface PostOverviewProps {
   params: {
@@ -59,7 +61,7 @@ const NewsPage: React.FC<PostOverviewProps> = async ({
           </div>
           <div className={styles.BottomContainer}>
             <div className={styles.BottomContent}>
-              {news.description}
+              {makePargraphs(news.description, { [global.text2]: true })}
               <Link
                 href={"/"}
                 className={classNames(global.primaryButton, styles.btn)}

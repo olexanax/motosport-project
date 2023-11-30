@@ -27,7 +27,6 @@ import News from '../PageContent/News';
 const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryId, newsAddNew, newsId }: AdminPageQuries) => {
   const [currTable, setCurrTable] = useState<IAdminPagesType>(IAdminPagesType['Gallery'])
   const [currLang, setCurrLang] = useState<LangsTypeEnum>(LangsTypeEnum['en'])
-  console.log(newsAddNew, newsId);
   const content: Record<IAdminPagesType, ReactNode> = {
     [IAdminPagesType.Gallery]: <Gallery />,
     [IAdminPagesType["About Me"]]: <AboutMe />,

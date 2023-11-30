@@ -53,7 +53,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({ news }) => {
               src={item.image}
             />
             <p className={classNames(styles.title, global.text2)}>
-              {item.title}
+              {item.short_description}
             </p>
             <Link href={`/news/${item.slug}`} className={styles.learnMoreBtn}>
               Learn More

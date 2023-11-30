@@ -8,9 +8,9 @@ import styles from "./styles.module.scss";
 import global from "@/styles/global.module.scss";
 import Button from "@/components/ui/Button/Button";
 
-interface StaticContentProps {}
+interface StaticContentProps { }
 
-const StaticContent: React.FC<StaticContentProps> = ({}) => {
+const StaticContent: React.FC<StaticContentProps> = ({ }) => {
   const [activeTableType, setActiveTableType] = useState(
     localStorage.getItem("activeTab") || "Headlines"
   );
@@ -46,3 +46,4 @@ const StaticContent: React.FC<StaticContentProps> = ({}) => {
 };
 
 export default StaticContent;
+

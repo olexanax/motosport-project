@@ -148,7 +148,7 @@ const MyStoryForm = ({ myStoryAddNew, myStoryId, lang }: AdminPageQuries) => {
           )}
         </div>
         <div className={classNames(global.inputBlock, styles.inputBlock)}>
-          <span>Position*</span>
+          <span>Text*</span>
           <Controller
             name="description"
             control={control}

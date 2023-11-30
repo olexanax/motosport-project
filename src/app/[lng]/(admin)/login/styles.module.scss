@@ -2,8 +2,9 @@
 
 .container {
     @include pageWrapper;
-    @media (max-width: $tabletSize) {
-    }
+    background: url("../../../../../public//images//banners//loginBanner.png")
+        center -300px/100% 100% no-repeat;
+    background-size: cover;
 }
 .content {
     @include pageContent;
@@ -45,12 +46,13 @@
 .btn {
     margin: 0 auto !important;
 
-    &:disabled, &:disabled:hover{
+    &:disabled,
+    &:disabled:hover {
         cursor: not-allowed;
         background-color: $grey;
     }
 }
-.error{
+.error {
     color: $red;
     font-weight: bold;
 }

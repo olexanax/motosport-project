@@ -1,22 +1,34 @@
+"use client"
+import { Component, ErrorInfo, ReactNode } from "react";
+import ErrorBanner from "../ErrorBanner/ErrorBanner";
 
-import React from "react";
-import styles from "./styles.module.scss";
-import Image from "next/image";
-import alert from "../../../../public/images/icons/alertTriangle.svg";
+interface ErrorBoundaryProps {
+  children: ReactNode;
+}
 
-const NotFound = () => {
-  return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <h2 className={styles.title}>Oops, something went wrong!</h2>
-        <Image src={alert} alt="alertTriangle" width={120} height={120} />
-        <p className={styles.subtitle}>
-          Please reload the page or try again later.
-        </p>
-        <button className={styles.button}>Back</button>
-      </div>
-    </div>
-  );
-};
+interface ErrorBoundaryState {
+  error: boolean;
+}
 
-export default NotFound;
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = {
+      error: false,
+    };
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error(error, errorInfo);
+    this.setState({ error: true });
+  }
+
+  render() {
+    if (this.state.error) {
+      return <ErrorBanner />
+    }
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
