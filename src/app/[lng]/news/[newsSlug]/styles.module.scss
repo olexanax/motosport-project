@@ -3,12 +3,12 @@
 .TopContainer {
     @include pageWrapper;
     background-color: $black;
-    background: url("../../../../../public//images/banners//Frame1501.png")
+    background: url("../../../../../public//images//banners//Frame1501.png")
         center center/100% 100% no-repeat;
     background-size: cover;
 
     @media (max-width: $tabletSize) {
-        background: url("../../../../../public//images/banners//Frame1501.png")
+        background: url("../../../../../public//images//banners//Frame1501.png")
             center center/100% 100% no-repeat;
         background-size: cover;
     }

@@ -5,11 +5,13 @@ import global from "@/styles/global.module.scss"
 import classNames from "classnames"
 //components
 import LastNewsBlock from "../LastNewsBlock/LastNewsBlock"
+import Link from "next/link"
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
 
 
 
-
-const PageMainBanner = () => {
+const PageMainBanner = ({ lng }: I18ComponentProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -20,9 +22,9 @@ const PageMainBanner = () => {
           <p className={global.smallTitle}>
             “Racing is life. Anything before or after is just waiting.” – Steve McQueen
           </p>
-          <div className={classNames(global.primaryButton, styles.btn)}>
+          <Link href={`/${lng}#become-a-partner`} className={classNames(global.primaryButton, styles.btn)}>
             Become a Partner
-          </div>
+          </Link>
         </div>
         <LastNewsBlock />
       </div>

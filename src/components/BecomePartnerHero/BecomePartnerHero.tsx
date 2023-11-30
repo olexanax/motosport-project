@@ -32,14 +32,14 @@ const BecomePartner: React.FC<BecomePartnerProps> = ({ text, title }) => {
   };
 
   return (
-    <div className={classNames(global.container, styles.wrapper)}>
+    <div id="become-a-partner" className={classNames(global.container, styles.wrapper)}>
       <div className={styles.overlay}>
         <div className={global.content}>
           <div className={styles.container}>
             <h2 className={styles.title}>{title}</h2>
             <p className={styles.text}>{text}</p>
             <div className={styles.buttonWrapper}>
-              <button onClick={() => {}} className={global.primaryButton}>
+              <button onClick={() => { }} className={global.primaryButton}>
                 Download
               </button>
             </div>

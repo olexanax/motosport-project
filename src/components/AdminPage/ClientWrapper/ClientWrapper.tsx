@@ -1,10 +1,7 @@
 "use client";
 
-//types
-import { Metadata } from "next";
-//libs
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 //components
 import PagePicker from "../PagePicker/PagePicker";
 import LangPicker from "../LangPicker/LangPicker";
@@ -16,13 +13,33 @@ import {
   IAdminPagesType,
   LangsTypeEnum,
 } from "@/components/AdminPage/types/index";
+//components
+import Gallery from "../PageContent/Gallery";
+import AboutMe from "@/components/AdminPage/PageContent/AboutMe";
 import StaticContent from "../StaticContent/StaticContent";
+
+const content: Record<IAdminPagesType, ReactNode> = {
+  // Тут ви можете визначити значення для кожного ключа з IAdminPagesType
+  // Наприклад:
+  [IAdminPagesType.Gallery]: <Gallery />,
+  [IAdminPagesType["About Me"]]: <AboutMe />,
+  [IAdminPagesType.News]: <p>TEST</p>,
+  [IAdminPagesType.Victories]: <p>TEST</p>,
+  [IAdminPagesType["Static Info"]]: <StaticContent />,
+};
 
 const ClientWrapper = () => {
   const [currTable, setCurrTable] = useState<IAdminPagesType>(
-    IAdminPagesType["About Me"]
+    IAdminPagesType["Gallery"]
   );
   const [currLang, setCurrLang] = useState<LangsTypeEnum>(LangsTypeEnum["en"]);
+
+  useEffect(() => {
+    localStorage.getItem("currTable") &&
+      setCurrTable(localStorage.getItem("currTable") as IAdminPagesType);
+    localStorage.getItem("currLang") &&
+      setCurrLang(localStorage.getItem("currLang") as LangsTypeEnum);
+  }, []);
 
   const onTableClick = (arg: IAdminPagesType) => {
     localStorage.setItem("currTable", arg);
@@ -32,13 +49,6 @@ const ClientWrapper = () => {
     localStorage.setItem("currLang", arg);
     setCurrLang(arg);
   };
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setCurrLang(localStorage.getItem("currLang") as LangsTypeEnum);
-      setCurrTable(localStorage.getItem("currTable") as IAdminPagesType);
-    }
-  }, []);
 
   return (
     <div id="about-us" className={styles.container}>
@@ -50,7 +60,8 @@ const ClientWrapper = () => {
           <LangPicker {...{ activeTab: currLang, onTabClick: onLangClick }} />
         </div>
         <PagePicker {...{ activeTab: currTable, onTabClick: onTableClick }} />
-        <StaticContent/>
+
+        {content[currTable]}
       </div>
     </div>
   );
