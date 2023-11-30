@@ -1,0 +1,33 @@
+.table {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  min-height: 200px;
+  align-items: center;
+  max-width: 1008px;
+  width: 100%;
+}
+.titleRow {
+  display: flex;
+  width: 100%;
+  p {
+    min-width: 306px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 19px 14px;
+    border: 1px solid #e0e0e0;
+    color: #fff;
+
+    &:first-of-type {
+      width: 396px;
+    }
+  }
+}
+.message {
+  margin-top: 50px;
+  font-size: 42px;
+  color: #e0e0e0;
+}

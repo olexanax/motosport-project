@@ -1,0 +1,18 @@
+.row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.cell {
+    min-width: 306px;
+    height: 302px;
+    padding: 11px 14px;
+    border: 1px solid #999;
+    textarea {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        border: none;
+        padding: 0;
+    }
+}
