@@ -94,3 +94,27 @@ export interface CreateMyStoryItemType {
     formData: FormData;
 }
 export type MyStoryResponse = MyStoryItemType[];
+
+//news
+
+export interface NewsItemType {
+    id: number;
+    date: string;
+    title: string;
+    description: string;
+    image: string;
+    views: languagesType;
+    slug: string;
+    language: languagesType;
+    meta_title: string;
+    meta_description: string;
+    short_description: string;
+}
+export interface UpdateNewsItemType {
+    id: number;
+    formData: FormData;
+}
+export interface CreateNewsItemType {
+    formData: FormData;
+}
+export type NewsResponse = NewsItemType[];

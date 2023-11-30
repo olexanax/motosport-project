@@ -13,6 +13,7 @@ interface Props {
   searchParams: AdminPageQuries
 }
 const AdminPage: FC<Props> = ({ searchParams }) => {
+  console.log(searchParams);
   return (
     <ClientWrapper {...searchParams} />
   )

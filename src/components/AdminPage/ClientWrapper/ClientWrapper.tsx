@@ -5,9 +5,6 @@ import { AdminPageQuries } from '@/components/AdminPage/types';
 import { useRouter } from 'next/navigation';
 import classNames from "classnames";
 import { ReactNode, useState, useEffect } from "react";
-//components
-import PagePicker from "../PagePicker/PagePicker";
-import LangPicker from "../LangPicker/LangPicker";
 //styles
 import global from "@/styles/global.module.scss";
 import styles from "./styles.module.scss";
@@ -17,27 +14,28 @@ import {
   LangsTypeEnum,
 } from "@/components/AdminPage/types/index";
 //components
+import PagePicker from "../PagePicker/PagePicker";
+import LangPicker from "../LangPicker/LangPicker";
 import Gallery from '../PageContent/Gallery';
 import AboutMe from '@/components/AdminPage/PageContent/AboutMe';
 import Partners from '@/components/AdminPage/PageContent/Partners';
 import Victories from '@/components/AdminPage/PageContent/Victories';
 import MyStory from '@/components/AdminPage/PageContent/MyStory';
 import StaticContent from "../StaticContent/StaticContent";
+import News from '../PageContent/News';
 
-
-const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryId }: AdminPageQuries) => {
+const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryId, newsAddNew, newsId }: AdminPageQuries) => {
   const [currTable, setCurrTable] = useState<IAdminPagesType>(IAdminPagesType['Gallery'])
   const [currLang, setCurrLang] = useState<LangsTypeEnum>(LangsTypeEnum['en'])
-
-
+  console.log(newsAddNew, newsId);
   const content: Record<IAdminPagesType, ReactNode> = {
     [IAdminPagesType.Gallery]: <Gallery />,
     [IAdminPagesType["About Me"]]: <AboutMe />,
-    [IAdminPagesType.News]: <p>TEST</p>,
+    [IAdminPagesType.News]: <News {...{ newsAddNew, newsId, lang }} />,
     [IAdminPagesType.Victories]: <Victories {...{ victoryAddNew, victoryId, lang }} />,
     [IAdminPagesType["Static Info"]]: <StaticContent />,
     [IAdminPagesType.Partners]: <Partners />,
-    [IAdminPagesType['My story']]: <MyStory {...{ victoryAddNew, victoryId, lang }} />
+    [IAdminPagesType['My story']]: <MyStory {...{ myStoryAddNew, myStoryId, lang }} />
   };
 
   const router = useRouter();
@@ -47,8 +45,15 @@ const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryI
     localStorage.getItem('currLang') && setCurrLang(localStorage.getItem('currLang') as LangsTypeEnum)
     const query = new URLSearchParams();
     query.set("lang", localStorage.getItem('currLang') || currLang);
+    victoryAddNew && query.set("victoryAddNew", victoryAddNew.toString())
+    victoryId && query.set("victoryId", victoryId)
+    newsAddNew && query.set("newsAddNew", newsAddNew.toString())
+    newsId && query.set("newsId", newsId)
+    myStoryAddNew && query.set("myStoryAddNew", myStoryAddNew.toString())
+    myStoryId && query.set("myStoryId", myStoryId)
     router.push(`${window.location.pathname}?${query.toString()}`)
   }, [])
+
 
   const onTableClick = (arg: IAdminPagesType) => {
     localStorage.setItem('currTable', arg)
@@ -70,12 +75,7 @@ const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryI
   }
 
 
-  useEffect(() => {
-    localStorage.getItem("currTable") &&
-      setCurrTable(localStorage.getItem("currTable") as IAdminPagesType);
-    localStorage.getItem("currLang") &&
-      setCurrLang(localStorage.getItem("currLang") as LangsTypeEnum);
-  }, []);
+
 
 
   return (

@@ -17,5 +17,9 @@ export interface AdminPageQuries {
 
     myStoryId?: string;
     myStoryAddNew?: string;
+
+    newsId?: string;
+    newsAddNew?: string;
+
     lang?: LangsTypeEnum;
 }
