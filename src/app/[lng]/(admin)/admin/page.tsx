@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { AdminPageQuries } from '@/components/AdminPage/types';
 //components
 import ClientWrapper from "@/components/AdminPage/ClientWrapper/ClientWrapper";
-import { withAuth } from "@/services/AuthWrapper";
+
 
 
 
@@ -18,6 +18,5 @@ const AdminPage: FC<Props> = ({ searchParams }) => {
   )
 }
 
-// export default withAuth(AdminPage)
 export default AdminPage
 

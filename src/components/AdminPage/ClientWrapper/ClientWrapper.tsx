@@ -23,6 +23,7 @@ import Victories from '@/components/AdminPage/PageContent/Victories';
 import MyStory from '@/components/AdminPage/PageContent/MyStory';
 import StaticContent from "../StaticContent/StaticContent";
 import News from '../PageContent/News';
+import withAuth from "@/services/AuthWrapper";
 
 const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryId, newsAddNew, newsId }: AdminPageQuries) => {
   const [currTable, setCurrTable] = useState<IAdminPagesType>(IAdminPagesType['Gallery'])
@@ -93,4 +94,4 @@ const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryI
   );
 }
 
-export default ClientWrapper
+export default withAuth(ClientWrapper)
