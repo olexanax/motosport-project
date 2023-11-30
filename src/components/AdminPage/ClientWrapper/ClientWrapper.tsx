@@ -34,10 +34,10 @@ const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryI
     [IAdminPagesType.Gallery]: <Gallery />,
     [IAdminPagesType["About Me"]]: <AboutMe />,
     [IAdminPagesType.News]: <p>TEST</p>,
-    [IAdminPagesType.Victories]: <Victories />,
+    [IAdminPagesType.Victories]: <Victories {...{ victoryAddNew, victoryId, lang }} />,
     [IAdminPagesType["Static Info"]]: <StaticContent />,
     [IAdminPagesType.Partners]: <Partners />,
-    [IAdminPagesType['My story']]: <MyStory />
+    [IAdminPagesType['My story']]: <MyStory {...{ victoryAddNew, victoryId, lang }} />
   };
 
   const router = useRouter();
@@ -49,8 +49,6 @@ const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryI
     query.set("lang", localStorage.getItem('currLang') || currLang);
     router.push(`${window.location.pathname}?${query.toString()}`)
   }, [])
-
-  console.log(currTable);
 
   const onTableClick = (arg: IAdminPagesType) => {
     localStorage.setItem('currTable', arg)

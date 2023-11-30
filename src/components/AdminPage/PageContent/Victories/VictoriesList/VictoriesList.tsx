@@ -27,6 +27,7 @@ const VictoriesList = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
   }, []);
 
 
+
   const content =
     victories && fetchVictoriesStatus === "idle"
       ? victories.filter(vict => vict.language === lang?.toUpperCase()).map((vacancy, index) => (

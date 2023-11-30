@@ -37,7 +37,6 @@ const MyStoryList = ({ myStoryAddNew, myStoryId, lang }: AdminPageQuries) => {
     fetchMyStoryStatus === "error" ? <p>loading...</p> : null;
   const spinner =
     fetchMyStoryStatus === "error" ? <p>error...</p> : null;
-  console.log(content);
 
   return (
     <div className={styles.vacanciesList}>
