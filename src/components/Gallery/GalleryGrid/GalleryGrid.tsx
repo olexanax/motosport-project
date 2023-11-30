@@ -13,7 +13,6 @@ interface GalleryGridProps {
 
 const GalleryGrid: React.FC<GalleryGridProps> = ({ images }) => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(images);
 
   return (
     <>

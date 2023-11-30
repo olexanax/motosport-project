@@ -45,7 +45,6 @@ const GalleryCard: FC<Props> = ({ image, imagesLength, order, id }) => {
     if (e.target instanceof HTMLInputElement && e.target.files) {
       const file = e.target.files[0];
       const formData = new FormData();
-      console.log("object");
       formData.append("image", file);
       formData.append("order", order.toString());
       dispatch(updateGallery({ id, formData }))

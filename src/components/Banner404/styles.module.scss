@@ -1,0 +1,61 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../..//public//images//backgroundError.png");
+    background-size: cover;
+    background-position-y: top;
+    background-repeat: no-repeat;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 80px;
+        color: #fff;
+        text-align: center;
+        font-family: Unbounded;
+        font-style: normal;
+        line-height: 20px;
+        width: 592px;
+
+        .title {
+            font-size: 32px;
+            font-weight: 500;
+        }
+
+        .error {
+            font-size: 130px;
+            font-weight: 700;
+            width: 402px;
+            height: 108px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+        }
+
+        .subtitle {
+            font-family: Inter;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .button {
+            font-family: Inter;
+            font-size: 14px;
+            font-weight: 700;
+            width: fit-content;
+            height: fit-content;
+            border-radius: 10px;
+            background: #a10f0f;
+            width: 121px;
+            height: 42px;
+            color: #fff;
+            border: none;
+        }
+    }
+}

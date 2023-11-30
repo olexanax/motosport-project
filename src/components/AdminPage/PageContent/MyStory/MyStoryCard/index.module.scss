@@ -1,0 +1,48 @@
+@import "@/styles/variables";
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 5px;
+    background: $black;
+    color: $white;
+    padding: 14px;
+    box-sizing: border-box;
+    max-height: 154px;
+}
+.dataBlock {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+.image {
+    height: 127px;
+    width: 235px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.textBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    z-index: 9999;
+}
+.position {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.btnsBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}

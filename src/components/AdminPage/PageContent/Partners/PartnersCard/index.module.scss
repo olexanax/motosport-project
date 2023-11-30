@@ -1,0 +1,42 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    height: max-content;
+    position: relative;
+}
+.title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 40px;
+}
+.imageBody {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 9999;
+    border-radius: 10px;
+    border: 1px solid #a10f0f;
+}
+.deleteBtn {
+    margin-top: 12px;
+    align-self: flex-end;
+    color: #00538e;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    z-index: 9999;
+    position: absolute;
+    top: 4px;
+    right: 8px;
+}
+.disabled {
+    cursor: not-allowed;
+    color: #a8a8a8;
+}

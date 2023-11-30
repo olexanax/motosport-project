@@ -5,17 +5,18 @@ import global from "@/styles/global.module.scss"
 import { FC } from "react"
 import Link from "next/link"
 import classNames from "classnames"
+//types
+import { News } from "@/actions/get-news"
 
-interface NewsCardProps {
-  title: string
-  slug: string
-  id: number
+
+interface NewsCardProps extends News {
+
 }
-const NewsCard: FC<NewsCardProps> = ({ title, slug }) => {
+const NewsCard: FC<NewsCardProps> = ({ title, slug, short_description }) => {
   return (
     <div className={styles.container}>
       <h5 className={classNames(global.smallTitle, styles.title)}>
-        {title}
+        {short_description}
       </h5>
       <Link className={styles.link} href={`/news/${slug}`}>
         Learn More

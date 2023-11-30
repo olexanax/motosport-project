@@ -15,7 +15,6 @@ const GalleryList = () => {
   const dispatch = useDispatch<AppDispatch>();
   const gallery = useSelector((state: RootStateType) => state.gallery.gallery)
   const fetchGalleryStatus = useSelector((state: RootStateType) => state.gallery.fetchGalleryStatus)
-  console.log(gallery);
 
 
   const onAddNew = (e: React.ChangeEvent<HTMLInputElement>) => {

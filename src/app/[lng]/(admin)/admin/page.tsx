@@ -1,16 +1,23 @@
-"use client"
 //types
 import { Metadata } from 'next';
+import { FC } from 'react';
+import { AdminPageQuries } from '@/components/AdminPage/types';
 //components
 import ClientWrapper from "@/components/AdminPage/ClientWrapper/ClientWrapper";
-import {withAuth} from "@/services/AuthWrapper";
+import { withAuth } from "@/services/AuthWrapper";
 
 
 
-const AdminPage = () => {
+
+interface Props {
+  searchParams: AdminPageQuries
+}
+const AdminPage: FC<Props> = ({ searchParams }) => {
   return (
-    <ClientWrapper />
+    <ClientWrapper {...searchParams} />
   )
 }
 
-export default withAuth(AdminPage)
+// export default withAuth(AdminPage)
+export default AdminPage
+
