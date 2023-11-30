@@ -1,0 +1,22 @@
+.container {
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.54);
+
+  padding: 4px;
+  display: flex;
+  gap: 20px;
+  width: max-content;
+}
+.tab {
+  width: max-content;
+  padding: 8px 30px;
+}
+.activeTab {
+  font-weight: bold;
+}
+.divider {
+  width: 1px;
+  height: 30px;
+  margin: auto 0;
+  background: #949494;
+}
