@@ -5,15 +5,20 @@ import classNames from "classnames";
 //components
 import Image from "next/image";
 import { getPartners } from "@/actions/get-partners";
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n";
 
-const OurPartners = async () => {
+
+const OurPartners = async ({ lng }: I18ComponentProps) => {
   const partners = await getPartners();
+  const { t } = await useTranslation(lng, "translation");
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <h2 className={classNames(global.sectionTitle, styles.title)}>
-          Our Partners
+          {t('heading_tags.h2__OurPartnersTitle')}
         </h2>
         {partners && !!partners.length && (
           <div className={styles.logoContainer}>

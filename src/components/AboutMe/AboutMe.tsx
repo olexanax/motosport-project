@@ -5,24 +5,31 @@ import AboutMeSlider from "./AboutMeSlider/AboutMeSlider";
 import global from "@/styles/global.module.scss";
 import styles from "./styles.module.scss";
 import { getAboutMe } from "@/actions/get-about-me";
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n";
 
-const STAT_DATA = [
-  {
-    value: 42,
-    title: "Number of Wins ",
-  },
-  {
-    value: 15,
-    title: "Years in Motorsport  ",
-  },
-  {
-    value: 23,
-    title: "Raced on Circuits ",
-  },
-];
 
-const AboutMe = async () => {
+
+
+const AboutMe = async ({ lng }: I18ComponentProps) => {
   const aboutMe = await getAboutMe();
+  const { t } = await useTranslation(lng, "translation");
+
+  const STAT_DATA = [
+    {
+      value: t('content.aboutMe_statistic_item1_value'),
+      title: t('content.aboutMe_statistic_item1_text'),
+    },
+    {
+      value: t('content.aboutMe_statistic_item2_value'),
+      title: t('content.aboutMe_statistic_item2_text'),
+    },
+    {
+      value: t('content.aboutMe_statistic_item3_value'),
+      title: t('content.aboutMe_statistic_item3_text'),
+    },
+  ];
 
   return (
     <>
@@ -34,63 +41,73 @@ const AboutMe = async () => {
           </div>
           <div className={styles.infoBlock}>
             <h2 className={classNames(global.sectionTitle, styles.title)}>
-              About Me
+              {t('heading_tags.h2__aboutMeTitle')}
             </h2>
             <div className={styles.textBlock}>
               <div className={classNames(styles.leftCol, global.text2)}>
                 <p>
-                  My name is Ivan Peklin, I am a professional racing driver from
-                  Ukraine. I have been involved in motorsports since 2008, and
-                  throughout my career, I’ve gained loads of experience in many
-                  different racing series, from go-karting to single-seaters and
-                  GT series.
+                  {t('content.aboutMe_leftBlock_text1')}
                 </p>
                 <br />
                 <div>
-                  I’m the first Ukrainian ever who won:
+                  {t('content.aboutMe_leftBlock_text2')}
                   <div className={styles.list}>
                     <p className={styles.listItem}>
-                      An International GT3 Race.
+                      {t('content.aboutMe_leftBlock_text3')}
                     </p>
                     <p className={styles.listItem}>
-                      A race in a Formula Series.
+                      {t('content.aboutMe_leftBlock_text4')}
                     </p>
                   </div>
                 </div>
               </div>
               <ul className={classNames(styles.rightCol, global.text2)}>
                 <li>
-                  <span className={styles.boldtext}>Date of Birth:</span>
-                  Date of Birth:
+                  <span className={styles.boldtext}>
+                    {t('content.aboutMe_rightBlock_text1_title')}
+                  </span>
+                  {t('content.aboutMe_rightBlock_text1_text')}
                 </li>
                 <li>
-                  <span className={styles.boldtext}>Place of Birth:</span>
-                  Kyiv, Ukraine
+                  <span className={styles.boldtext}>
+                    {t('content.aboutMe_rightBlock_text2_title')}
+                  </span>
+                  {t('content.aboutMe_rightBlock_text2_text')}
                 </li>
                 <li>
-                  <span className={styles.boldtext}>Currently living in:</span>
-                  Germany, Eifel
+                  <span className={styles.boldtext}>
+                    {t('content.aboutMe_rightBlock_text3_title')}
+                  </span>
+                  {t('content.aboutMe_rightBlock_text3_text')}
                 </li>
                 <li>
-                  <span className={styles.boldtext}>FIA Categorisation:</span>
-                  Silver Driver
+                  <span className={styles.boldtext}>
+                    {t('content.aboutMe_rightBlock_text4_title')}
+                  </span>
+                  {t('content.aboutMe_rightBlock_text4_text')}
                 </li>
                 <li>
-                  <span className={styles.boldtext}>Other:</span>
-                  Permit A Nordschleife
+                  <span className={styles.boldtext}>
+                    {t('content.aboutMe_rightBlock_text5_title')}
+                  </span>
+                  {t('content.aboutMe_rightBlock_text5_text')}
                 </li>
                 <li>
-                  <span className={styles.boldtext}>Height:</span>
-                  1.86m
+                  <span className={styles.boldtext}>
+                    {t('content.aboutMe_rightBlock_text6_title')}
+                  </span>
+                  {t('content.aboutMe_rightBlock_text6_text')}
                 </li>
                 <li>
-                  <span className={styles.boldtext}>Other interests:</span>
-                  Sim-racing, Cycling, Tennis.
+                  <span className={styles.boldtext}>
+                    {t('content.aboutMe_rightBlock_text7_title')}
+                  </span>
+                  {t('content.aboutMe_rightBlock_text7_text')}
                 </li>
               </ul>
             </div>
             <p className={classNames(styles.text, global.text2)}>
-              Explore my full racing career in the sections below.
+              {t('content.aboutMe_textAfterColums')}
             </p>
             <div className={styles.statBlock}>
               {STAT_DATA.map((item, i) => (
@@ -106,7 +123,7 @@ const AboutMe = async () => {
             </div>
           </div>
         </div>
-      </div>
+      </div >
       <AboutMeSlider aboutMe={aboutMe} />
     </>
   );

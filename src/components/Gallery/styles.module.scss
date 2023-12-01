@@ -4,7 +4,12 @@
     @include pageWrapper;
     overflow: hidden;
     position: relative;
+    margin-top: 64px;
     margin-bottom: 125px;
+    @media (max-width: $tabletSize) {
+        margin-top: 32px;
+        margin-bottom: 64px;
+    }
 }
 .content {
     @include pageContent;

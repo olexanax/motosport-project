@@ -5,7 +5,8 @@ import Link from "next/link"
 //images
 import logo from "../../../public/images/icons/logo.svg"
 import instagramLogo from "../../../public/images/icons/instagramLogo.svg"
-import { log } from "console"
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n";
 
 const MENU_ITEMS = [
   {
@@ -26,7 +27,9 @@ const MENU_ITEMS = [
   }
 ]
 
-const Footer = () => {
+const Footer = async ({ lng }: I18ComponentProps) => {
+  const { t } = await useTranslation(lng, "translation");
+
   return (
     <footer
       className={styles.container}>
@@ -61,14 +64,14 @@ const Footer = () => {
           //MOBILE BLOCKs
         }
         <div className={styles.mobileContactsBlock}>
-          <Link className={styles.mobileinstLink} target="_blank" href={"https://www.instagram.com/ivan.peklin/"}>
+          <Link className={styles.mobileinstLink} target="_blank" href={t("content.instagram_link")}>
             <Image width={24} height={24} className={styles.logo} src={instagramLogo} alt="instagram" />
           </Link>
-          <Link className={styles.phoneLink} href="tel:+491605747347">
-            +491605747347
+          <Link className={styles.phoneLink} href={`tel:${t("content.phone_number")}`}>
+            {t("content.phone_number")}
           </Link>
-          <Link className={styles.bottomRowText} target="_blank" href={"mailto:ivan.peklin.enquiries@gmail.com"}>
-            ivan.peklin.enquiries@gmail.com
+          <Link className={styles.bottomRowText} target="_blank" href={`mailto::${t("content.email")}`}>
+            {t("content.email")}
           </Link>
         </div>
         <div className={styles.mobileBottomBlock}>

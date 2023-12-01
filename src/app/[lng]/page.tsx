@@ -17,41 +17,40 @@ import { I18PageProps } from "@/types/i18NextTypes";
 import { useTranslation } from "../i18n";
 
 export default async function Home({ params: { lng } }: I18PageProps) {
+  const { t } = await useTranslation(lng, "translation");
   return (
     <>
       <PageMainBanner {...{ lng }} />
       <ErrorBoundary>
-        <AboutMe />
+        <AboutMe {...{ lng }} />
       </ErrorBoundary>
       <ErrorBoundary>
-        <MyStory />
+        <MyStory {...{ lng }} />
       </ErrorBoundary>
       <ErrorBoundary>
         <CoachingHero
-          title="Coaching"
-          text="As an experienced racing driver, I am happy to share my knowledge with anyone, who is aspiring to improve their racing skills and achieve higher results. I offer individual coaching sessions, where we would work on and improve areas that are specific to the needs of each driver. 
-        If you are interested in my coaching programme, please fill out the form below. You can also find more information on my Instagram page specifically about coaching."
+          title={t("heading_tags.h2__CoachingTitle")}
+          text={t("content.coaching_text")}
+          {...{ lng }}
         />
       </ErrorBoundary>
       <ErrorBoundary>
-        <Gallery />
+        <Gallery {...{ lng }} />
       </ErrorBoundary>
       <ErrorBoundary>
-        <OurPartners />
+        <OurPartners {...{ lng }} />
       </ErrorBoundary>
       <ErrorBoundary>
         <BecomePartner
-          title="Become a Partner"
-          text="If you were inspired by my motorsport journey and would love to become a part of it, please fill out the form below. 
-Partnership is a crucial part of success in any sport, especially motorsport, so I am open to new partnership offers. 
-If you would like to get more information regarding partnership or sponsorship, please press the “Download” button below or fill out the contact form.
-"/>
+          {...{ lng }}
+          title={t("heading_tags.h2__BecomePartnerTitle")}
+          text={t("heading_tags.BecomePartner_text")} />
       </ErrorBoundary>
       <ErrorBoundary>
-        <News />
+        <News   {...{ lng }} />
       </ErrorBoundary>
       <ErrorBoundary>
-        <FollowMeBanner />
+        <FollowMeBanner {...{ lng }} />
       </ErrorBoundary>
     </>
   );

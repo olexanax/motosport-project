@@ -42,7 +42,7 @@ export default function RootLayout({
             {children}
           </main>
           <Toaster richColors closeButton />
-          <Footer />
+          <Footer {...{ lng }} />
         </ReduxProvider>
       </body>
     </html>
