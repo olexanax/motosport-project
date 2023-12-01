@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import global from "@/styles/global.module.scss";
 //components
 import MyStoryCard from "./MyStoryCard/MyStoryCard";
-import VictoriesSlider from "./ VictoriesSlider/ VictoriesSlider";
+import VictoriesSlider from "./VictoriesSlider/VictoriesSlider";
 import classNames from "classnames";
 import { getMyStory } from "@/actions/get-my-story";
 import { getVictories } from "@/actions/get-victories";

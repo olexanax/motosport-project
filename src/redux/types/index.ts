@@ -14,7 +14,7 @@ export interface LoginFormInputs {
 export interface GalleryItemType {
     id: number;
     image: string;
-    order: string;
+    order: number;
 }
 export interface UpdateGalleryItemType {
     id: number;
@@ -30,7 +30,7 @@ export type GalleryResponse = GalleryItemType[];
 export interface AboutMeItemType {
     id: number;
     image: string;
-    order: string;
+    order: number;
 }
 export interface UpdateAboutMeItemType {
     id: number;
@@ -46,7 +46,7 @@ export type AboutMeResponse = AboutMeItemType[];
 export interface PartnersItemType {
     id: number;
     image: string;
-    order: string;
+    order: number;
 }
 export interface UpdatePartnersItemType {
     id: number;
@@ -62,7 +62,7 @@ export type PartnersResponse = PartnersItemType[];
 export interface VictoriesItemType {
     id: number;
     image: string;
-    order: string;
+    order: number;
     title: string;
     description: string;
     language: languagesType;
@@ -81,7 +81,7 @@ export type VictoriesResponse = VictoriesItemType[];
 export interface MyStoryItemType {
     id: number;
     image: string;
-    order: string;
+    order: number;
     title: string;
     description: string;
     language: languagesType;
@@ -99,6 +99,7 @@ export type MyStoryResponse = MyStoryItemType[];
 
 export interface NewsItemType {
     id: number;
+    order: number;
     date: string;
     title: string;
     description: string;

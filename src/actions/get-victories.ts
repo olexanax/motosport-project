@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 export interface Victory {
   id: number;
+  order: number;
   title: string;
   description: string;
   image: string;

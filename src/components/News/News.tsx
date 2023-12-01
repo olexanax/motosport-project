@@ -14,6 +14,7 @@ const News = async ({ lng }: I18ComponentProps) => {
   const { t } = await useTranslation(lng, "translation");
   const news = await getNews();
   const learnMoreText = t("content.news_learnMore")
+  
   return (
     <div id="news" className={styles.container}>
       <div className={styles.content}>

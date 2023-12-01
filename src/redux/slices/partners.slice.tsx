@@ -3,7 +3,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 //hooks
 import { useHttp } from "@/hooks/useHttp";
 //types
-import { PartnersItemType, PartnersResponse, UpdatePartnersItemType, CreatePartnersItemType } from "../types";
+import {
+  PartnersItemType,
+  PartnersResponse,
+  UpdatePartnersItemType,
+  CreatePartnersItemType,
+} from "../types";
 //API
 import { serverDomain } from "@/services/API";
 import axios from "axios";
@@ -15,20 +20,16 @@ interface PartnersInitialState {
 
 const initialState: PartnersInitialState = {
   partners: [],
-  fetchPartnersStatus: "loading"
+  fetchPartnersStatus: "loading",
 };
 
 export const fetchPartners = createAsyncThunk(
   "partners/fetchPartners",
   (next: string | undefined) => {
     const { request } = useHttp();
-    return request(`${serverDomain}/our-partners/`,
-      "GET",
-      null,
-      {
-        "Content-Type": "application/json",
-      }
-    );
+    return request(`${serverDomain}/our-partners/`, "GET", null, {
+      "Content-Type": "application/json",
+    });
   }
 );
 
@@ -36,75 +37,70 @@ export const deletePartners = createAsyncThunk(
   "partners/deletePartners",
   async (id: number) => {
     await axios.delete(`${serverDomain}/our-partners/${id}`, {
-      headers: {
-      },
+      headers: {},
     });
     return id;
   }
 );
 
-export const createPartners = createAsyncThunk<PartnersItemType, CreatePartnersItemType>(
-  "partners/createPartners",
-  async (payload) => {
+export const createPartners = createAsyncThunk<
+  PartnersItemType,
+  CreatePartnersItemType
+>("partners/createPartners", async (payload) => {
+  const { request } = useHttp();
+  return request(`${serverDomain}/our-partners/`, "POST", payload.formData, {});
+});
+
+export const updatePartners = createAsyncThunk<
+  PartnersItemType,
+  UpdatePartnersItemType
+>("partners/updatePartners", async (payload) => {
+  const { request } = useHttp();
+  return request(
+    `${serverDomain}/our-partners/${payload.id}/`,
+    "PATCH",
+    payload.formData,
+    {}
+  );
+});
+
+export const updatePartnersOrder = createAsyncThunk(
+  "partners/updatePartnersOrder",
+  async (data: {
+    dragItem: {
+      id: number;
+      order: number;
+    };
+    hoverItem: {
+      id: number;
+      order: number;
+    };
+  }) => {
+    const { dragItem, hoverItem } = data;
+
+    const draggedFormData = new FormData();
+    draggedFormData.append("order", dragItem.order.toString());
+
+    const hoveredFormData = new FormData();
+    hoveredFormData.append("order", hoverItem.order.toString());
+
+    const draggedItemResponse = await axios.patch(
+      `${serverDomain}/our-partners/${dragItem.id}/`,
+      hoveredFormData
+    );
+
+    const hoveredItemResponse = await axios.patch(
+      `${serverDomain}/our-partners/${hoverItem.id}/`,
+      draggedFormData
+    );
+
     const { request } = useHttp();
-    return request(`${serverDomain}/our-partners/`, "POST", payload.formData, {
+
+    return await request(`${serverDomain}/our-partners/`, "GET", null, {
+      "Content-Type": "application/json",
     });
   }
 );
-
-export const updatePartners = createAsyncThunk<PartnersItemType, UpdatePartnersItemType>(
-  "partners/updatePartners",
-  async (payload) => {
-    const { request } = useHttp();
-    return request(`${serverDomain}/our-partners/${payload.id}/`, "PATCH", payload.formData, {
-    })
-  }
-);
-
-// export const updatePartnerOrder = createAsyncThunk(
-//   "marketing/partner-clients/updatePartnerOrder",
-//   async (data: {
-//     dragItem: {
-//       id: number;
-//       order: number;
-//     };
-//     hoverItem: {
-//       id: number;
-//       order: number;
-//     };
-//   }) => {
-//     const { dragItem, hoverItem } = data;
-
-//     const draggedFormData = new FormData();
-//     draggedFormData.append("order", dragItem.order.toString());
-
-//     const hoveredFormData = new FormData();
-//     hoveredFormData.append("order", hoverItem.order.toString());
-
-//     const draggedItemResponse = await axios.patch(
-//       `${serverDomain}api/v1/partner-clients/${dragItem.id}/`,
-//       hoveredFormData
-//     );
-
-//     const hoveredItemResponse = await axios.patch(
-//       `${serverDomain}api/v1/partner-clients/${hoverItem.id}/`,
-//       draggedFormData
-//     );
-
-//     const { request } = useHttp();
-//     const result = await request(
-//       `${serverDomain}api/v1/partner-clients/`,
-//       "GET",
-//       null,
-//       {
-//         Authorization: `Bearer ${localStorage.getItem("access")}`,
-//         "Content-Type": "application/json",
-//       }
-//     );
-
-//     return result.results;
-//   }
-// );
 
 const partnersSlice = createSlice({
   name: "marketingPartners",
@@ -130,9 +126,22 @@ const partnersSlice = createSlice({
         state.partners.push(payload);
       })
       .addCase(updatePartners.fulfilled, (state, { payload }) => {
-        state.partners = state.partners.map((item) => item.id === payload.id ? payload : item);
+        state.partners = state.partners.map((item) =>
+          item.id === payload.id ? payload : item
+        );
       })
-
+      //Edit order
+      .addCase(updatePartnersOrder.pending, (state, { payload }) => {
+        state.fetchPartnersStatus = "loading";
+      })
+      .addCase(updatePartnersOrder.fulfilled, (state, { payload }) => {
+        state.fetchPartnersStatus = "idle";
+        state.partners = [...payload];
+        console.log(payload);
+      })
+      .addCase(updatePartnersOrder.rejected, (state, { payload }) => {
+        state.fetchPartnersStatus = "error";
+      });
   },
 });
 

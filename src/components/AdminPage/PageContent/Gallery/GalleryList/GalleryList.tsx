@@ -1,8 +1,12 @@
 // //redux
-import { fetchGallery, createGallery } from "@/redux/slices/gallery.slice";
+import {
+  fetchGallery,
+  createGallery,
+  updateGalleryOrder,
+} from "@/redux/slices/gallery.slice";
 import { useCallback, useEffect } from "react";
 import { RootStateType, AppDispatch } from "@/redux/types";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 //components
 import GalleryCard from "../GalleryCard/GalleryCard";
 import PhotoReviewForm from "../GalleryForm/GalleryForm";
@@ -10,12 +14,14 @@ import PhotoReviewForm from "../GalleryForm/GalleryForm";
 // import { AppDispatch, RootStateType } from "types/index";
 //styles
 import styles from "./index.module.scss";
+import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
 
 const GalleryList = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const gallery = useSelector((state: RootStateType) => state.gallery.gallery)
-  const fetchGalleryStatus = useSelector((state: RootStateType) => state.gallery.fetchGalleryStatus)
-
+  const gallery = useSelector((state: RootStateType) => state.gallery.gallery);
+  const fetchGalleryStatus = useSelector(
+    (state: RootStateType) => state.gallery.fetchGalleryStatus
+  );
 
   const onAddNew = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target instanceof HTMLInputElement && e.target.files) {
@@ -29,28 +35,44 @@ const GalleryList = () => {
 
   useEffect(() => {
     dispatch(fetchGallery());
-    //eslint-disable-next-line
-  }, [])
+  }, []);
 
+  const moveItem = useCallback(
+    (dragOrder: number, hoverOrder: number) => {
+      const dragItem = gallery.find((item) => item.order === dragOrder);
+      const hoverItem = gallery.find((item) => item.order === hoverOrder);
+      console.log(dragOrder, hoverOrder);
 
-  const content =
-    gallery ? (
-      <>
-        {gallery.map((item, index) => (
+      if (dragItem && hoverItem) {
+        dispatch(
+          updateGalleryOrder({
+            dragItem: {
+              id: dragItem.id,
+              order: dragOrder,
+            },
+            hoverItem: {
+              id: hoverItem.id,
+              order: hoverOrder,
+            },
+          })
+        );
+      }
+    },
+    [gallery]
+  );
 
-          <GalleryCard
-            imagesLength={gallery.length}
-            key={index}
-            {...item}
-          />
-        ))}
-        <PhotoReviewForm {...{ onAddNew }} />
-      </>
-    ) : null;
-  const error =
-    fetchGalleryStatus === "error" ? <p>error...</p> : null;
-  const spinner =
-    fetchGalleryStatus === "loading" ? <p>loading...</p> : null;
+  const content = gallery ? (
+    <>
+      {gallery.map((item, index) => (
+        <DNDWrapper target={item} moveItem={moveItem}>
+          <GalleryCard imagesLength={gallery.length} key={index} {...item} />
+        </DNDWrapper>
+      ))}
+      <PhotoReviewForm {...{ onAddNew }} />
+    </>
+  ) : null;
+  const error = fetchGalleryStatus === "error" ? <p>error...</p> : null;
+  const spinner = fetchGalleryStatus === "loading" ? <p>loading...</p> : null;
 
   return (
     <div className={styles.list}>
