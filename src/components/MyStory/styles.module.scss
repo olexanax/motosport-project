@@ -1,44 +1,62 @@
 @import "@/styles/variables.scss";
 
 .container {
-    @include pageWrapper;
-    background-color: $black;
-    padding-top: 130px;
-    padding-bottom: 86px;
+  @include pageWrapper;
+  background-color: $black;
+  padding-top: 130px;
+  padding-bottom: 86px;
+
+  @media (max-width: $tabletSize) {
+    padding-top: 114px;
+  }
 }
 .content {
-    @include pageContent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 64px;
-    @media (max-width: $tabletSize) {
-        padding: 39px 42px 16px 42px;
-        flex-wrap: wrap;
-    }
+  @include pageContent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  @media (max-width: $tabletSize) {
+    flex-wrap: wrap;
+  }
 }
 .blockTitle {
-    text-align: center;
+  text-align: center;
 }
 .cardsBlock {
-    display: flex;
-    gap: 28px;
-    justify-content: center;
-    @media (max-width: 1024px) {
-        flex-wrap: wrap;
-    }
+  display: flex;
+  gap: 28px;
+  justify-content: center;
 }
 .leftCol {
-    display: flex;
-    flex-direction: column;
-    gap: 49px;
+  display: flex;
+  flex-direction: column;
+  gap: 49px;
 }
 .rightCol {
-    margin-top: 217px;
-    display: flex;
-    flex-direction: column;
-    gap: 49px;
-    @media (max-width: 1024px) {
-        margin-top: 0px;
-    }
+  margin-top: 217px;
+  display: flex;
+  flex-direction: column;
+  gap: 49px;
+  @media (max-width: 1024px) {
+    margin-top: 0px;
+  }
+}
+
+.desktopWrapper {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.mobileWrapper {
+  display: none;
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
 }

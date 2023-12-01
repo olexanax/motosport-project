@@ -19,7 +19,7 @@ const PageMainBanner = ({ lng }: I18ComponentProps) => {
           <h1 className={classNames(global.pageTitle)}>
             Ivan Peklin
           </h1>
-          <p className={global.smallTitle}>
+          <p className={styles.smallTitle}>
             “Racing is life. Anything before or after is just waiting.” – Steve McQueen
           </p>
           <Link href={`/${lng}#become-a-partner`} className={classNames(global.primaryButton, styles.btn)}>

@@ -71,24 +71,33 @@ const MyStory = async () => {
           </div>
           {stories && !!stories.length && (
             <div className={styles.cardsBlock}>
-              <div className={styles.leftCol}>
-                {/* {stories
+              <div className={styles.desktopWrapper}>
+                <div className={styles.leftCol}>
+                  {/* {stories
                   .filter((story) => !(story.order % 2))
                   .map((story) => (
                     <MyStoryCard key={story.id} {...story} />
                   ))} */}
-                {stories
-                  .filter((_, i) => !(i % 2))
-                  .map((story) => (
-                    <MyStoryCard key={story.id} {...story} />
-                  ))}
+                  {stories
+                    .filter((_, i) => !(i % 2))
+                    .map((story) => (
+                      <MyStoryCard key={story.id} {...story} />
+                    ))}
+                </div>
+                <div className={styles.rightCol}>
+                  {stories
+                    .filter((_, i) => i % 2)
+                    .map((story) => (
+                      <MyStoryCard key={story.id} {...story} />
+                    ))}
+                </div>
               </div>
-              <div className={styles.rightCol}>
-                {stories
-                  .filter((_, i) => i % 2)
-                  .map((story) => (
+              <div className={styles.mobileWrapper}>
+                <div className={styles.leftCol}>
+                  {stories.map((story) => (
                     <MyStoryCard key={story.id} {...story} />
                   ))}
+                </div>
               </div>
             </div>
           )}

@@ -1,152 +1,158 @@
 @import "@/styles/variables.scss";
 
 .container {
-    @include pageWrapper;
-    padding-top: 96px;
-    padding-bottom: 48px;
-    position: relative;
-    background-color: $white;
-    color: $black;
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    @media (max-width: $tabletSize) {
-    }
+  @include pageWrapper;
+  padding-top: 96px;
+  padding-bottom: 48px;
+  position: relative;
+  background-color: $white;
+  color: $black;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  @media (max-width: $tabletSize) {
+  }
 }
 .content {
-    @include pageContent;
-    display: flex;
-    flex-direction: column;
+  @include pageContent;
+  display: flex;
+  flex-direction: column;
 }
 .divider {
-    height: 28px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100vw;
+  height: 28px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
 }
 .dividerFirstLine {
-    height: 14px;
-    background-color: $blue;
+  height: 14px;
+  background-color: $blue;
 }
 .dividerSecondLine {
-    height: 14px;
-    background-color: $yellow;
+  height: 14px;
+  background-color: $yellow;
 }
 .infoBlock {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
 }
 .title {
-    color: $black;
+  color: $black !important;
 }
 .textBlock {
-    display: flex;
-    gap: 91px;
-    justify-content: center;
-    @media (max-width: $tabletSize) {
-        flex-direction: column;
-        align-items: center;
-        gap: 36px;
-    }
+  display: flex;
+  gap: 91px;
+  justify-content: center;
+  @media (max-width: $tabletSize) {
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
 }
 .leftCol {
-    max-width: 356px;
-    flex: 1 1 auto;
-    @media (max-width: $tabletSize) {
-        text-align: center;
-    }
+  max-width: 356px;
+  flex: 1 1 auto;
+  @media (max-width: $tabletSize) {
+    text-align: center;
+  }
 }
 .rightCol {
-    max-width: 392px;
-    flex: 1 1 auto;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-family: Inter;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 36px;
-    @media (max-width: $tabletSize) {
-        text-align: center;
-    }
+  max-width: 392px;
+  flex: 1 1 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 36px;
+  @media (max-width: $tabletSize) {
+    text-align: center;
+  }
 }
 .listItem {
-    padding-left: 16px;
-    position: relative;
-    width: max-content;
-    &::before {
-        content: "";
-        color: $black;
-        top: 8px;
-        position: absolute;
-        left: 4px;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background-color: $black;
-    }
+  padding-left: 16px;
+  position: relative;
+  width: max-content;
+  &::before {
+    content: "";
+    color: $black;
+    top: 8px;
+    position: absolute;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: $black;
+  }
 }
 .boldtext {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 36px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
 }
 .list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .text {
-    text-align: center;
+  text-align: center;
 }
 .statBlock {
-    display: flex;
-    gap: 64px;
-    justify-content: center;
-    @media (max-width: $tabletSize) {
-        flex-direction: column;
-        gap: 42px;
-    }
+  display: flex;
+  gap: 64px;
+  justify-content: center;
+  @media (max-width: $tabletSize) {
+    flex-direction: column;
+    gap: 42px;
+  }
 }
 .statItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 .statValue {
-    width: 90px;
-    height: 90px;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid $grey;
+  span {
+    display: inline-block;
+    width: 77px;
+    height: 77px;
+    border-radius: 50%;
+    color: $white;
+    background-color: $red;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    border: 1px solid $grey;
-    span {
-        display: inline-block;
-        width: 77px;
-        height: 77px;
-        border-radius: 50%;
-        color: $white;
-        background-color: $red;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 26px;
-        font-weight: 700;
-    }
+    font-size: 26px;
+    font-weight: 700;
+  }
 }
 .statName {
-    max-width: 124px;
-    color: #161616;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 500;
+  max-width: 124px;
+  color: $black;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+
+  @media (max-width: $tabletSize) {
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    max-width: 100%;
+  }
 }

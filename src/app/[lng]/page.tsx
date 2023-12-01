@@ -32,6 +32,9 @@ export default async function Home({ params: { lng } }: I18PageProps) {
         />
       </ErrorBoundary>
       <ErrorBoundary>
+        <News />
+      </ErrorBoundary>
+      <ErrorBoundary>
         <Gallery />
       </ErrorBoundary>
       <ErrorBoundary>
@@ -43,11 +46,10 @@ export default async function Home({ params: { lng } }: I18PageProps) {
           text="If you were inspired by my motorsport journey and would love to become a part of it, please fill out the form below. 
 Partnership is a crucial part of success in any sport, especially motorsport, so I am open to new partnership offers. 
 If you would like to get more information regarding partnership or sponsorship, please press the “Download” button below or fill out the contact form.
-"/>
+"
+        />
       </ErrorBoundary>
-      <ErrorBoundary>
-        <News />
-      </ErrorBoundary>
+
       <ErrorBoundary>
         <FollowMeBanner />
       </ErrorBoundary>
