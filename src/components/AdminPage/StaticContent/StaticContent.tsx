@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootStateType } from "@/redux/types";
-import { fetchStaticContent, updateStaticContent } from "@/redux/slices/staticContent.slice";
+import { fetchStaticContent, updateStaticContent, generateWebpageData } from "@/redux/slices/staticContent.slice";
 import { updateStaticContentFn } from "@/components/AdminPage/types";
 import { AdminPageQuries } from '@/components/AdminPage/types';
 import HeadlinesTable from "./Tables/HeadlinesTable/HeadlinesTable";
@@ -12,6 +12,7 @@ import PageTablesPicker from "./PageTablesPicker/PageTablesPicker";
 import styles from "./styles.module.scss";
 import global from "@/styles/global.module.scss";
 import Button from "@/components/ui/Button/Button";
+import DeploymentStatusBar from "../DeploymentStatusBar/DeploymentStatusBar";
 
 interface StaticContentProps extends AdminPageQuries { }
 
@@ -22,6 +23,8 @@ const StaticContent: React.FC<StaticContentProps> = ({ lang }) => {
   const staticContent = useSelector((state: RootStateType) => state.staticContent.staticContent)
   const pending_changes = useSelector((state: RootStateType) => state.staticContent.pending_changes)
   const fetchStaticContentStatus = useSelector((state: RootStateType) => state.staticContent.fetchStaticContentStatus)
+  const generateWebpageDataStatus = useSelector((state: RootStateType) => state.staticContent.generateWebpageDataStatus)
+
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -46,6 +49,16 @@ const StaticContent: React.FC<StaticContentProps> = ({ lang }) => {
     }
   }
 
+  const onSave = () => {
+    dispatch(generateWebpageData())
+      .then((() => setUpdateMoment()))
+  }
+  const saveButtonValue = generateWebpageDataStatus === "loading" ? "Loading..." :
+    generateWebpageDataStatus === "error" ? "error" : "Save"
+
+  const setUpdateMoment = () => {
+    localStorage.setItem("updateMoment", (new Date()).toISOString())
+  }
 
   const tables: {
     [key: string]: JSX.Element;
@@ -65,8 +78,11 @@ const StaticContent: React.FC<StaticContentProps> = ({ lang }) => {
             onTabClick={onTableTypeClick}
           />
           {pending_changes &&
-            <Button>Save</Button>
+            <Button onClick={() => onSave()}>
+              {saveButtonValue}
+            </Button>
           }
+          <DeploymentStatusBar />
         </div>
         {tables[activeTableType]}
       </div>
