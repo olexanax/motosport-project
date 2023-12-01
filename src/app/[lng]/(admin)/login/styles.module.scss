@@ -2,8 +2,8 @@
 
 .container {
     @include pageWrapper;
-    background: url("../../../../../public//images//banners//loginBanner.png")
-        center -300px/100% 100% no-repeat;
+    background: url("#{$baseDynamicImageURL}loginBG_dekwqjkbj.webp") center
+        center/100% 100% no-repeat;
     background-size: cover;
 }
 .content {

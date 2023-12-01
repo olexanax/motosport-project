@@ -49,30 +49,28 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title, lng }) => {
 
   return (
     <div id="couching" className={classNames(global.container, styles.wrapper)}>
-      <div className={styles.overlay}>
-        <div className={global.content}>
-          <div className={styles.container}>
-            <h2 className={styles.title}>{title}</h2>
-            <p className={styles.text}>{text}</p>
-            <div className={styles.buttonWrapper}>
-              <button onClick={openModal} className={global.primaryButton}>
-                {t("content.coaching_startButton")}
-              </button>
-            </div>
-            <div className={styles.buttonWrapper}>
-              <a
-                target="_blank"
-                href={t("content.instagram_link")}
-                className={styles.instagramLogo}
-              >
-                <Image
-                  src={instagramLogo}
-                  width={52}
-                  height={52}
-                  alt="Instagram Logo"
-                />
-              </a>
-            </div>
+      <div className={global.content}>
+        <div className={styles.container}>
+          <h2 className={styles.title}>{title}</h2>
+          <p className={styles.text}>{text}</p>
+          <div className={styles.buttonWrapper}>
+            <button onClick={openModal} className={global.primaryButton}>
+              {t("content.coaching_startButton")}
+            </button>
+          </div>
+          <div className={styles.buttonWrapper}>
+            <a
+              target="_blank"
+              href={t("content.instagram_link")}
+              className={styles.instagramLogo}
+            >
+              <Image
+                src={instagramLogo}
+                width={52}
+                height={52}
+                alt="Instagram Logo"
+              />
+            </a>
           </div>
         </div>
       </div>

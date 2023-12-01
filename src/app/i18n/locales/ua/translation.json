@@ -1,6 +1,12 @@
 {
     "id": 2,
-    "alt_tags": {},
+    "alt_tags": {
+        "main_bannerBG_7d2wbx1bd1d2.webp": "IVAN PEKLIN",
+        "CoachingBG_jkfbc.webp": "IVAN PEKLIN",
+        "BecomePartner_jbdebjkd.webp": "IVAN PEKLIN",
+        "404BG_jwbcekwn.webp": "IVAN PEKLIN",
+        "loginBG_dekwqjkbj.webp": "IVAN PEKLIN"
+    },
     "language": "EN",
     "content": {
         "pageBannerSubTitle": "“Racing is life. Anything before or after is just waiting.” – Steve McQueen",

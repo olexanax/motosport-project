@@ -1,50 +1,49 @@
 @import "@/styles/variables.scss";
 
 .container {
-  @include pageWrapper;
-  padding-top: 94px;
-  background-color: $black;
-  background: url("../../../public/images/banners/Frame1501.png") center -300px/100%
-    100% no-repeat;
-  background-size: cover;
-
-  @media (max-width: $tabletSize) {
-    background: url("../../../public/images/banners/Frame1501.png") center
-      center/100% 100% no-repeat;
+    @include pageWrapper;
+    padding-top: 94px;
+    background-color: $black;
+    background: url("#{$baseDynamicImageURL}main_bannerBG_7d2wbx1bd1d2.webp")
+        center center/100% 100% no-repeat;
     background-size: cover;
-  }
+
+    @media (max-width: $tabletSize) {
+        background: url("#{$baseDynamicImageURL}main_bannerBG_7d2wbx1bd1d2.webp")
+            center center/100% 100% no-repeat;
+        background-size: cover;
+    }
 }
 .content {
-  @include pageContent;
-  padding: 244px 80px 0px 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 127px;
-  @media (max-width: $tabletSize) {
-    padding: 105px 16px 0px 16px;
-    gap: 112px;
-  }
+    @include pageContent;
+    padding: 244px 80px 0px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 127px;
+    @media (max-width: $tabletSize) {
+        padding: 105px 16px 0px 16px;
+        gap: 112px;
+    }
 }
 .textBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 21px;
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
 }
 .smallTitle {
-  color: $white;
-  @include titleFont;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 48px;
-
-  @media (max-width: $tabletSize) {
     color: $white;
-    font-family: Unbounded;
-    font-size: 16px;
+    @include titleFont;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-}
+    font-weight: 600;
+    line-height: 48px;
 
+    @media (max-width: $tabletSize) {
+        color: $white;
+        font-family: Unbounded;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+}
