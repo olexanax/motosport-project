@@ -1,29 +1,46 @@
 import styles from "./styles.module.scss";
 //libs
 import { useState, FC, useEffect, useRef } from "react";
+import { useDebounce } from "@/hooks/useDebounce";
 
 type Props = {
-  onUpdate: (
-    string: string,
-    keyName: "meta_description" | "meta_title"
-  ) => void;
-  value: string;
-  keyName: "meta_description" | "meta_title";
+  data: [string, string];
+  onUpdate: (arg: [string, string]) => void;
+  activeTableType: string
 };
 
-const TableRow: FC<Props> = ({ onUpdate, value, keyName }) => {
-  const [inputValue, setInputValue] = useState(value);
+const TableRow: FC<Props> = ({ data, onUpdate, activeTableType }) => {
+  const [inputValue, setInputValue] = useState(data[1]);
+  const debauncedInputValue = useDebounce(inputValue, 500);
+  const inputsChangesCounter = useRef(0);
+
+
+  useEffect(() => {
+    setInputValue(data[1]);
+    inputsChangesCounter.current = 0;
+    //eslint-disable-next-line
+  }, [activeTableType]);
+
+
+  useEffect(() => {
+    if (inputsChangesCounter.current) {
+      onUpdate([data[0], debauncedInputValue]);
+    }
+    //eslint-disable-next-line
+  }, [debauncedInputValue]);
 
   return (
     <li className={styles.row}>
-      <div className={styles.cell}>{keyName}</div>
+      <div className={styles.cell}>{data[0]}</div>
       <div className={styles.cell}>
         <textarea
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            inputsChangesCounter.current++;
+          }}
         />
       </div>
-      <div className={styles.cell}>{inputValue.trim().split(" ").length}</div>
     </li>
   );
 };

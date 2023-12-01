@@ -13,13 +13,19 @@ import ModalSuccess from "../ui/ModalSuccess/ModalSuccess";
 import CoachingModal from "../CoachingModal/CoachingModal";
 // images
 import instagramLogo from "../../../public/images/icons/instagramLogoRed.png";
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n/client";
 
-interface CoachingHeroProps {
+
+
+interface CoachingHeroProps extends I18ComponentProps {
   title: string;
   text: string;
 }
 
-const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title }) => {
+const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title, lng }) => {
+  const { t } = useTranslation(lng, "translation");
   const [isModal, setIsModal] = React.useState<boolean>(false);
   const [isSuccess, setIsSuccess] = React.useState<boolean>(false);
 
@@ -50,12 +56,13 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title }) => {
             <p className={styles.text}>{text}</p>
             <div className={styles.buttonWrapper}>
               <button onClick={openModal} className={global.primaryButton}>
-                Start
+                {t("content.coaching_startButton")}
               </button>
             </div>
             <div className={styles.buttonWrapper}>
               <a
-                href="https://www.instagram.com/ivan.peklin.racing?igshid=OGQ5ZDc2ODk2ZA%3D%3D"
+                target="_blank"
+                href={t("content.instagram_link")}
                 className={styles.instagramLogo}
               >
                 <Image
@@ -71,12 +78,12 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title }) => {
       </div>
       {isModal && (
         <ModalWindow onClose={closeModal}>
-          <CoachingModal onSuccess={onFormSuccess} />
+          <CoachingModal {...{ lng }} onSuccess={onFormSuccess} />
         </ModalWindow>
       )}
       {isSuccess && (
         <ModalWindow onClose={() => setIsSuccess(false)}>
-          <ModalSuccess onSuccess={onClickOkay} />
+          <ModalSuccess {...{ lng }} onSuccess={onClickOkay} />
         </ModalWindow>
       )}
     </div>

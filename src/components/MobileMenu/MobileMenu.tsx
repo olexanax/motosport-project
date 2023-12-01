@@ -15,39 +15,40 @@ import instagramLogo from "../../../public/images/icons/instagramLogo.svg"
 import arrow from "../../../public/images/icons/dropdownArr.svg"
 //i18n
 import { languages } from "@/app/i18n/settings"
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n/client";
 
-
-type Props = {
+interface Props extends I18ComponentProps {
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (arg: boolean) => void;
-  lng: string;
 }
 
 
 const MobileMenu: FC<Props> = ({ isMobileMenuOpen, setIsMobileMenuOpen, lng }) => {
   const [isLangOpen, setIsLangOpen] = useState(false)
   const pathname = usePathname()
+  const { t } = useTranslation(lng, "translation");
 
   const NAV_ITEMS = [
     {
-      path: "#about-Us",
-      name: "About Us"
+      path: "#about-us",
+      name: t("content.navigation_abotUs")
     },
     {
       path: "#couching",
-      name: "Couching"
+      name: t("content.navigation_couching")
     },
     {
       path: "#news",
-      name: "News"
+      name: t("content.navigation_news")
     },
     {
       path: "#gallery",
-      name: "Gallery"
+      name: t("content.navigation_gallery")
     },
     {
       path: "#become-a-partner",
-      name: "Become a Partner"
+      name: t("content.navigation_becomePartner")
     }
   ]
 
@@ -92,14 +93,14 @@ const MobileMenu: FC<Props> = ({ isMobileMenuOpen, setIsMobileMenuOpen, lng }) =
         }
       </nav>
       <div className={styles.bottomBlock}>
-        <Link className={styles.instLink} target="_blank" href={"https://www.instagram.com/ivan.peklin/"}>
+        <Link className={styles.instLink} target="_blank" href={t("content.instagram_link")}>
           <Image width={24} height={24} className={styles.logo} src={instagramLogo} alt="instagram" />
         </Link>
-        <Link className={styles.bottomRowText} href="tel:+491605747347">
-          +491605747347
+        <Link className={styles.bottomRowText} href={`tel:${t("content.phone_number")}`}>
+          {t("content.phone_number")}
         </Link>
-        <Link className={styles.bottomRowText} target="_blank" href={"mailto:ivan.peklin.enquiries@gmail.com"}>
-          ivan.peklin.enquiries@gmail.com
+        <Link className={styles.bottomRowText} target="_blank" href={`mailto::${t("content.email")}`}>
+          {t("content.email")}
         </Link>
       </div>
     </div>

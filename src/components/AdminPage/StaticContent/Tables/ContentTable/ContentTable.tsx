@@ -1,42 +1,17 @@
-import { useEffect } from "react";
+import { FC } from "react";
 //types
-
+import { updateStaticContentFn } from "@/components/AdminPage/types";
 //styles
 import styles from "./styles.module.scss";
 import TableRow from "./TableRow/TableRow";
 
-const ContentTable = () => {
-  // useEffect(() => {
-  //   dispatch(fetchPages());
-  //   //eslint-disable-next-line
-  // }, []);
+type Props = {
+  data: { [key: string]: string },
+  onUpdate: updateStaticContentFn,
+  activeTableType: string
+}
 
-  // const content = pages.find(
-  //   (page) => page.page_name === currentPageName
-  // )?.content;
-  const content = {
-    "content-1": "content-1",
-    "content-2": "content-2",
-    "content-3": "content-3",
-    "content-4": "content-4",
-    "content-5": "content-5",
-  };
-
-  const loading = false ? <p className={styles.message}>Loading...</p> : null;
-  const error = false ? <p className={styles.message}>Error</p> : null;
-
-  const onUpdate = (data: [string, string]) => {
-    // dispatch(
-    //   updateWebPage({
-    //     id: currentWebPage?.id,
-    //     data: {
-    //       content: {
-    //         [data[0]]: data[1],
-    //       },
-    //     },
-    //   })
-    // );
-  };
+const ContentTable: FC<Props> = ({ data, onUpdate, activeTableType }) => {
 
   return (
     <ul className={styles.table}>
@@ -44,19 +19,22 @@ const ContentTable = () => {
         <p>Body</p>
         <p></p>
       </li>
-
-      {content ? (
-        Object.entries(content).map((item, i) => (
-          <TableRow key={i} onUpdate={onUpdate} data={item} />
+      {
+        Object.entries(data).map((headine, i) => (
+          <TableRow key={i} activeTableType={activeTableType} onUpdate={(data: [string, string]) => {
+            onUpdate({
+              heading_tags: {},
+              content: {
+                [data[0]]: data[1]
+              },
+              meta_tags: {}
+            })
+          }} data={headine} />
         ))
-      ) : (
-        <p className={styles.message}>Page not found</p>
-      )}
-      {content && !Object.entries(content).length && (
+      }
+      {!Object.entries(data).length && (
         <p className={styles.message}>List are empty</p>
       )}
-      {loading}
-      {error}
     </ul>
   );
 };

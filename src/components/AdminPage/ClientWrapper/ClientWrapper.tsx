@@ -33,7 +33,7 @@ const ClientWrapper = ({ victoryId, victoryAddNew, lang, myStoryAddNew, myStoryI
     [IAdminPagesType["About Me"]]: <AboutMe />,
     [IAdminPagesType.News]: <News {...{ newsAddNew, newsId, lang }} />,
     [IAdminPagesType.Victories]: <Victories {...{ victoryAddNew, victoryId, lang }} />,
-    [IAdminPagesType["Static Info"]]: <StaticContent />,
+    [IAdminPagesType["Static Info"]]: <StaticContent lang={lang} />,
     [IAdminPagesType.Partners]: <Partners />,
     [IAdminPagesType['My story']]: <MyStory {...{ myStoryAddNew, myStoryId, lang }} />
   };

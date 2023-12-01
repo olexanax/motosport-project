@@ -15,9 +15,10 @@ import classNames from "classnames";
 
 interface NewsSliderProps {
   news: News[];
+  learnMoreText: string;
 }
 
-const NewsSlider: React.FC<NewsSliderProps> = ({ news }) => {
+const NewsSlider: React.FC<NewsSliderProps> = ({ news, learnMoreText }) => {
   const sliderRefDesktop = useRef<Splide>(null);
 
   useEffect(() => {
@@ -66,7 +67,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({ news }) => {
               {item.short_description}
             </p>
             <Link href={`/news/${item.slug}`} className={styles.learnMoreBtn}>
-              Learn More
+              {learnMoreText}
             </Link>
           </div>
         </SplideSlide>

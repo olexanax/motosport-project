@@ -24,14 +24,19 @@ import Button from "../ui/Button/Button";
 import PhoneInput from "../ui/PhoneInput/PhoneInput";
 // images
 import instagramLogoBlack from "../../../public/images/icons/instagramLogo.svg";
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n/client";
 
-interface ContactUsFormProps {
+
+interface ContactUsFormProps extends I18ComponentProps {
   onSuccess: () => void;
   type: "coaching" | "partner";
 }
 
-const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type }) => {
+const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type, lng }) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const { t } = useTranslation(lng, "translation");
 
   const {
     control,
@@ -96,7 +101,7 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type }) => {
                 [styles.whiteLabel]: type === "partner",
               })}
             >
-              Name*
+              {t("content.form_nameInput")}*
             </Label>
             <Controller
               control={control}
@@ -121,7 +126,7 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type }) => {
                 [styles.whiteLabel]: type === "partner",
               })}
             >
-              Surname*
+              {t("content.form_surnameInput")}*
             </Label>
             <Controller
               control={control}
@@ -149,7 +154,7 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type }) => {
               [styles.whiteLabel]: type === "partner",
             })}
           >
-            E-Mail*
+            {t("content.form_emailInput")}*
           </Label>
           <Controller
             control={control}
@@ -174,7 +179,7 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type }) => {
               [styles.whiteLabel]: type === "partner",
             })}
           >
-            Phone*
+            {t("content.form_phoneInput")}*
           </Label>
           <Controller
             control={control}
@@ -199,7 +204,7 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type }) => {
               [styles.whiteLabel]: type === "partner",
             })}
           >
-            Text
+            {t("content.form_TextInput")}
           </Label>
           <Controller
             control={control}
@@ -226,12 +231,13 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type }) => {
       >
         <div className={styles.submitBtn}>
           <Button type="submit" isLoading={isLoading}>
-            Send
+            {t("content.form_submitBanner")}
           </Button>
         </div>
         {type === "coaching" && (
           <a
-            href="https://www.instagram.com/ivan.peklin.racing?igshid=OGQ5ZDc2ODk2ZA%3D%3D"
+            target="_blank"
+            href={t("content.instagram_link")}
             className={styles.instagramLogo}
           >
             <Image

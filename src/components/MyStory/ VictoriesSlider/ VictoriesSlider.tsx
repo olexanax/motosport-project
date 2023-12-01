@@ -4,20 +4,25 @@ import global from "@/styles/global.module.scss";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 import "@splidejs/react-splide/css";
-
 import { useState, useEffect, useRef, FC } from "react";
 // @ts-ignore
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Victory } from "@/actions/get-victories";
-import image from "../../../../public/images/aboutMeSlider/aboutMeSlider.png";
-interface VictoriesSliderProps {
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n/client";
+
+
+interface VictoriesSliderProps extends I18ComponentProps {
   victories: Victory[] | undefined;
 }
 
-const VictoriesSlider: FC<VictoriesSliderProps> = ({ victories }) => {
+const VictoriesSlider: FC<VictoriesSliderProps> = ({ victories, lng }) => {
   const [isMobileListOpen, setIsMobileListOpen] = useState(false);
   const sliderRefDesctop = useRef<Splide>(null);
   const sliderRefMobile = useRef<Splide>(null);
+  const { t } = useTranslation(lng, "translation");
+
 
   useEffect(() => {
     // Simulate swipe after component mounts
@@ -41,7 +46,7 @@ const VictoriesSlider: FC<VictoriesSliderProps> = ({ victories }) => {
     <div className={styles.container}>
       <div className={styles.content}>
         <h4 className={classNames(styles.blockTitle, global.subTitle)}>
-          Victories
+          {t('heading_tags.h4__myStorySubTitle2')}
         </h4>
         {victories && !!victories.length && (
           <>

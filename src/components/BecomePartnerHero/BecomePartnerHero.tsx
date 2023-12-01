@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-
+import Link from "next/link";
 // styles
 import classNames from "classnames";
 import styles from "./styles.module.scss";
@@ -14,14 +14,18 @@ import instagramLogo from "../../../public/images/icons/instagramLogoRed.png";
 import ModalSuccess from "../ui/ModalSuccess/ModalSuccess";
 import CoachingModal from "../CoachingModal/CoachingModal";
 import ContactUsForm from "../ContactUsForm/ContactUsForm";
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n/client";
 
-interface BecomePartnerProps {
+interface BecomePartnerProps extends I18ComponentProps {
   title: string;
   text: string;
 }
 
-const BecomePartner: React.FC<BecomePartnerProps> = ({ text, title }) => {
+const BecomePartner: React.FC<BecomePartnerProps> = ({ text, title, lng }) => {
   const [isSuccess, setIsSuccess] = React.useState<boolean>(false);
+  const { t } = useTranslation(lng, "translation");
 
   const onFormSuccess = () => {
     setIsSuccess(true);
@@ -39,20 +43,19 @@ const BecomePartner: React.FC<BecomePartnerProps> = ({ text, title }) => {
             <h2 className={styles.title}>{title}</h2>
             <p className={styles.text}>{text}</p>
             <div className={styles.buttonWrapper}>
-              <button onClick={() => { }} className={global.primaryButton}>
-                Download
-              </button>
+              <Link href={t("content.becomePartnerPDF")} className={global.primaryButton}>
+                {t("content.BecomePartner_PDFbutton")}
+              </Link>
             </div>
-
             <div className={styles.formWrapper}>
-              <ContactUsForm onSuccess={onFormSuccess} type="partner" />
+              <ContactUsForm {...{ lng }} onSuccess={onFormSuccess} type="partner" />
             </div>
           </div>
         </div>
       </div>
       {isSuccess && (
         <ModalWindow onClose={() => setIsSuccess(false)}>
-          <ModalSuccess onSuccess={onClickOkay} />
+          <ModalSuccess {...{ lng }} onSuccess={onClickOkay} />
         </ModalWindow>
       )}
     </div>

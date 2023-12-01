@@ -1,35 +1,17 @@
-import { useEffect } from "react";
+import { FC } from "react";
 //types
+import { updateStaticContentFn } from "@/components/AdminPage/types";
 //styles
 import styles from "./styles.module.scss";
 import TableRow from "./TableRow/TableRow";
 
-const HeadlinesTable = () => {
-  const loading = false ? <p className={styles.message}>Loading...</p> : null;
-  const error = false ? <p className={styles.message}>Error</p> : null;
+type Props = {
+  data: { [key: string]: string },
+  onUpdate: updateStaticContentFn,
+  activeTableType: string
+}
 
-  const headlines = {
-    H1__Title: "Headline 1",
-    H2__Title: "Headline 1",
-    H3__Title: "Headline 1",
-    H4__Title: "Headline 1",
-    H5__Title: "Headline 1",
-  };
-
-  const onUpdate = (data: [string, string]) => {
-    // if (currentWebPage) {
-    //   dispatch(
-    //     updateWebPage({
-    //       id: currentWebPage?.id,
-    //       data: {
-    //         heading_tags: {
-    //           [data[0]]: data[1],
-    //         },
-    //       },
-    //     })
-    //   );
-    // }
-  };
+const HeadlinesTable: FC<Props> = ({ data, onUpdate, activeTableType }) => {
 
   return (
     <ul className={styles.table}>
@@ -38,19 +20,22 @@ const HeadlinesTable = () => {
         <p>Name</p>
         <p>Text</p>
       </li>
-
-      {true ? (
-        Object.entries(headlines).map((headine, i) => (
-          <TableRow key={i} onUpdate={onUpdate} data={headine} />
+      {
+        Object.entries(data).map((headine, i) => (
+          <TableRow activeTableType={activeTableType} key={i} onUpdate={(data: [string, string]) => {
+            onUpdate({
+              heading_tags: {
+                [data[0]]: data[1]
+              },
+              content: {},
+              meta_tags: {}
+            })
+          }} data={headine} />
         ))
-      ) : (
-        <p className={styles.message}>Page not found</p>
-      )}
-      {true && !Object.entries(headlines).length && (
+      }
+      {!Object.entries(data).length && (
         <p className={styles.message}>List are empty</p>
       )}
-      {loading}
-      {error}
     </ul>
   );
 };

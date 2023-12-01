@@ -1,15 +1,22 @@
+"use client"
 import React from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import alertIcon from "../../../public/images/icons/alertTriangle.svg";
 import alertIconBlack from "../../../public/images/icons/alertTriangleBlack.png";
 import classNames from "classnames";
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n/client";
 
-interface ErrorBannerProps {
+
+interface ErrorBannerProps extends I18ComponentProps {
   theme?: "light" | "dark";
 }
 
-const ErrorBanner: React.FC<ErrorBannerProps> = ({ theme = "light" }) => {
+const ErrorBanner: React.FC<ErrorBannerProps> = ({ theme = "light", lng }) => {
+  const { t } = useTranslation(lng, "translation");
+
   return (
     <div className={styles.container}>
       <div
@@ -17,7 +24,9 @@ const ErrorBanner: React.FC<ErrorBannerProps> = ({ theme = "light" }) => {
           [styles.dark]: theme === "dark",
         })}
       >
-        <h2 className={styles.title}>Oops, something went wrong!</h2>
+        <h2 className={styles.title}>
+          {t("content.errorBanner_title")}
+        </h2>
         {theme === "light" ? (
           <Image src={alertIcon} alt="alertTriangle" width={80} height={80} />
         ) : (
@@ -29,7 +38,7 @@ const ErrorBanner: React.FC<ErrorBannerProps> = ({ theme = "light" }) => {
           />
         )}
         <p className={styles.subtitle}>
-          Please reload the page or try again later.
+          {t("content.errorBanner_text")}
         </p>
       </div>
     </div>

@@ -1,57 +1,42 @@
-import { useEffect } from "react";
+import { FC } from "react";
 //types
-//redux
-
+import { updateStaticContentFn } from "@/components/AdminPage/types";
 //styles
 import styles from "./styles.module.scss";
 import TableRow from "./TableRow/TableRow";
 
-const MetaTable = () => {
-  const loading = true ? <p className={styles.message}>Loading...</p> : null;
-  const error = false ? <p className={styles.message}>Error</p> : null;
+type Props = {
+  data: { [key: string]: string }
+  onUpdate: updateStaticContentFn,
+  activeTableType: string
+}
 
-  const onUpdate = (
-    value: string,
-    keyName: "meta_description" | "meta_title"
-  ) => {
-    // if (page) {
-    //   dispatch(
-    //     updateWebPage({
-    //       id: page.id,
-    //       data: {
-    //         meta_tags: {
-    //           [keyName]: value,
-    //         },
-    //       },
-    //     })
-    //   );
-    // }
-  };
+
+const MetaTable: FC<Props> = ({ data, activeTableType, onUpdate }) => {
+
 
   return (
     <ul className={styles.table}>
       <li className={styles.titleRow}>
         <p>Meta Teg</p>
         <p>Content</p>
-        <p>Word Count</p>
       </li>
-      {true && (
-        <TableRow
-          keyName="meta_title"
-          value={"test"}
-          onUpdate={onUpdate}
-        />
+      {
+        Object.entries(data).map((headine, i) => (
+          <TableRow activeTableType={activeTableType} key={i} onUpdate={(data: [string, string]) => {
+            onUpdate({
+              heading_tags: {},
+              content: {},
+              meta_tags: {
+                [data[0]]: data[1]
+              }
+            })
+          }} data={headine} />
+        ))
+      }
+      {!Object.entries(data).length && (
+        <p className={styles.message}>List are empty</p>
       )}
-      {true && (
-        <TableRow
-          keyName="meta_description"
-          value={"test"}
-          onUpdate={onUpdate}
-        />
-      )}
-      {false && <p className={styles.message}>Page not found</p>}
-      {/* {loading}  */}
-      {/* {error} */}
     </ul>
   );
 };

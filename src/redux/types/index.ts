@@ -118,3 +118,50 @@ export interface CreateNewsItemType {
     formData: FormData;
 }
 export type NewsResponse = NewsItemType[];
+
+//staticContent
+
+export interface StaticContentItemType {
+    id: number;
+    alt_tags: {
+        [key: string]: string;
+    };
+    language: "UA" | "EN";
+    content: {
+        [key: string]: string;
+    };
+    meta_tags: {
+        [key: string]: string;
+    };
+    heading_tags: {
+        [key: string]: string;
+    };
+}
+export interface UpdateStaticContentItemType {
+    id: number;
+    data: Partial<StaticContentItemType>;
+}
+
+export type StaticContentResponse = StaticContentItemType[];
+export interface UpdateStaticContentResponse extends StaticContentItemType {
+    pending_changes: boolean;
+}
+
+//static images
+export interface StaticImagesItemType {
+    id: number;
+    image_name: string;
+    format: string;
+    weight: string;
+    image: string;
+    alt_text: string;
+}
+export interface UpdateStaticImagesItemType {
+    id: number;
+    formData: FormData;
+}
+
+export type StaticImagesResponse = StaticImagesItemType[];
+export interface UpdateStaticImagesResponse extends StaticImagesItemType {
+    pending_changes: boolean;
+}

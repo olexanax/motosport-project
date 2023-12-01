@@ -9,14 +9,18 @@ import Link from "next/link"
 import img1 from "../../../public/images/followMe/image1.jpeg"
 import img2 from "../../../public/images/followMe/image2.png"
 import img3 from "../../../public/images/followMe//image3.png"
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n";
 
+const FollowMeBanner = async ({ lng }: I18ComponentProps) => {
+  const { t } = await useTranslation(lng, "translation");
 
-const FollowMeBanner = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <h2 className={classNames(global.sectionTitle, styles.title)}>
-          Follow me on Instagram!
+          {t('heading_tags.h2__FollowMeTitle')}
         </h2>
         <div className={styles.imagesContainer}>
           <Image width={386} height={318} src={img1} alt="" />
@@ -26,7 +30,7 @@ const FollowMeBanner = () => {
         <Link
           href={"https://www.instagram.com/ivan.peklin/"}
           className={classNames(global.primaryButton, styles.btn)}>
-          More
+          {t("content.followMe_button")}
         </Link>
       </div>
     </div>

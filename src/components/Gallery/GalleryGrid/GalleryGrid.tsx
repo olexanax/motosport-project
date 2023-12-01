@@ -9,9 +9,10 @@ import { GalleryPhoto } from "@/actions/get-galery";
 
 interface GalleryGridProps {
   images: GalleryPhoto[] | undefined;
+  moreButton: string
 }
 
-const GalleryGrid: React.FC<GalleryGridProps> = ({ images }) => {
+const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -33,12 +34,12 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images }) => {
                 )
             )}
           </div>
-          {!isOpen && (
+          {!isOpen && images.length && 16 && (
             <div
               onClick={() => setIsOpen(true)}
               className={classNames(global.primaryButton, styles.btn)}
             >
-              More
+              {moreButton}
             </div>
           )}
         </>

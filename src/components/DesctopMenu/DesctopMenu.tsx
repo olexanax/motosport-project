@@ -7,33 +7,38 @@ import classNames from "classnames"
 //styles
 import styles from "./styles.module.scss"
 import global from "@/styles/global.module.scss"
+//i18n
+import { languages } from "@/app/i18n/settings"
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n/client";
 
 
-
-const DesctopMenu = ({ lng }: { lng: string }) => {
+const DesctopMenu = ({ lng }: I18ComponentProps) => {
   const pathname = usePathname()
   const router = useRouter()
+  const { t } = useTranslation(lng, "translation");
+
 
   const NAV_ITEMS = [
     {
       path: "#about-us",
-      name: "About Us"
+      name: t("content.navigation_abotUs")
     },
     {
       path: "#couching",
-      name: "Couching"
+      name: t("content.navigation_couching")
     },
     {
       path: "#news",
-      name: "News"
+      name: t("content.navigation_news")
     },
     {
       path: "#gallery",
-      name: "Gallery"
+      name: t("content.navigation_gallery")
     },
     {
       path: "#become-a-partner",
-      name: "Become a Partner"
+      name: t("content.navigation_becomePartner")
     }
   ]
   const getClassName = (path: string) => {
