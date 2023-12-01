@@ -9,11 +9,10 @@ const ErrorBanner = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <h2 className={styles.title}>Oops, something went wrong!</h2>
-        <Image src={alert} alt="alertTriangle" width={120} height={120} />
+        <Image src={alert} alt="alertTriangle" width={80} height={80} />
         <p className={styles.subtitle}>
           Please reload the page or try again later.
         </p>
-        <button className={styles.button}>Back</button>
       </div>
     </div>
   );
