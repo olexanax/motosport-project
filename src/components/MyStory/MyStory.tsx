@@ -72,15 +72,20 @@ const MyStory = async () => {
           {stories && !!stories.length && (
             <div className={styles.cardsBlock}>
               <div className={styles.leftCol}>
-                {stories
+                {/* {stories
                   .filter((story) => !(story.order % 2))
+                  .map((story) => (
+                    <MyStoryCard key={story.id} {...story} />
+                  ))} */}
+                {stories
+                  .filter((_, i) => !(i % 2))
                   .map((story) => (
                     <MyStoryCard key={story.id} {...story} />
                   ))}
               </div>
               <div className={styles.rightCol}>
                 {stories
-                  .filter((story) => story.order % 2)
+                  .filter((_, i) => i % 2)
                   .map((story) => (
                     <MyStoryCard key={story.id} {...story} />
                   ))}
