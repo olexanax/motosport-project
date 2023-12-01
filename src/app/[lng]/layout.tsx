@@ -15,6 +15,7 @@ import { type Metadata } from "next";
 
 
 import { I18PageProps } from "@/types/i18NextTypes";
+import Banner from "@/components/Banner/Banner";
 
 
 export const metadata: Metadata = {
@@ -40,6 +41,7 @@ export default function RootLayout({
           <Header {...{ lng }} />
           <main>
             {children}
+            <Banner lng={lng} />
           </main>
           <Toaster richColors closeButton />
           <Footer {...{ lng }} />

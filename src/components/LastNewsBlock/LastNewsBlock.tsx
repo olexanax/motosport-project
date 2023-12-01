@@ -16,12 +16,12 @@ const LastNewsBlock = async ({ lng }: I18ComponentProps) => {
     <>
       <div className={classNames(styles.container, styles.desctop)}>
         {
-          news && news.map((news, i) => <NewsCard lng={lng} learnMoreText={learnMoreText} {...news} />)
+          news && news.map((news, i) => <NewsCard key={i} lng={lng} learnMoreText={learnMoreText} {...news} />)
         }
       </div>
       <div className={classNames(styles.container, styles.mobile)}>
         {
-          news && news.slice(0, 2).map((news, i) => <NewsCard lng={lng} learnMoreText={learnMoreText} {...news} />)
+          news && news.slice(0, 2).map((news, i) => <NewsCard key={i} lng={lng} learnMoreText={learnMoreText} {...news} />)
         }
       </div>
     </>

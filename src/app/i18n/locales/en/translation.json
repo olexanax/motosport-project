@@ -59,7 +59,11 @@
         "navigation_gallery": "Gallery",
         "navigation_becomePartner": "Become a Partner",
         "errorBanner_title": "Oops, something went wrong!",
-        "errorBanner_text": "Please reload the page or try again later."
+        "errorBanner_text": "Please reload the page or try again later.",
+        "CoockieBannerTitle":  "We value your privacy!",
+        "CoockieBannerText": "This website uses cookies to improve your browsing experience and provide personalized content. By clicking «Accept all cookies», you agree to the storage of cookies on your device to analyze the use of the website, improve our services and show you relevant advertising.",
+        "CoockieBannerBtn1":  "Accept all cookies",
+        "CoockieBannerBtn2": "Decline"
     },
     "meta_tags": {
         "meta_title": "Ivan Peklin",
