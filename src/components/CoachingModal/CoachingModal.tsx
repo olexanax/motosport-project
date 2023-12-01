@@ -4,15 +4,23 @@ import contactPhoto from "../../../public/images/contactFormPhoto.png";
 // styles
 import styles from "./styles.module.scss";
 import ContactUsForm from "../ContactUsForm/ContactUsForm";
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n/client";
 
-interface CoachingModalProps {
+
+interface CoachingModalProps extends I18ComponentProps {
   onSuccess: () => void;
 }
 
-const CoachingModal: React.FC<CoachingModalProps> = ({ onSuccess }) => {
+const CoachingModal: React.FC<CoachingModalProps> = ({ onSuccess, lng }) => {
+  const { t } = useTranslation(lng, "translation");
+
   return (
     <div className={styles.form}>
-      <h2 className={styles.formTitle}>Contact us!</h2>
+      <h2 className={styles.formTitle}>
+        {t("content.coaching_form_title")}
+      </h2>
       <div className={styles.formContainer}>
         <div className={styles.formLeft}>
           <Image
@@ -21,11 +29,15 @@ const CoachingModal: React.FC<CoachingModalProps> = ({ onSuccess }) => {
             width={383}
             height={409}
           />
-          <h3 className={styles.formName}>Ivan Peklin</h3>
-          <p className={styles.formSubtitle}>Lorem ipsum dolor sit amet</p>
+          <h3 className={styles.formName}>
+            {t("content.coaching_form_name")}
+          </h3>
+          <p className={styles.formSubtitle}>
+            {t("content.coaching_form_text")}
+          </p>
         </div>
         <div className={styles.formRight}>
-          <ContactUsForm onSuccess={onSuccess} type="coaching" />
+          <ContactUsForm {...{ lng }} onSuccess={onSuccess} type="coaching" />
         </div>
       </div>
     </div>

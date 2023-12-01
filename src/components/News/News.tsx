@@ -13,13 +13,14 @@ import { useTranslation } from "@/app/i18n";
 const News = async ({ lng }: I18ComponentProps) => {
   const { t } = await useTranslation(lng, "translation");
   const news = await getNews();
+  const learnMoreText = t("content.news_learnMore")
   return (
     <div id="news" className={styles.container}>
       <div className={styles.content}>
         <h2 className={classNames(global.sectionTitle, styles.title)}>
           {t('heading_tags.h2__NewsTitle')}
         </h2>
-        {news && !!news.length && <NewsSlider news={news} />}
+        {news && !!news.length && <NewsSlider learnMoreText={learnMoreText} news={news} />}
       </div>
     </div>
   );

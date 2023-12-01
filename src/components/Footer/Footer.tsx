@@ -8,27 +8,33 @@ import instagramLogo from "../../../public/images/icons/instagramLogo.svg"
 import { I18ComponentProps } from "@/types/i18NextTypes"
 import { useTranslation } from "@/app/i18n";
 
-const MENU_ITEMS = [
-  {
-    path: "#about-Us",
-    name: "About Us"
-  },
-  {
-    path: "#couching",
-    name: "Couching"
-  },
-  {
-    path: "#gallery",
-    name: "Gallery"
-  },
-  {
-    path: "#news",
-    name: "News"
-  }
-]
+
 
 const Footer = async ({ lng }: I18ComponentProps) => {
   const { t } = await useTranslation(lng, "translation");
+
+  const MENU_ITEMS = [
+    {
+      path: "#about-us",
+      name: t("content.navigation_abotUs")
+    },
+    {
+      path: "#couching",
+      name: t("content.navigation_couching")
+    },
+    {
+      path: "#news",
+      name: t("content.navigation_news")
+    },
+    {
+      path: "#gallery",
+      name: t("content.navigation_gallery")
+    },
+    {
+      path: "#become-a-partner",
+      name: t("content.navigation_becomePartner")
+    }
+  ]
 
   return (
     <footer

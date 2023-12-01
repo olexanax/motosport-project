@@ -11,14 +11,14 @@ import { getGallery } from "@/actions/get-galery";
 const Gallery = async ({ lng }: I18ComponentProps) => {
   const images = await getGallery();
   const { t } = await useTranslation(lng, "translation");
-
+  const moreButton = t("content.gallery_moreButton")
   return (
     <div id="gallery" className={styles.container}>
       <div className={styles.content}>
         <h2 className={classNames(global.sectionTitle, styles.title)}>
           {t('heading_tags.h2__GalleryTitle')}
         </h2>
-        <GalleryGrid images={images} />
+        <GalleryGrid moreButton={moreButton} images={images} />
       </div>
     </div>
   );

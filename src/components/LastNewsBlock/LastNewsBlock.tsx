@@ -3,38 +3,25 @@ import styles from "./styles.module.scss"
 import NewsCard from "./NewsCard/NewsCard"
 import classNames from "classnames"
 import { getNews } from "@/actions/get-news";
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n";
 
 
-const NEWS = [
-  {
-    title: "The National Anthem of Ukraine was played for the first time at the GTC Championship!",
-    id: 1,
-    slug: "slug1"
-  },
-  {
-    title: "The National Anthem of Ukraine was played for the first time at the GTC Championship!",
-    id: 2,
-    slug: "slug2"
-  },
-  {
-    title: "The National Anthem of Ukraine was played for the first time at the GTC Championship!",
-    id: 3,
-    slug: "slug3"
-  }
-]
-
-const LastNewsBlock = async () => {
+const LastNewsBlock = async ({ lng }: I18ComponentProps) => {
+  const { t } = await useTranslation(lng, "translation");
+  const learnMoreText = t("content.news_learnMore")
   const news = await getNews();
   return (
     <>
       <div className={classNames(styles.container, styles.desctop)}>
         {
-          news && news.map((news, i) => <NewsCard {...news} />)
+          news && news.map((news, i) => <NewsCard lng={lng} learnMoreText={learnMoreText} {...news} />)
         }
       </div>
       <div className={classNames(styles.container, styles.mobile)}>
         {
-          news && news.slice(0, 2).map((news, i) => <NewsCard {...news} />)
+          news && news.slice(0, 2).map((news, i) => <NewsCard lng={lng} learnMoreText={learnMoreText} {...news} />)
         }
       </div>
     </>

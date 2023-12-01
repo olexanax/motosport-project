@@ -44,11 +44,11 @@ const BecomePartner: React.FC<BecomePartnerProps> = ({ text, title, lng }) => {
             <p className={styles.text}>{text}</p>
             <div className={styles.buttonWrapper}>
               <Link href={t("content.becomePartnerPDF")} className={global.primaryButton}>
-                Download
+                {t("content.BecomePartner_PDFbutton")}
               </Link>
             </div>
             <div className={styles.formWrapper}>
-              <ContactUsForm onSuccess={onFormSuccess} type="partner" />
+              <ContactUsForm {...{ lng }} onSuccess={onFormSuccess} type="partner" />
             </div>
           </div>
         </div>

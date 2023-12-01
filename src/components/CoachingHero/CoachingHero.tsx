@@ -56,7 +56,7 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title, lng }) => {
             <p className={styles.text}>{text}</p>
             <div className={styles.buttonWrapper}>
               <button onClick={openModal} className={global.primaryButton}>
-                Start
+                {t("content.coaching_startButton")}
               </button>
             </div>
             <div className={styles.buttonWrapper}>
@@ -78,12 +78,12 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title, lng }) => {
       </div>
       {isModal && (
         <ModalWindow onClose={closeModal}>
-          <CoachingModal onSuccess={onFormSuccess} />
+          <CoachingModal {...{ lng }} onSuccess={onFormSuccess} />
         </ModalWindow>
       )}
       {isSuccess && (
         <ModalWindow onClose={() => setIsSuccess(false)}>
-          <ModalSuccess onSuccess={onClickOkay} />
+          <ModalSuccess {...{ lng }} onSuccess={onClickOkay} />
         </ModalWindow>
       )}
     </div>

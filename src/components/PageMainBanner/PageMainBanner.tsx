@@ -25,10 +25,10 @@ const PageMainBanner = async ({ lng }: I18ComponentProps) => {
             {t("content.pageBannerSubTitle")}
           </p>
           <Link href={`/${lng}#become-a-partner`} className={classNames(global.primaryButton, styles.btn)}>
-            Become a Partner
+            {t("content.BecomePartner_button")}
           </Link>
         </div>
-        <LastNewsBlock />
+        <LastNewsBlock {...{ lng }} />
       </div>
     </div >
   )

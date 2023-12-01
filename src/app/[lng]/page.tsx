@@ -44,7 +44,7 @@ export default async function Home({ params: { lng } }: I18PageProps) {
         <BecomePartner
           {...{ lng }}
           title={t("heading_tags.h2__BecomePartnerTitle")}
-          text={t("heading_tags.BecomePartner_text")} />
+          text={t("content.BecomePartner_text")} />
       </ErrorBoundary>
       <ErrorBoundary>
         <News   {...{ lng }} />

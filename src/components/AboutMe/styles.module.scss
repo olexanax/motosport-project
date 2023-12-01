@@ -105,7 +105,9 @@
 .list {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    @media (max-width: $tabletSize) {
+        align-items: center;
+    }
 }
 .text {
     text-align: center;

@@ -30,7 +30,7 @@ const FollowMeBanner = async ({ lng }: I18ComponentProps) => {
         <Link
           href={"https://www.instagram.com/ivan.peklin/"}
           className={classNames(global.primaryButton, styles.btn)}>
-          More
+          {t("content.followMe_button")}
         </Link>
       </div>
     </div>

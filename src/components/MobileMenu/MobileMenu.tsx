@@ -31,24 +31,24 @@ const MobileMenu: FC<Props> = ({ isMobileMenuOpen, setIsMobileMenuOpen, lng }) =
 
   const NAV_ITEMS = [
     {
-      path: "#about-Us",
-      name: "About Us"
+      path: "#about-us",
+      name: t("content.navigation_abotUs")
     },
     {
       path: "#couching",
-      name: "Couching"
+      name: t("content.navigation_couching")
     },
     {
       path: "#news",
-      name: "News"
+      name: t("content.navigation_news")
     },
     {
       path: "#gallery",
-      name: "Gallery"
+      name: t("content.navigation_gallery")
     },
     {
       path: "#become-a-partner",
-      name: "Become a Partner"
+      name: t("content.navigation_becomePartner")
     }
   ]
 
