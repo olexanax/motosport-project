@@ -1,23 +1,26 @@
 //components
 import VictoriesCard from "../VictoriesCard/VictoriesCard";
 //redux
-import { fetchVictories } from "@/redux/slices/victories.slice";
+import {
+  fetchVictories,
+  updateVictoriesOrder,
+} from "@/redux/slices/victories.slice";
 import { useDispatch, useSelector } from "react-redux";
 //livs
 import { useCallback, useEffect } from "react";
 //styles
 import styles from "./index.module.scss";
 //types
-import { AdminPageQuries } from '@/components/AdminPage/types';
+import { AdminPageQuries } from "@/components/AdminPage/types";
 import { AppDispatch, RootStateType } from "@/redux/types";
+import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
 
 const VictoriesList = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
   const victories = useSelector(
     (state: RootStateType) => state.victories.victories
   );
   const fetchVictoriesStatus = useSelector(
-    (state: RootStateType) =>
-      state.victories.fetchVictoriesStatus
+    (state: RootStateType) => state.victories.fetchVictoriesStatus
   );
   const dispatch = useDispatch<AppDispatch>();
 
@@ -26,18 +29,47 @@ const VictoriesList = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
     //eslint-disable-next-line
   }, []);
 
+  const moveItem = useCallback(
+    (dragOrder: number, hoverOrder: number) => {
+      const dragItem = victories.find((item) => item.order === dragOrder);
+      const hoverItem = victories.find((item) => item.order === hoverOrder);
+      console.log(dragOrder, hoverOrder);
 
+      if (dragItem && hoverItem) {
+        dispatch(
+          updateVictoriesOrder({
+            dragItem: {
+              id: dragItem.id,
+              order: dragOrder,
+            },
+            hoverItem: {
+              id: hoverItem.id,
+              order: hoverOrder,
+            },
+          })
+        );
+      }
+    },
+    [victories]
+  );
 
   const content =
     victories && fetchVictoriesStatus === "idle"
-      ? victories.filter(vict => vict.language === lang?.toUpperCase()).map((vacancy, index) => (
-        <VictoriesCard key={index} {...vacancy} query={{ victoryAddNew, victoryId, lang }} />
-      ))
+      ? victories
+          .filter((vict) => vict.language === lang?.toUpperCase())
+          .sort((a, b) => a.order - b.order)
+          .map((victory, index) => (
+            <DNDWrapper moveItem={moveItem} target={victory}>
+              <VictoriesCard
+                key={index}
+                {...victory}
+                query={{ victoryAddNew, victoryId, lang }}
+              />
+            </DNDWrapper>
+          ))
       : null;
-  const error =
-    fetchVictoriesStatus === "error" ? <p>loading...</p> : null;
-  const spinner =
-    fetchVictoriesStatus === "error" ? <p>error...</p> : null;
+  const error = fetchVictoriesStatus === "error" ? <p>loading...</p> : null;
+  const spinner = fetchVictoriesStatus === "error" ? <p>error...</p> : null;
 
   return (
     <div className={styles.vacanciesList}>

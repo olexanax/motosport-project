@@ -38,9 +38,6 @@ export default async function Home({ params: { lng } }: I18PageProps) {
         <News   {...{ lng }} />
       </ErrorBoundary>
       <ErrorBoundary {...{ lng }}>
-        <News  {...{ lng }} />
-      </ErrorBoundary>
-      <ErrorBoundary {...{ lng }}>
         <Gallery {...{ lng }} />
       </ErrorBoundary>
       <ErrorBoundary {...{ lng }}>

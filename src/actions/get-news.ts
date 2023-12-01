@@ -2,6 +2,7 @@ import { axiosInstance } from "@/lib/axios";
 
 export interface News {
     id: number;
+    order: number;
     /** MMMM d yyyy format */
     date: string;
     title: string;

@@ -1,8 +1,12 @@
 // //redux
-import { fetchPartners, createPartners } from "@/redux/slices/partners.slice";
+import {
+  fetchPartners,
+  createPartners,
+  updatePartnersOrder,
+} from "@/redux/slices/partners.slice";
 import { useCallback, useEffect } from "react";
 import { RootStateType, AppDispatch } from "@/redux/types";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 //components
 import PartnersCard from "../PartnersCard/PartnersCard";
 import PhotoReviewForm from "../PartnersForm/PartnersForm";
@@ -10,12 +14,16 @@ import PhotoReviewForm from "../PartnersForm/PartnersForm";
 // import { AppDispatch, RootStateType } from "types/index";
 //styles
 import styles from "./index.module.scss";
+import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
 
 const PartnersList = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const partners = useSelector((state: RootStateType) => state.partners.partners)
-  const fetchPartnersStatus = useSelector((state: RootStateType) => state.partners.fetchPartnersStatus)
-
+  const partners = useSelector(
+    (state: RootStateType) => state.partners.partners
+  );
+  const fetchPartnersStatus = useSelector(
+    (state: RootStateType) => state.partners.fetchPartnersStatus
+  );
 
   const onAddNew = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target instanceof HTMLInputElement && e.target.files) {
@@ -29,28 +37,44 @@ const PartnersList = () => {
 
   useEffect(() => {
     dispatch(fetchPartners());
-    //eslint-disable-next-line
-  }, [])
+  }, []);
 
+  const moveItem = useCallback(
+    (dragOrder: number, hoverOrder: number) => {
+      const dragItem = partners.find((item) => item.order === dragOrder);
+      const hoverItem = partners.find((item) => item.order === hoverOrder);
+      console.log(dragOrder, hoverOrder);
 
-  const content =
-    partners ? (
-      <>
-        {partners.map((item, index) => (
+      if (dragItem && hoverItem) {
+        dispatch(
+          updatePartnersOrder({
+            dragItem: {
+              id: dragItem.id,
+              order: dragOrder,
+            },
+            hoverItem: {
+              id: hoverItem.id,
+              order: hoverOrder,
+            },
+          })
+        );
+      }
+    },
+    [partners]
+  );
 
-          <PartnersCard
-            imagesLength={partners.length}
-            key={index}
-            {...item}
-          />
-        ))}
-        <PhotoReviewForm {...{ onAddNew }} />
-      </>
-    ) : null;
-  const error =
-    fetchPartnersStatus === "error" ? <p>error...</p> : null;
-  const spinner =
-    fetchPartnersStatus === "loading" ? <p>loading...</p> : null;
+  const content = partners ? (
+    <>
+      {partners.map((item, index) => (
+        <DNDWrapper target={item} moveItem={moveItem}>
+          <PartnersCard imagesLength={partners.length} key={index} {...item} />
+        </DNDWrapper>
+      ))}
+      <PhotoReviewForm {...{ onAddNew }} />
+    </>
+  ) : null;
+  const error = fetchPartnersStatus === "error" ? <p>error...</p> : null;
+  const spinner = fetchPartnersStatus === "loading" ? <p>loading...</p> : null;
 
   return (
     <div className={styles.list}>

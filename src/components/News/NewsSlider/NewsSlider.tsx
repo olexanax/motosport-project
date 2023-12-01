@@ -52,7 +52,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({ news, learnMoreText }) => {
         }
       }}
     >
-      {news?.map((item) => (
+      {news?.sort((a, b) => a.order - b.order).map((item) => (
         <SplideSlide className={styles.slide} key={item.id}>
           <div className={styles.slideContent}>
             <div className={styles.overlay}></div>

@@ -1,8 +1,12 @@
 // //redux
-import { fetchAboutMe, createAboutMe } from "@/redux/slices/aboutMe.slice";
+import {
+  fetchAboutMe,
+  createAboutMe,
+  updateAboutMeOrder,
+} from "@/redux/slices/aboutMe.slice";
 import { useCallback, useEffect } from "react";
 import { RootStateType, AppDispatch } from "@/redux/types";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 //components
 import AboutMeCard from "../AboutMeCard/AboutMeCard";
 import AboutMeForm from "../AboutMeForm/AboutMeForm";
@@ -10,12 +14,14 @@ import AboutMeForm from "../AboutMeForm/AboutMeForm";
 // import { AppDispatch, RootStateType } from "types/index";
 //styles
 import styles from "./index.module.scss";
+import DNDWrapper from "../../../DNDWrapper/DNDWrapper";
 
 const AboutMeList = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const aboutMe = useSelector((state: RootStateType) => state.aboutMe.aboutMe)
-  const fetchAboutMeStatus = useSelector((state: RootStateType) => state.aboutMe.fetchAboutMeStatus)
-
+  const aboutMe = useSelector((state: RootStateType) => state.aboutMe.aboutMe);
+  const fetchAboutMeStatus = useSelector(
+    (state: RootStateType) => state.aboutMe.fetchAboutMeStatus
+  );
 
   const onAddNew = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target instanceof HTMLInputElement && e.target.files) {
@@ -30,27 +36,45 @@ const AboutMeList = () => {
   useEffect(() => {
     dispatch(fetchAboutMe());
     //eslint-disable-next-line
-  }, [])
+  }, []);
 
+  const moveItem = useCallback(
+    (dragOrder: number, hoverOrder: number) => {
+      const dragItem = aboutMe.find((item) => item.order === dragOrder);
+      const hoverItem = aboutMe.find((item) => item.order === hoverOrder);
+      console.log(dragOrder, hoverOrder)
 
-  const content =
-    aboutMe ? (
-      <>
-        {aboutMe.map((item, index) => (
+      if (dragItem && hoverItem) {
+        dispatch(
+          updateAboutMeOrder({
+            dragItem: {
+              id: dragItem.id,
+              order: dragOrder,
+            },
+            hoverItem: {
+              id: hoverItem.id,
+              order: hoverOrder,
+            },
+          })
+        );
+      }
+    },
+    //eslint-disable-next-line
+    [aboutMe]
+  );
 
-          <AboutMeCard
-            imagesLength={aboutMe.length}
-            key={index}
-            {...item}
-          />
-        ))}
-        <AboutMeForm {...{ onAddNew }} />
-      </>
-    ) : null;
-  const error =
-    fetchAboutMeStatus === "error" ? <p>error...</p> : null;
-  const spinner =
-    fetchAboutMeStatus === "loading" ? <p>loading...</p> : null;
+  const content = aboutMe ? (
+    <>
+      {aboutMe.map((item, index) => (
+        <DNDWrapper target={item} moveItem={moveItem}>
+          <AboutMeCard imagesLength={aboutMe.length} key={index} {...item} />
+        </DNDWrapper>
+      ))}
+      <AboutMeForm {...{ onAddNew }} />
+    </>
+  ) : null;
+  const error = fetchAboutMeStatus === "error" ? <p>error...</p> : null;
+  const spinner = fetchAboutMeStatus === "loading" ? <p>loading...</p> : null;
 
   return (
     <div className={styles.list}>

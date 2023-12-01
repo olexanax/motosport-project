@@ -3,7 +3,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 //hooks
 import { useHttp } from "@/hooks/useHttp";
 //types
-import { MyStoryItemType, MyStoryResponse, UpdateMyStoryItemType, CreateMyStoryItemType } from "../types";
+import {
+  MyStoryItemType,
+  MyStoryResponse,
+  UpdateMyStoryItemType,
+  CreateMyStoryItemType,
+} from "../types";
 //API
 import { serverDomain } from "@/services/API";
 import axios from "axios";
@@ -15,20 +20,16 @@ interface MyStoryInitialState {
 
 const initialState: MyStoryInitialState = {
   myStory: [],
-  fetchMyStoryStatus: "loading"
+  fetchMyStoryStatus: "loading",
 };
 
 export const fetchMyStory = createAsyncThunk(
   "myStory/fetchMyStory",
   (next: string | undefined) => {
     const { request } = useHttp();
-    return request(`${serverDomain}/my-story/`,
-      "GET",
-      null,
-      {
-        "Content-Type": "application/json",
-      }
-    );
+    return request(`${serverDomain}/my-story/`, "GET", null, {
+      "Content-Type": "application/json",
+    });
   }
 );
 
@@ -36,75 +37,70 @@ export const deleteMyStory = createAsyncThunk(
   "myStory/deleteMyStory",
   async (id: number) => {
     await axios.delete(`${serverDomain}/my-story/${id}`, {
-      headers: {
-      },
+      headers: {},
     });
     return id;
   }
 );
 
-export const createMyStory = createAsyncThunk<MyStoryItemType, CreateMyStoryItemType>(
-  "myStory/createMyStory",
-  async (payload) => {
+export const createMyStory = createAsyncThunk<
+  MyStoryItemType,
+  CreateMyStoryItemType
+>("myStory/createMyStory", async (payload) => {
+  const { request } = useHttp();
+  return request(`${serverDomain}/my-story/`, "POST", payload.formData, {});
+});
+
+export const updateMyStory = createAsyncThunk<
+  MyStoryItemType,
+  UpdateMyStoryItemType
+>("myStory/updateMyStory", async (payload) => {
+  const { request } = useHttp();
+  return request(
+    `${serverDomain}/my-story/${payload.id}/`,
+    "PATCH",
+    payload.formData,
+    {}
+  );
+});
+
+export const updateMyStoryOrder = createAsyncThunk(
+  "myStory/updateMyStoryOrder",
+  async (data: {
+    dragItem: {
+      id: number;
+      order: number;
+    };
+    hoverItem: {
+      id: number;
+      order: number;
+    };
+  }) => {
+    const { dragItem, hoverItem } = data;
+
+    const draggedFormData = new FormData();
+    draggedFormData.append("order", dragItem.order.toString());
+
+    const hoveredFormData = new FormData();
+    hoveredFormData.append("order", hoverItem.order.toString());
+
+    const draggedItemResponse = await axios.patch(
+      `${serverDomain}/my-story/${dragItem.id}/`,
+      hoveredFormData
+    );
+
+    const hoveredItemResponse = await axios.patch(
+      `${serverDomain}/my-story/${hoverItem.id}/`,
+      draggedFormData
+    );
+
     const { request } = useHttp();
-    return request(`${serverDomain}/my-story/`, "POST", payload.formData, {
+
+    return await request(`${serverDomain}/my-story/`, "GET", null, {
+      "Content-Type": "application/json",
     });
   }
 );
-
-export const updateMyStory = createAsyncThunk<MyStoryItemType, UpdateMyStoryItemType>(
-  "myStory/updateMyStory",
-  async (payload) => {
-    const { request } = useHttp();
-    return request(`${serverDomain}/my-story/${payload.id}/`, "PATCH", payload.formData, {
-    })
-  }
-);
-
-// export const updatePartnerOrder = createAsyncThunk(
-//   "marketing/partner-clients/updatePartnerOrder",
-//   async (data: {
-//     dragItem: {
-//       id: number;
-//       order: number;
-//     };
-//     hoverItem: {
-//       id: number;
-//       order: number;
-//     };
-//   }) => {
-//     const { dragItem, hoverItem } = data;
-
-//     const draggedFormData = new FormData();
-//     draggedFormData.append("order", dragItem.order.toString());
-
-//     const hoveredFormData = new FormData();
-//     hoveredFormData.append("order", hoverItem.order.toString());
-
-//     const draggedItemResponse = await axios.patch(
-//       `${serverDomain}api/v1/partner-clients/${dragItem.id}/`,
-//       hoveredFormData
-//     );
-
-//     const hoveredItemResponse = await axios.patch(
-//       `${serverDomain}api/v1/partner-clients/${hoverItem.id}/`,
-//       draggedFormData
-//     );
-
-//     const { request } = useHttp();
-//     const result = await request(
-//       `${serverDomain}api/v1/partner-clients/`,
-//       "GET",
-//       null,
-//       {
-//         Authorization: `Bearer ${localStorage.getItem("access")}`,
-//         "Content-Type": "application/json",
-//       }
-//     );
-
-//     return result.results;
-//   }
-// );
 
 const myStorySlice = createSlice({
   name: "marketingPartners",
@@ -130,9 +126,22 @@ const myStorySlice = createSlice({
         state.myStory.push(payload);
       })
       .addCase(updateMyStory.fulfilled, (state, { payload }) => {
-        state.myStory = state.myStory.map((item) => item.id === payload.id ? payload : item);
+        state.myStory = state.myStory.map((item) =>
+          item.id === payload.id ? payload : item
+        );
       })
-
+      //Edit order
+      .addCase(updateMyStoryOrder.pending, (state, { payload }) => {
+        state.fetchMyStoryStatus = "loading";
+      })
+      .addCase(updateMyStoryOrder.fulfilled, (state, { payload }) => {
+        state.fetchMyStoryStatus = "idle";
+        state.myStory = [...payload];
+        console.log(payload);
+      })
+      .addCase(updateMyStoryOrder.rejected, (state, { payload }) => {
+        state.fetchMyStoryStatus = "error";
+      });
   },
 });
 
