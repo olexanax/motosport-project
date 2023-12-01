@@ -9,3 +9,5 @@ const ClientWrapper: React.FC<I18PageProps> = ({ params }) => {
 };
 
 export default ClientWrapper;
+
+

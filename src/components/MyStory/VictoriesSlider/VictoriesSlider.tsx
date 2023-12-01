@@ -71,7 +71,7 @@ const VictoriesSlider: FC<VictoriesSliderProps> = ({ victories, lng }) => {
                       <div
                         className={styles.slideContent}
                         style={{
-                          background: `url("${victory.image}") center top / 100% 100% no-repeat`,
+                          background: `url("${victory.image}") center top / cover no-repeat`,
                         }}
                       >
                         <div className={styles.overlay}></div>
@@ -96,7 +96,7 @@ const VictoriesSlider: FC<VictoriesSliderProps> = ({ victories, lng }) => {
                     key={victory.id}
                     className={styles.slideContent}
                     style={{
-                      background: `url("${victory.image}") center top / 100% 100% no-repeat`,
+                      background: `url("${victory.image}") center top / cover no-repeat`,
                     }}
                   >
                     <h6 className={classNames(styles.title, global.subTitle)}>

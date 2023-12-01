@@ -23,9 +23,9 @@ const FollowMeBanner = async ({ lng }: I18ComponentProps) => {
           {t('heading_tags.h2__FollowMeTitle')}
         </h2>
         <div className={styles.imagesContainer}>
-          <Image width={386} height={318} src={img1} alt="" />
-          <Image width={386} height={318} src={img2} alt="" />
-          <Image width={386} height={318} src={img3} alt="" />
+          <Image className={styles.instImage} width={386} height={318} src={img1} alt="" />
+          <Image className={styles.instImage} width={386} height={318} src={img2} alt="" />
+          <Image className={styles.instImage} width={386} height={318} src={img3} alt="" />
         </div>
         <Link
           href={"https://www.instagram.com/ivan.peklin/"}

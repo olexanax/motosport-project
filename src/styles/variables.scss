@@ -5,29 +5,28 @@ $black: #161616;
 $blue: #2267a7;
 $yellow: #f4b91f;
 
-$baseImageUrl: "https://icap-group-images.fra1.cdn.digitaloceanspaces.com/sieben-umzuege/images";
-$baseDynamicImageURL: "http://sieben-api.info/media";
+$baseDynamicImageURL: "http://164.90.230.225/media/";
 
 $tabletSize: 768px;
 $mobileSize: 425px;
 
 @mixin titleFont {
-  font-family: "Unbounded";
+    font-family: "Unbounded";
 }
 @mixin bodyFont {
-  font-family: "Inter";
+    font-family: "Inter";
 }
 
 @mixin pageWrapper {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 @mixin pageContent {
-  box-sizing: content-box;
-  width: 100%;
-  max-width: 1232px;
-  margin: 0 auto;
-  padding: 0 16px;
-  box-sizing: border-box;
+    box-sizing: content-box;
+    width: 100%;
+    max-width: 1232px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
 }
