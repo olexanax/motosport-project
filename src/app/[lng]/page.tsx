@@ -10,9 +10,11 @@ import OurPartners from "@/components/OurPartners/OurPartners";
 import FollowMeBanner from "@/components/FollowMeBanner/FollowMeBanner";
 import News from "@/components/News/News";
 import ErrorBoundary from "@/components/ErrorBoundary/ErrorBoundary";
-
+//types
+import { Metadata } from "next";
 //i18n
 import { I18PageProps } from "@/types/i18NextTypes";
+import { useTranslation } from "../i18n";
 
 export default async function Home({ params: { lng } }: I18PageProps) {
   return (
@@ -53,4 +55,15 @@ If you would like to get more information regarding partnership or sponsorship, 
       </ErrorBoundary>
     </>
   );
+}
+
+export async function generateMetadata({
+  params: { lng },
+}: I18PageProps): Promise<Metadata> {
+  const { t } = await useTranslation(lng, "translation");
+
+  return {
+    title: t("meta_tags.meta_title"),
+    description: t("meta_tags.meta_description"),
+  };
 }

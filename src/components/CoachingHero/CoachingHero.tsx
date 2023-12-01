@@ -55,6 +55,7 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title }) => {
             </div>
             <div className={styles.buttonWrapper}>
               <a
+                target="_blank"
                 href="https://www.instagram.com/ivan.peklin.racing?igshid=OGQ5ZDc2ODk2ZA%3D%3D"
                 className={styles.instagramLogo}
               >
