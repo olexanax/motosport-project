@@ -5,6 +5,7 @@ import AboutMeSlider from "./AboutMeSlider/AboutMeSlider";
 import global from "@/styles/global.module.scss";
 import styles from "./styles.module.scss";
 import { getAboutMe } from "@/actions/get-about-me";
+import ErrorBanner from "../ErrorBanner/ErrorBanner";
 
 const STAT_DATA = [
   {
@@ -60,38 +61,30 @@ const AboutMe = async () => {
               </div>
               <ul className={classNames(styles.rightCol, global.text2)}>
                 <li>
-                  <span className={styles.boldtext}>Date of Birth:</span>
-                  {" "}
-                  Date of Birth:
+                  <span className={styles.boldtext}>Date of Birth:</span> Date
+                  of Birth:
                 </li>
                 <li>
-                  <span className={styles.boldtext}>Place of Birth:</span>
-                  {" "}
-                  Kyiv, Ukraine
+                  <span className={styles.boldtext}>Place of Birth:</span> Kyiv,
+                  Ukraine
                 </li>
                 <li>
-                  <span className={styles.boldtext}>Currently living in:</span>
-                  {" "}
+                  <span className={styles.boldtext}>Currently living in:</span>{" "}
                   Germany, Eifel
                 </li>
                 <li>
-                  <span className={styles.boldtext}>FIA Categorisation:</span>
-                  {" "}
+                  <span className={styles.boldtext}>FIA Categorisation:</span>{" "}
                   Silver Driver
                 </li>
                 <li>
-                  <span className={styles.boldtext}>Other:</span>
-                  {" "}
-                  Permit A Nordschleife
+                  <span className={styles.boldtext}>Other:</span> Permit A
+                  Nordschleife
                 </li>
                 <li>
-                  <span className={styles.boldtext}>Height:</span>
-                  {" "}
-                  1.86m
+                  <span className={styles.boldtext}>Height:</span> 1.86m
                 </li>
                 <li>
-                  <span className={styles.boldtext}>Other interests:</span>
-                  {" "}
+                  <span className={styles.boldtext}>Other interests:</span>{" "}
                   Sim-racing, Cycling, Tennis.
                 </li>
               </ul>
@@ -114,6 +107,7 @@ const AboutMe = async () => {
           </div>
         </div>
       </div>
+      {!aboutMe && <ErrorBanner />}
       <AboutMeSlider aboutMe={aboutMe} />
     </>
   );

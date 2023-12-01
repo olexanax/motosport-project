@@ -11,6 +11,7 @@ import img4 from "../../../public/images/career/career4.png";
 import classNames from "classnames";
 import { getMyStory } from "@/actions/get-my-story";
 import { getVictories } from "@/actions/get-victories";
+import ErrorBanner from "../ErrorBanner/ErrorBanner";
 
 const CARD = [
   {
@@ -69,6 +70,7 @@ const MyStory = async () => {
               Career
             </h4>
           </div>
+          {!stories && <ErrorBanner />}
           {stories && !!stories.length && (
             <div className={styles.cardsBlock}>
               <div className={styles.desktopWrapper}>
@@ -103,7 +105,10 @@ const MyStory = async () => {
           )}
         </div>
       </div>
-      <VictoriesSlider victories={victories} />
+      {!victories && <ErrorBanner />}
+      {victories && !!victories.length && (
+        <VictoriesSlider victories={victories} />
+      )}
     </>
   );
 };

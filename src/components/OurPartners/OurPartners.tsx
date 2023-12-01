@@ -5,6 +5,7 @@ import classNames from "classnames";
 //components
 import Image from "next/image";
 import { getPartners } from "@/actions/get-partners";
+import ErrorBanner from "../ErrorBanner/ErrorBanner";
 
 const OurPartners = async () => {
   const partners = await getPartners();
@@ -15,6 +16,7 @@ const OurPartners = async () => {
         <h2 className={classNames(global.sectionTitle, styles.title)}>
           Our Partners
         </h2>
+        {!partners && <ErrorBanner theme="dark" />}
         {partners && !!partners.length && (
           <div className={styles.logoContainer}>
             {partners.map((logo) => (

@@ -12,6 +12,7 @@ import img3 from "../../../public/images/gallery/Rectangle36.png";
 import img4 from "../../../public/images/gallery/Rectangle37.png";
 import GalleryGrid from "./GalleryGrid/GalleryGrid";
 import { getGallery } from "@/actions/get-galery";
+import ErrorBanner from "../ErrorBanner/ErrorBanner";
 
 const Gallery = async () => {
   const images = await getGallery();
@@ -22,7 +23,8 @@ const Gallery = async () => {
         <h2 className={classNames(global.sectionTitle, styles.title)}>
           Gallery
         </h2>
-        <GalleryGrid images={images} />
+        {!images && <ErrorBanner />}
+        {images && !!images.length && <GalleryGrid images={images} />}
       </div>
     </div>
   );
