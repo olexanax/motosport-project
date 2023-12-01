@@ -21,35 +21,41 @@ export default async function Home({ params: { lng } }: I18PageProps) {
   return (
     <>
       <PageMainBanner {...{ lng }} />
-      <ErrorBoundary>
+      <ErrorBoundary {...{ lng }}>
         <AboutMe {...{ lng }} />
       </ErrorBoundary>
-      <ErrorBoundary>
+      <ErrorBoundary {...{ lng }}>
         <MyStory {...{ lng }} />
       </ErrorBoundary>
-      <ErrorBoundary>
+      <ErrorBoundary {...{ lng }}>
         <CoachingHero
           title={t("heading_tags.h2__CoachingTitle")}
           text={t("content.coaching_text")}
           {...{ lng }}
         />
       </ErrorBoundary>
-      <ErrorBoundary>
+      <ErrorBoundary {...{ lng }}>
+        <News   {...{ lng }} />
+      </ErrorBoundary>
+      <ErrorBoundary {...{ lng }}>
+        <News  {...{ lng }} />
+      </ErrorBoundary>
+      <ErrorBoundary {...{ lng }}>
         <Gallery {...{ lng }} />
       </ErrorBoundary>
-      <ErrorBoundary>
+      <ErrorBoundary {...{ lng }}>
         <OurPartners {...{ lng }} />
       </ErrorBoundary>
-      <ErrorBoundary>
+      <ErrorBoundary {...{ lng }}>
         <BecomePartner
           {...{ lng }}
           title={t("heading_tags.h2__BecomePartnerTitle")}
           text={t("content.BecomePartner_text")} />
       </ErrorBoundary>
-      <ErrorBoundary>
-        <News   {...{ lng }} />
+      <ErrorBoundary {...{ lng }}>
+        <News  {...{ lng }} />
       </ErrorBoundary>
-      <ErrorBoundary>
+      <ErrorBoundary {...{ lng }}>
         <FollowMeBanner {...{ lng }} />
       </ErrorBoundary>
     </>

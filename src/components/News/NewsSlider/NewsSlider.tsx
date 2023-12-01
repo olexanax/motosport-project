@@ -40,12 +40,22 @@ const NewsSlider: React.FC<NewsSliderProps> = ({ news, learnMoreText }) => {
       options={{
         rewind: true,
         type: "loop",
+        pagination: false,
         perPage: 3,
+        classes: {
+          arrows: "splide__arrows news-arrows",
+        },
+        breakpoints: {
+          720: {
+            perPage: 1,
+          },
+        }
       }}
     >
       {news?.map((item) => (
         <SplideSlide className={styles.slide} key={item.id}>
           <div className={styles.slideContent}>
+            <div className={styles.overlay}></div>
             <Image
               className={styles.slideImage}
               width={450}

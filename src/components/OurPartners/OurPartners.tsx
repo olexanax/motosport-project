@@ -9,6 +9,7 @@ import { getPartners } from "@/actions/get-partners";
 import { I18ComponentProps } from "@/types/i18NextTypes"
 import { useTranslation } from "@/app/i18n";
 
+import ErrorBanner from "../ErrorBanner/ErrorBanner";
 
 const OurPartners = async ({ lng }: I18ComponentProps) => {
   const partners = await getPartners();
@@ -20,6 +21,7 @@ const OurPartners = async ({ lng }: I18ComponentProps) => {
         <h2 className={classNames(global.sectionTitle, styles.title)}>
           {t('heading_tags.h2__OurPartnersTitle')}
         </h2>
+        {!partners && <ErrorBanner {...{ lng }} theme="dark" />}
         {partners && !!partners.length && (
           <div className={styles.logoContainer}>
             {partners.map((logo) => (

@@ -1,8 +1,11 @@
 "use client"
 import { Component, ErrorInfo, ReactNode } from "react";
 import ErrorBanner from "../ErrorBanner/ErrorBanner";
+//i18n
+import { I18ComponentProps } from "@/types/i18NextTypes"
+import { useTranslation } from "@/app/i18n/client";
 
-interface ErrorBoundaryProps {
+interface ErrorBoundaryProps extends I18ComponentProps {
   children: ReactNode;
 }
 
@@ -18,6 +21,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     };
   }
 
+
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error(error, errorInfo);
     this.setState({ error: true });
@@ -25,7 +29,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   render() {
     if (this.state.error) {
-      return <ErrorBanner />
+      return <ErrorBanner lng={this.props.lng} />
     }
     return this.props.children;
   }

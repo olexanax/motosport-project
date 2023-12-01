@@ -46,7 +46,7 @@
     gap: 36px;
 }
 .title {
-    color: $black;
+    color: $black !important;
 }
 .textBlock {
     display: flex;
@@ -151,8 +151,14 @@
 }
 .statName {
     max-width: 124px;
-    color: #161616;
+    color: $black;
     text-align: center;
     font-size: 18px;
     font-weight: 500;
+
+    @media (max-width: $tabletSize) {
+        font-size: 22px !important;
+        font-weight: 600 !important;
+        max-width: 100%;
+    }
 }

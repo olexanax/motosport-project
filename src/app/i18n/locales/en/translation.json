@@ -57,7 +57,9 @@
         "navigation_couching": "Couching",
         "navigation_news": "News",
         "navigation_gallery": "Gallery",
-        "navigation_becomePartner": "Become a Partner"
+        "navigation_becomePartner": "Become a Partner",
+        "errorBanner_title": "Oops, something went wrong!",
+        "errorBanner_text": "Please reload the page or try again later."
     },
     "meta_tags": {
         "meta_title": "Ivan Peklin",

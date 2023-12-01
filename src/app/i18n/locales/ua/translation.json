@@ -57,7 +57,9 @@
         "navigation_couching": "Коучинг",
         "navigation_news": "Новини",
         "navigation_gallery": "Галерея",
-        "navigation_becomePartner": "Станьте Партнером"
+        "navigation_becomePartner": "Станьте Партнером",
+        "errorBanner_title": "Щось пішло не так!",
+        "errorBanner_text": "Перезавантажте сторінку або повторіть спробу пізніше."
     },
     "meta_tags": {
         "meta_title": "Ivan Peklin",

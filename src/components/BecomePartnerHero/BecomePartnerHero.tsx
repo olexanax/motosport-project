@@ -55,7 +55,7 @@ const BecomePartner: React.FC<BecomePartnerProps> = ({ text, title, lng }) => {
       </div>
       {isSuccess && (
         <ModalWindow onClose={() => setIsSuccess(false)}>
-          <ModalSuccess onSuccess={onClickOkay} />
+          <ModalSuccess {...{ lng }} onSuccess={onClickOkay} />
         </ModalWindow>
       )}
     </div>

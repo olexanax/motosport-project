@@ -56,6 +56,10 @@ const VictoriesSlider: FC<VictoriesSliderProps> = ({ victories, lng }) => {
                 options={{
                   rewind: true,
                   type: "loop",
+                  pagination: false,
+                  classes: {
+                    arrows: "splide__arrows victory-arrows",
+                  },
                   perPage: 4,
                 }}
                 className={styles.slider}
@@ -68,6 +72,7 @@ const VictoriesSlider: FC<VictoriesSliderProps> = ({ victories, lng }) => {
                         background: `url("${victory.image}") center top / 100% 100% no-repeat`,
                       }}
                     >
+                      <div className={styles.overlay}></div>
                       <h6 className={classNames(styles.title, global.subTitle)}>
                         {victory.title}
                       </h6>
@@ -83,7 +88,13 @@ const VictoriesSlider: FC<VictoriesSliderProps> = ({ victories, lng }) => {
             <div className={styles.mobileWrapper}>
               {(isMobileListOpen ? victories : victories.slice(0, 3)).map(
                 (victory) => (
-                  <div key={victory.id} className={styles.slideContent}>
+                  <div
+                    key={victory.id}
+                    className={styles.slideContent}
+                    style={{
+                      background: `url("${victory.image}") center top / 100% 100% no-repeat`,
+                    }}
+                  >
                     <h6 className={classNames(styles.title, global.subTitle)}>
                       {victory.title}
                     </h6>

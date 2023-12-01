@@ -7,6 +7,7 @@ import { I18ComponentProps } from "@/types/i18NextTypes"
 import { useTranslation } from "@/app/i18n";
 import GalleryGrid from "./GalleryGrid/GalleryGrid";
 import { getGallery } from "@/actions/get-galery";
+import ErrorBanner from "../ErrorBanner/ErrorBanner";
 
 const Gallery = async ({ lng }: I18ComponentProps) => {
   const images = await getGallery();
@@ -18,7 +19,8 @@ const Gallery = async ({ lng }: I18ComponentProps) => {
         <h2 className={classNames(global.sectionTitle, styles.title)}>
           {t('heading_tags.h2__GalleryTitle')}
         </h2>
-        <GalleryGrid moreButton={moreButton} images={images} />
+        {!images && <ErrorBanner {...{ lng }} />}
+        {images && !!images.length && <GalleryGrid moreButton={moreButton} images={images} />}
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import { getAboutMe } from "@/actions/get-about-me";
 //i18n
 import { I18ComponentProps } from "@/types/i18NextTypes"
 import { useTranslation } from "@/app/i18n";
+import ErrorBanner from "../ErrorBanner/ErrorBanner";
 
 
 
@@ -123,7 +124,8 @@ const AboutMe = async ({ lng }: I18ComponentProps) => {
             </div>
           </div>
         </div>
-      </div >
+      </div>
+      {!aboutMe && <ErrorBanner {...{ lng }} />}
       <AboutMeSlider aboutMe={aboutMe} />
     </>
   );

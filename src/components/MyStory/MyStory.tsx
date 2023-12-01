@@ -6,6 +6,7 @@ import VictoriesSlider from "./ VictoriesSlider/ VictoriesSlider";
 import classNames from "classnames";
 import { getMyStory } from "@/actions/get-my-story";
 import { getVictories } from "@/actions/get-victories";
+import ErrorBanner from "../ErrorBanner/ErrorBanner";
 //i18n
 import { I18ComponentProps } from "@/types/i18NextTypes"
 import { useTranslation } from "@/app/i18n";
@@ -29,32 +30,45 @@ const MyStory = async ({ lng }: I18ComponentProps) => {
               {t('heading_tags.h4__myStorySubTitle1')}
             </h4>
           </div>
+          {!stories && <ErrorBanner {...{ lng }} />}
           {stories && !!stories.length && (
             <div className={styles.cardsBlock}>
-              <div className={styles.leftCol}>
-                {/* {stories
+              <div className={styles.desktopWrapper}>
+                <div className={styles.leftCol}>
+                  {/* {stories
                   .filter((story) => !(story.order % 2))
                   .map((story) => (
                     <MyStoryCard key={story.id} {...story} />
                   ))} */}
-                {stories
-                  .filter((_, i) => !(i % 2))
-                  .map((story) => (
-                    <MyStoryCard key={story.id} {...story} />
-                  ))}
+                  {stories
+                    .filter((_, i) => !(i % 2))
+                    .map((story) => (
+                      <MyStoryCard key={story.id} {...story} />
+                    ))}
+                </div>
+                <div className={styles.rightCol}>
+                  {stories
+                    .filter((_, i) => i % 2)
+                    .map((story) => (
+                      <MyStoryCard key={story.id} {...story} />
+                    ))}
+                </div>
               </div>
-              <div className={styles.rightCol}>
-                {stories
-                  .filter((_, i) => i % 2)
-                  .map((story) => (
+              <div className={styles.mobileWrapper}>
+                <div className={styles.leftCol}>
+                  {stories.map((story) => (
                     <MyStoryCard key={story.id} {...story} />
                   ))}
+                </div>
               </div>
             </div>
           )}
         </div>
       </div>
-      <VictoriesSlider {...{ lng }} victories={victories} />
+      {!victories && <ErrorBanner {...{ lng }} />}
+      {victories && !!victories.length && (
+        <VictoriesSlider {...{ lng }} victories={victories} />
+      )}
     </>
   );
 };
