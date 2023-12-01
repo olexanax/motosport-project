@@ -1,3 +1,5 @@
+import { updateStaticContent } from "@/redux/slices/staticContent.slice";
+
 export enum LangsTypeEnum {
     "en" = "en",
     "ua" = "ua",
@@ -23,3 +25,9 @@ export interface AdminPageQuries {
 
     lang?: LangsTypeEnum;
 }
+export type updateStaticContentFn = (
+    data: Record<
+        "heading_tags" | "meta_tags" | "content",
+        { [key: string]: string }
+    >
+) => void;

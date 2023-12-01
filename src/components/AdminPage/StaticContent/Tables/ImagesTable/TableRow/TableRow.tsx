@@ -1,57 +1,64 @@
 import styles from "./styles.module.scss";
 //libs
 import { useState, FC, useEffect, useRef } from "react";
+import { useDebounce } from "@/hooks/useDebounce";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootStateType } from "@/redux/types";
 //types
 //components
 import ImageUploader from "@/components/ImageUploader/ImageUploader";
-import { ImageType } from "../types";
+import { StaticImagesItemType } from "@/redux/types";
 import editIcon from "../../../../../../../public/images/icons/edit.png";
 import Image from "next/image";
+import { updateStaticImage } from "@/redux/slices/staticContent.slice";
 
-const TableRow: FC<ImageType> = ({ image, alt_text, weight, id, web_page }) => {
+interface Props extends StaticImagesItemType {
+  activeTableType: string;
+}
+
+
+const TableRow: FC<Props> = ({ image, alt_text, weight, id, activeTableType }) => {
   const [altInputValue, setAltInputValue] = useState(alt_text);
   const [fileInputValue, setFileInputValue] = useState<File | null>(null);
 
-  // const debauncedAltInputValue = useDebounce(altInputValue, 500);
+  const debauncedAltInputValue = useDebounce(altInputValue, 500);
   const inputsChangesCounter = useRef(0);
   const filesChangesCounter = useRef(0);
-  // const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
-  // useEffect(() => {
-  //   setAltInputValue(alt_text);
-  //   inputsChangesCounter.current = 0;
-  //   //eslint-disable-next-line
-  // }, [currentPageName]);
+  useEffect(() => {
+    setAltInputValue(alt_text);
+    inputsChangesCounter.current = 0;
+    //eslint-disable-next-line
+  }, [activeTableType]);
 
-  // useEffect(() => {
-  //   if (inputsChangesCounter.current) {
-  //     const formdata = new FormData();
-  //     formdata.append("alt_text", debauncedAltInputValue);
-  //     formdata.append("web_page", web_page.toString());
-  //     dispatch(
-  //       updatePageImage({
-  //         id,
-  //         data: formdata,
-  //       })
-  //     );
-  //   }
-  // }, [debauncedAltInputValue]);
+  useEffect(() => {
+    if (inputsChangesCounter.current) {
+      const formdata = new FormData();
+      formdata.append("alt_text", debauncedAltInputValue);
+      dispatch(
+        updateStaticImage({
+          id,
+          formData: formdata,
+        })
+      );
+    }
+  }, [debauncedAltInputValue]);
 
-  // useEffect(() => {
-  //   if (filesChangesCounter.current) {
-  //     {
-  //       const formdata = new FormData();
-  //       formdata.append("image", fileInputValue as File);
-  //       formdata.append("web_page", web_page.toString());
-  //       dispatch(
-  //         updatePageImage({
-  //           id,
-  //           data: formdata,
-  //         })
-  //       );
-  //     }
-  //   }
-  // }, [fileInputValue]);
+  useEffect(() => {
+    if (filesChangesCounter.current) {
+      {
+        const formdata = new FormData();
+        formdata.append("image", fileInputValue as File);
+        dispatch(
+          updateStaticImage({
+            id,
+            formData: formdata,
+          })
+        );
+      }
+    }
+  }, [fileInputValue]);
 
   return (
     <li className={styles.row}>
