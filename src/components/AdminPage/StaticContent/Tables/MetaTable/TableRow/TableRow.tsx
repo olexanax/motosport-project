@@ -2,14 +2,16 @@ import styles from "./styles.module.scss";
 //libs
 import { useState, FC, useEffect, useRef } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
+//types
+import { AdminPageQuries } from "@/components/AdminPage/types";
 
-type Props = {
+interface Props extends AdminPageQuries {
   data: [string, string];
   onUpdate: (arg: [string, string]) => void;
   activeTableType: string
 };
 
-const TableRow: FC<Props> = ({ data, onUpdate, activeTableType }) => {
+const TableRow: FC<Props> = ({ data, onUpdate, activeTableType, lang }) => {
   const [inputValue, setInputValue] = useState(data[1]);
   const debauncedInputValue = useDebounce(inputValue, 500);
   const inputsChangesCounter = useRef(0);
@@ -19,7 +21,7 @@ const TableRow: FC<Props> = ({ data, onUpdate, activeTableType }) => {
     setInputValue(data[1]);
     inputsChangesCounter.current = 0;
     //eslint-disable-next-line
-  }, [activeTableType]);
+  }, [activeTableType, lang]);
 
 
   useEffect(() => {

@@ -63,10 +63,10 @@ const StaticContent: React.FC<StaticContentProps> = ({ lang }) => {
   const tables: {
     [key: string]: JSX.Element;
   } = {
-    Headlines: <HeadlinesTable activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.heading_tags || {}} />,
-    Content: <ContentTable activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.content || {}} />,
+    Headlines: <HeadlinesTable lang={lang} activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.heading_tags || {}} />,
+    Content: <ContentTable lang={lang} activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.content || {}} />,
     Images: <ImagesTable activeTableType={activeTableType} />,
-    Meta: <MetaTable activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.meta_tags || {}} />,
+    Meta: <MetaTable lang={lang} activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.meta_tags || {}} />,
   };
 
   return (
