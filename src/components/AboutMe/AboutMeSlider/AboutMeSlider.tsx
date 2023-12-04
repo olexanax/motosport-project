@@ -6,14 +6,11 @@ import "@splidejs/react-splide/css";
 //components
 import Image from "next/image";
 //libs
-import { useState, useEffect, useRef, FC } from "react";
-import classNames from "classnames";
+import { useEffect, useRef, FC } from "react";
 // @ts-ignore
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 //images
-import slide1 from "../../../../public/images/aboutMeSlider/aboutMeSlider.png";
 import { AboutMe } from "@/actions/get-about-me";
-const images = [slide1, slide1, slide1];
 interface ReviewsSliderProps {
   aboutMe: AboutMe[] | undefined;
 }
