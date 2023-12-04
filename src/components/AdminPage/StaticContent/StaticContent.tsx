@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootStateType } from "@/redux/types";
-import { fetchStaticContent, updateStaticContent, generateWebpageData } from "@/redux/slices/staticContent.slice";
+import { fetchStaticContent, updateStaticContent, generateWebpageData, getPending_changes_status } from "@/redux/slices/staticContent.slice";
 import { updateStaticContentFn } from "@/components/AdminPage/types";
 import { AdminPageQuries } from '@/components/AdminPage/types';
 import HeadlinesTable from "./Tables/HeadlinesTable/HeadlinesTable";
@@ -29,6 +29,7 @@ const StaticContent: React.FC<StaticContentProps> = ({ lang }) => {
 
   useEffect(() => {
     dispatch(fetchStaticContent())
+    dispatch(getPending_changes_status())
   }, [])
 
   const currData = staticContent.find(item => item.language.toUpperCase() === lang?.toUpperCase())
@@ -63,10 +64,10 @@ const StaticContent: React.FC<StaticContentProps> = ({ lang }) => {
   const tables: {
     [key: string]: JSX.Element;
   } = {
-    Headlines: <HeadlinesTable activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.heading_tags || {}} />,
-    Content: <ContentTable activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.content || {}} />,
+    Headlines: <HeadlinesTable lang={lang} activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.heading_tags || {}} />,
+    Content: <ContentTable lang={lang} activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.content || {}} />,
     Images: <ImagesTable activeTableType={activeTableType} />,
-    Meta: <MetaTable activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.meta_tags || {}} />,
+    Meta: <MetaTable lang={lang} activeTableType={activeTableType} onUpdate={onTextContentUpdate} data={currData?.meta_tags || {}} />,
   };
 
   return (

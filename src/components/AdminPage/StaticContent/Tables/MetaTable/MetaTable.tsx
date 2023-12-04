@@ -4,15 +4,17 @@ import { updateStaticContentFn } from "@/components/AdminPage/types";
 //styles
 import styles from "./styles.module.scss";
 import TableRow from "./TableRow/TableRow";
+//types
+import { AdminPageQuries } from "@/components/AdminPage/types";
 
-type Props = {
+interface Props extends AdminPageQuries {
   data: { [key: string]: string }
   onUpdate: updateStaticContentFn,
   activeTableType: string
 }
 
 
-const MetaTable: FC<Props> = ({ data, activeTableType, onUpdate }) => {
+const MetaTable: FC<Props> = ({ data, activeTableType, onUpdate, lang }) => {
 
 
   return (
@@ -23,7 +25,7 @@ const MetaTable: FC<Props> = ({ data, activeTableType, onUpdate }) => {
       </li>
       {
         Object.entries(data).map((headine, i) => (
-          <TableRow activeTableType={activeTableType} key={i} onUpdate={(data: [string, string]) => {
+          <TableRow lang={lang} activeTableType={activeTableType} key={i} onUpdate={(data: [string, string]) => {
             onUpdate({
               heading_tags: {},
               content: {},

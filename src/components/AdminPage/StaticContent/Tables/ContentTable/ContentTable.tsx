@@ -4,14 +4,17 @@ import { updateStaticContentFn } from "@/components/AdminPage/types";
 //styles
 import styles from "./styles.module.scss";
 import TableRow from "./TableRow/TableRow";
+//types
+import { AdminPageQuries } from "@/components/AdminPage/types";
 
-type Props = {
+
+interface Props extends AdminPageQuries {
   data: { [key: string]: string },
   onUpdate: updateStaticContentFn,
   activeTableType: string
 }
 
-const ContentTable: FC<Props> = ({ data, onUpdate, activeTableType }) => {
+const ContentTable: FC<Props> = ({ data, onUpdate, activeTableType, lang }) => {
 
   return (
     <ul className={styles.table}>
@@ -21,7 +24,7 @@ const ContentTable: FC<Props> = ({ data, onUpdate, activeTableType }) => {
       </li>
       {
         Object.entries(data).map((headine, i) => (
-          <TableRow key={i} activeTableType={activeTableType} onUpdate={(data: [string, string]) => {
+          <TableRow lang={lang} key={i} activeTableType={activeTableType} onUpdate={(data: [string, string]) => {
             onUpdate({
               heading_tags: {},
               content: {
