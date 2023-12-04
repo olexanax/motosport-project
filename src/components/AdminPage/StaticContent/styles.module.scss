@@ -5,4 +5,10 @@
     width: 100%;
     margin-bottom: 42px;
     align-items: center;
+
+    &Status {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
 }
