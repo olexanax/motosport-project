@@ -1,28 +1,33 @@
 @import "@/styles/variables.scss";
 
 .container {
-    border-radius: 10px 10px 0px 0px;
-    background: rgba(30, 30, 30, 0.7);
-    padding: 42px 21px;
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-    width: 321px;
-    @media (max-width: $tabletSize) {
-        max-width: 90%;
-        width: 330px;
-        padding: 12px;
-        border-radius: 10px;
-        gap: 24px;
-    }
+  border-radius: 10px 10px 0px 0px;
+  background: rgba(30, 30, 30, 0.7);
+  padding: 42px 21px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  gap: 36px;
+  width: 321px;
+  @media (max-width: $tabletSize) {
+    max-width: 90%;
+    width: 330px;
+    padding: 12px;
+    border-radius: 10px;
+    gap: 24px;
+  }
 }
 .title {
-    color: #fff;
-    font-family: Unbounded;
-    line-height: normal;
+  color: #fff;
+  font-family: Unbounded;
+  line-height: normal;
+  max-height: 88px;
+  height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .link {
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration-line: underline;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration-line: underline;
 }

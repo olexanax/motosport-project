@@ -22,7 +22,8 @@ const NewsPage: React.FC<PostOverviewProps> = async ({
     <>
       {news && (
         <>
-          <div className={styles.TopContainer}>
+          <div className={styles.TopContainer} style={{background: `url(${news.image})`}}>
+            <div className={styles.overlay}></div>
             <div className={styles.TopContent}>
               <p className={classNames(global.smallTitle, styles.date)}>
                 {news.date}

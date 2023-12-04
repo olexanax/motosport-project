@@ -12,7 +12,7 @@ import { useTranslation } from "@/app/i18n";
 
 const News = async ({ lng }: I18ComponentProps) => {
   const { t } = await useTranslation(lng, "translation");
-  const news = await getNews();
+  const news = await getNews(lng);
   const learnMoreText = t("content.news_learnMore")
   
   return (

@@ -14,8 +14,8 @@ import { useTranslation } from "@/app/i18n";
 
 
 const MyStory = async ({ lng }: I18ComponentProps) => {
-  const stories = await getMyStory();
-  const victories = await getVictories();
+  const stories = await getMyStory(lng);
+  const victories = await getVictories(lng);
   const { t } = await useTranslation(lng, "translation");
 
   return (

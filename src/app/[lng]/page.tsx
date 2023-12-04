@@ -50,9 +50,6 @@ export default async function Home({ params: { lng } }: I18PageProps) {
           text={t("content.BecomePartner_text")} />
       </ErrorBoundary>
       <ErrorBoundary {...{ lng }}>
-        <News  {...{ lng }} />
-      </ErrorBoundary>
-      <ErrorBoundary {...{ lng }}>
         <FollowMeBanner {...{ lng }} />
       </ErrorBoundary>
     </>

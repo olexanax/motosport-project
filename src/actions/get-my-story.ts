@@ -5,14 +5,19 @@ export interface MyStory {
   order: number;
   title: string;
   description: string;
+  language: "EN" | "UA";
   image: string;
 }
 
-export const getMyStory = async () => {
+export const getMyStory = async (lng: "en" | "ua"): Promise<MyStory[] | undefined> => {
   try {
     const { data } = await axiosInstance.get("/my-story/");
 
-    return data as MyStory[];
+    if (lng === "en") {
+      return data.filter((item: MyStory) => item.language === "EN");
+    } else {
+      return data.filter((item: MyStory) => item.language === "UA");
+    }
   } catch (error) {
     return;
   }

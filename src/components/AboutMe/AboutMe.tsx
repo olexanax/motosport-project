@@ -6,12 +6,9 @@ import global from "@/styles/global.module.scss";
 import styles from "./styles.module.scss";
 import { getAboutMe } from "@/actions/get-about-me";
 //i18n
-import { I18ComponentProps } from "@/types/i18NextTypes"
+import { I18ComponentProps } from "@/types/i18NextTypes";
 import { useTranslation } from "@/app/i18n";
 import ErrorBanner from "../ErrorBanner/ErrorBanner";
-
-
-
 
 const AboutMe = async ({ lng }: I18ComponentProps) => {
   const aboutMe = await getAboutMe();
@@ -19,16 +16,16 @@ const AboutMe = async ({ lng }: I18ComponentProps) => {
 
   const STAT_DATA = [
     {
-      value: t('content.aboutMe_statistic_item1_value'),
-      title: t('content.aboutMe_statistic_item1_text'),
+      value: t("content.aboutMe_statistic_item1_value"),
+      title: t("content.aboutMe_statistic_item1_text"),
     },
     {
-      value: t('content.aboutMe_statistic_item2_value'),
-      title: t('content.aboutMe_statistic_item2_text'),
+      value: t("content.aboutMe_statistic_item2_value"),
+      title: t("content.aboutMe_statistic_item2_text"),
     },
     {
-      value: t('content.aboutMe_statistic_item3_value'),
-      title: t('content.aboutMe_statistic_item3_text'),
+      value: t("content.aboutMe_statistic_item3_value"),
+      title: t("content.aboutMe_statistic_item3_text"),
     },
   ];
 
@@ -42,22 +39,20 @@ const AboutMe = async ({ lng }: I18ComponentProps) => {
           </div>
           <div className={styles.infoBlock}>
             <h2 className={classNames(global.sectionTitle, styles.title)}>
-              {t('heading_tags.h2__aboutMeTitle')}
+              {t("heading_tags.h2__aboutMeTitle")}
             </h2>
             <div className={styles.textBlock}>
               <div className={classNames(styles.leftCol, global.text2)}>
-                <p>
-                  {t('content.aboutMe_leftBlock_text1')}
-                </p>
+                <p>{t("content.aboutMe_leftBlock_text1")}</p>
                 <br />
                 <div>
-                  {t('content.aboutMe_leftBlock_text2')}
+                  {t("content.aboutMe_leftBlock_text2")}
                   <div className={styles.list}>
                     <p className={styles.listItem}>
-                      {t('content.aboutMe_leftBlock_text3')}
+                      {t("content.aboutMe_leftBlock_text3")}
                     </p>
                     <p className={styles.listItem}>
-                      {t('content.aboutMe_leftBlock_text4')}
+                      {t("content.aboutMe_leftBlock_text4")}
                     </p>
                   </div>
                 </div>
@@ -65,50 +60,50 @@ const AboutMe = async ({ lng }: I18ComponentProps) => {
               <ul className={classNames(styles.rightCol, global.text2)}>
                 <li>
                   <span className={styles.boldtext}>
-                    {t('content.aboutMe_rightBlock_text1_title')}
-                  </span>
-                  {t('content.aboutMe_rightBlock_text1_text')}
+                    {t("content.aboutMe_rightBlock_text1_title")}
+                  </span>{" "}
+                  {t("content.aboutMe_rightBlock_text1_text")}
                 </li>
                 <li>
                   <span className={styles.boldtext}>
-                    {t('content.aboutMe_rightBlock_text2_title')}
-                  </span>
-                  {t('content.aboutMe_rightBlock_text2_text')}
+                    {t("content.aboutMe_rightBlock_text2_title")}
+                  </span>{" "}
+                  {t("content.aboutMe_rightBlock_text2_text")}
                 </li>
                 <li>
                   <span className={styles.boldtext}>
-                    {t('content.aboutMe_rightBlock_text3_title')}
-                  </span>
-                  {t('content.aboutMe_rightBlock_text3_text')}
+                    {t("content.aboutMe_rightBlock_text3_title")}
+                  </span>{" "}
+                  {t("content.aboutMe_rightBlock_text3_text")}
                 </li>
                 <li>
                   <span className={styles.boldtext}>
-                    {t('content.aboutMe_rightBlock_text4_title')}
-                  </span>
-                  {t('content.aboutMe_rightBlock_text4_text')}
+                    {t("content.aboutMe_rightBlock_text4_title")}
+                  </span>{" "}
+                  {t("content.aboutMe_rightBlock_text4_text")}
                 </li>
                 <li>
                   <span className={styles.boldtext}>
-                    {t('content.aboutMe_rightBlock_text5_title')}
-                  </span>
-                  {t('content.aboutMe_rightBlock_text5_text')}
+                    {t("content.aboutMe_rightBlock_text5_title")}
+                  </span>{" "}
+                  {t("content.aboutMe_rightBlock_text5_text")}
                 </li>
                 <li>
                   <span className={styles.boldtext}>
-                    {t('content.aboutMe_rightBlock_text6_title')}
+                    {t("content.aboutMe_rightBlock_text6_title")}
                   </span>
-                  {t('content.aboutMe_rightBlock_text6_text')}
+                  {t("content.aboutMe_rightBlock_text6_text")}
                 </li>
                 <li>
                   <span className={styles.boldtext}>
-                    {t('content.aboutMe_rightBlock_text7_title')}
-                  </span>
-                  {t('content.aboutMe_rightBlock_text7_text')}
+                    {t("content.aboutMe_rightBlock_text7_title")}
+                  </span> {" "}
+                  {t("content.aboutMe_rightBlock_text7_text")}
                 </li>
               </ul>
             </div>
             <p className={classNames(styles.text, global.text2)}>
-              {t('content.aboutMe_textAfterColums')}
+              {t("content.aboutMe_textAfterColums")}
             </p>
             <div className={styles.statBlock}>
               {STAT_DATA.map((item, i) => (
