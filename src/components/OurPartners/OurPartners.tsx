@@ -30,6 +30,8 @@ const OurPartners = async ({ lng }: I18ComponentProps) => {
                   className={styles.image}
                   width={100}
                   height={50}
+                  quality={100}
+                  unoptimized
                   src={logo.image}
                   alt=""
                 />

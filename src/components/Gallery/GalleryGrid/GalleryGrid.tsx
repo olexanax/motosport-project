@@ -26,6 +26,7 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
                   <Image
                     className={styles.image}
                     width={272}
+                    quality={100}
                     height={200}
                     key={img.id}
                     src={img.image}
