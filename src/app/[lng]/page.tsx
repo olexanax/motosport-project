@@ -35,7 +35,7 @@ export default async function Home({ params: { lng } }: I18PageProps) {
         />
       </ErrorBoundary>
       <ErrorBoundary {...{ lng }}>
-        <News   {...{ lng }} />
+        <News {...{ lng }} />
       </ErrorBoundary>
       <ErrorBoundary {...{ lng }}>
         <Gallery {...{ lng }} />
@@ -47,7 +47,8 @@ export default async function Home({ params: { lng } }: I18PageProps) {
         <BecomePartner
           {...{ lng }}
           title={t("heading_tags.h2__BecomePartnerTitle")}
-          text={t("content.BecomePartner_text")} />
+          text={t("content.BecomePartner_text")}
+        />
       </ErrorBoundary>
       <ErrorBoundary {...{ lng }}>
         <FollowMeBanner {...{ lng }} />
