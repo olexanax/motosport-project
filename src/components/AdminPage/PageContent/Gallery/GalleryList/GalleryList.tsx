@@ -10,11 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 //components
 import GalleryCard from "../GalleryCard/GalleryCard";
 import PhotoReviewForm from "../GalleryForm/GalleryForm";
-// //types
-// import { AppDispatch, RootStateType } from "types/index";
+import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
 //styles
 import styles from "./index.module.scss";
-import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
+// libs
+import { v4 as uuid } from "uuid";
 
 const GalleryList = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -41,7 +41,6 @@ const GalleryList = () => {
     (dragOrder: number, hoverOrder: number) => {
       const dragItem = gallery.find((item) => item.order === dragOrder);
       const hoverItem = gallery.find((item) => item.order === hoverOrder);
-      console.log(dragOrder, hoverOrder);
 
       if (dragItem && hoverItem) {
         dispatch(
@@ -63,9 +62,9 @@ const GalleryList = () => {
 
   const content = gallery ? (
     <>
-      {gallery.map((item, index) => (
-        <DNDWrapper target={item} moveItem={moveItem}>
-          <GalleryCard imagesLength={gallery.length} key={index} {...item} />
+      {gallery.map((item) => (
+        <DNDWrapper target={item} moveItem={moveItem} key={uuid()}>
+          <GalleryCard imagesLength={gallery.length} {...item} />
         </DNDWrapper>
       ))}
       <PhotoReviewForm {...{ onAddNew }} />

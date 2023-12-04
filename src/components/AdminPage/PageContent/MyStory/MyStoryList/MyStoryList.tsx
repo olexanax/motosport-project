@@ -1,5 +1,6 @@
 //components
 import VictoriesCard from "../MyStoryCard/MyStoryCard";
+import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
 //redux
 import { fetchMyStory, updateMyStoryOrder } from "@/redux/slices/myStory.slice";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +11,8 @@ import styles from "./index.module.scss";
 //types
 import { AdminPageQuries } from "@/components/AdminPage/types";
 import { AppDispatch, RootStateType } from "@/redux/types";
-import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
+// libs
+import { v4 as uuid } from "uuid";
 
 const MyStoryList = ({ myStoryAddNew, myStoryId, lang }: AdminPageQuries) => {
   const myStory = useSelector((state: RootStateType) => state.myStory.myStory);
@@ -27,7 +29,6 @@ const MyStoryList = ({ myStoryAddNew, myStoryId, lang }: AdminPageQuries) => {
     (dragOrder: number, hoverOrder: number) => {
       const dragItem = myStory.find((item) => item.order === dragOrder);
       const hoverItem = myStory.find((item) => item.order === hoverOrder);
-      console.log(dragOrder, hoverOrder);
 
       if (dragItem && hoverItem) {
         dispatch(
@@ -51,10 +52,9 @@ const MyStoryList = ({ myStoryAddNew, myStoryId, lang }: AdminPageQuries) => {
     myStory && fetchMyStoryStatus === "idle"
       ? myStory
           .filter((vict) => vict.language === lang?.toUpperCase())
-          .map((story, index) => (
-            <DNDWrapper moveItem={moveItem} target={story}>
+          .map((story) => (
+            <DNDWrapper moveItem={moveItem} target={story} key={uuid()}>
               <VictoriesCard
-                key={index}
                 {...story}
                 query={{ myStoryAddNew, myStoryId, lang }}
               />

@@ -1,5 +1,6 @@
 //components
 import VictoriesCard from "../VictoriesCard/VictoriesCard";
+import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
 //redux
 import {
   fetchVictories,
@@ -13,7 +14,8 @@ import styles from "./index.module.scss";
 //types
 import { AdminPageQuries } from "@/components/AdminPage/types";
 import { AppDispatch, RootStateType } from "@/redux/types";
-import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
+// libs
+import { v4 as uuid } from "uuid";
 
 const VictoriesList = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
   const victories = useSelector(
@@ -58,10 +60,9 @@ const VictoriesList = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
       ? victories
           .filter((vict) => vict.language === lang?.toUpperCase())
           .sort((a, b) => a.order - b.order)
-          .map((victory, index) => (
-            <DNDWrapper moveItem={moveItem} target={victory}>
+          .map((victory) => (
+            <DNDWrapper moveItem={moveItem} target={victory} key={uuid()}>
               <VictoriesCard
-                key={index}
                 {...victory}
                 query={{ victoryAddNew, victoryId, lang }}
               />

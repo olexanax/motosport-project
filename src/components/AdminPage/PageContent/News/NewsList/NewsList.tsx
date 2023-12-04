@@ -1,5 +1,6 @@
 //components
 import NewsCard from "../NewsCard/NewsCard";
+import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
 //redux
 import { fetchNews, updateNewsOrder } from "@/redux/slices/news.slice";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +11,8 @@ import styles from "./index.module.scss";
 //types
 import { AdminPageQuries } from "@/components/AdminPage/types";
 import { AppDispatch, RootStateType } from "@/redux/types";
-import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
+// libs
+import { v4 as uuid } from "uuid";
 
 const NewsList = ({ newsAddNew, newsId, lang }: AdminPageQuries) => {
   const news = useSelector((state: RootStateType) => state.news.news);
@@ -53,13 +55,9 @@ const NewsList = ({ newsAddNew, newsId, lang }: AdminPageQuries) => {
       ? news
           .filter((vict) => vict.language === lang?.toUpperCase())
           .sort((a, b) => a.order - b.order)
-          .map((news, index) => (
-            <DNDWrapper moveItem={moveItem} target={news}>
-              <NewsCard
-                key={index}
-                {...news}
-                query={{ newsAddNew, newsId, lang }}
-              />
+          .map((news) => (
+            <DNDWrapper moveItem={moveItem} target={news} key={uuid()}>
+              <NewsCard {...news} query={{ newsAddNew, newsId, lang }} />
             </DNDWrapper>
           ))
       : null;

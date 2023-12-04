@@ -10,11 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 //components
 import PartnersCard from "../PartnersCard/PartnersCard";
 import PhotoReviewForm from "../PartnersForm/PartnersForm";
-// //types
-// import { AppDispatch, RootStateType } from "types/index";
+import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
 //styles
 import styles from "./index.module.scss";
-import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
+// libs
+import { v4 as uuid } from "uuid";
 
 const PartnersList = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -65,9 +65,9 @@ const PartnersList = () => {
 
   const content = partners ? (
     <>
-      {partners.map((item, index) => (
-        <DNDWrapper target={item} moveItem={moveItem}>
-          <PartnersCard imagesLength={partners.length} key={index} {...item} />
+      {partners.map((item) => (
+        <DNDWrapper target={item} moveItem={moveItem} key={uuid()}>
+          <PartnersCard imagesLength={partners.length} {...item} />
         </DNDWrapper>
       ))}
       <PhotoReviewForm {...{ onAddNew }} />

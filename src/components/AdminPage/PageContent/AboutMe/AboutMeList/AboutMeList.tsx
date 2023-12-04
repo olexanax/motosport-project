@@ -1,4 +1,4 @@
-// //redux
+//redux
 import {
   fetchAboutMe,
   createAboutMe,
@@ -10,11 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 //components
 import AboutMeCard from "../AboutMeCard/AboutMeCard";
 import AboutMeForm from "../AboutMeForm/AboutMeForm";
-// //types
-// import { AppDispatch, RootStateType } from "types/index";
+import DNDWrapper from "../../../DNDWrapper/DNDWrapper";
 //styles
 import styles from "./index.module.scss";
-import DNDWrapper from "../../../DNDWrapper/DNDWrapper";
+// libs
+import { v4 as uuid } from "uuid";
 
 const AboutMeList = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -42,7 +42,6 @@ const AboutMeList = () => {
     (dragOrder: number, hoverOrder: number) => {
       const dragItem = aboutMe.find((item) => item.order === dragOrder);
       const hoverItem = aboutMe.find((item) => item.order === hoverOrder);
-      console.log(dragOrder, hoverOrder)
 
       if (dragItem && hoverItem) {
         dispatch(
@@ -59,15 +58,14 @@ const AboutMeList = () => {
         );
       }
     },
-    //eslint-disable-next-line
     [aboutMe]
   );
 
   const content = aboutMe ? (
     <>
       {aboutMe.map((item, index) => (
-        <DNDWrapper target={item} moveItem={moveItem}>
-          <AboutMeCard imagesLength={aboutMe.length} key={index} {...item} />
+        <DNDWrapper target={item} moveItem={moveItem} key={uuid()}>
+          <AboutMeCard imagesLength={aboutMe.length} {...item} />
         </DNDWrapper>
       ))}
       <AboutMeForm {...{ onAddNew }} />
