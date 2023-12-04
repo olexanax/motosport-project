@@ -102,14 +102,13 @@ export const generateWebpageData =
     "marketing/webPages/generateWebpageData",
     async () => {
       const response = await axios.post(
-        "https://api.github.com/repos/ICAPGroupgmbh/motosport-website/actions/workflows/upload_json.yml/dispatches ",
+        "https://faas-fra1-afec6ce7.doserverless.co/api/v1/namespaces/fn-b333d6ec-fedc-4745-bac5-6fc398835823/actions/su/json-uploader?blocking=true&result=true",
         {},
         {
           headers: {
-            "Accept": "application/vnd.github+json",
+            "Content-Type": "application/json",
             Authorization:
-              "Bearer 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",
-            "X-GitHub-Api-Version": "2022-11-28"
+              "Basic YzM0ZWYwYTUtNDE2ZS00ZWViLTlkODktMTk1Y2U1MTIyOTY4OkNTOXBVRkxLRFVBMndxcDlJQnFIcUI5WXQ0THI0d0hZd0hwN0xldEdpeWQ0WXlMNzFJREtBMXB0N0JNckZxcTY=",
           },
         }
       );
@@ -123,7 +122,7 @@ export const updateStaticImage = createAsyncThunk<
 >("staticContent/updateStaticImage", async (payload) => {
   const { request } = useHttp();
   return request(
-    `${serverDomain}/static-images/${payload.id}/`,
+    `${serverDomain}api/v1/static-images/${payload.id}/`,
     "PATCH",
     payload.formData,
     {}
