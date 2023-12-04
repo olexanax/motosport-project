@@ -18,7 +18,6 @@ import arrow from "../../../public/images/icons/dropdownArr.svg"
 //i18n
 import { languages } from "@/app/i18n/settings"
 import { I18ComponentProps } from "@/types/i18NextTypes"
-import { useTranslation } from "@/app/i18n/client";
 
 function Header({ lng }: I18ComponentProps) {
   const [isLangOpen, setIsLangOpen] = useState(false)

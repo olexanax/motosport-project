@@ -35,7 +35,7 @@
 }
 
 html {
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 
 body {
@@ -52,14 +52,14 @@ body {
   width: 100%;
   min-height: 100vh;
   align-items: center;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   overflow-wrap: break-word;
   padding: relative;
 }
 
 main {
   flex: 1 1 auto;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 
 #root {

@@ -25,16 +25,19 @@ import PhoneInput from "../ui/PhoneInput/PhoneInput";
 // images
 import instagramLogoBlack from "../../../public/images/icons/instagramLogo.svg";
 //i18n
-import { I18ComponentProps } from "@/types/i18NextTypes"
+import { I18ComponentProps } from "@/types/i18NextTypes";
 import { useTranslation } from "@/app/i18n/client";
-
 
 interface ContactUsFormProps extends I18ComponentProps {
   onSuccess: () => void;
   type: "coaching" | "partner";
 }
 
-const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type, lng }) => {
+const ContactUsForm: React.FC<ContactUsFormProps> = ({
+  onSuccess,
+  type,
+  lng,
+}) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const { t } = useTranslation(lng, "translation");
 
@@ -112,7 +115,10 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type, lng }) =
                     [global.redBorder]: errors.name,
                   })}
                   type="text"
-                  {...field}
+                  onChange={field.onChange}
+                  value={field.value}
+                  onBlur={field.onBlur}
+                  disabled={field.disabled || isLoading}
                 />
               )}
             />
@@ -137,7 +143,10 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type, lng }) =
                     [global.redBorder]: errors.name,
                   })}
                   type="text"
-                  {...field}
+                  onChange={field.onChange}
+                  value={field.value}
+                  onBlur={field.onBlur}
+                  disabled={field.disabled || isLoading}
                 />
               )}
             />
@@ -165,7 +174,10 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type, lng }) =
                   [global.redBorder]: errors.email,
                 })}
                 type="email"
-                {...field}
+                onChange={field.onChange}
+                value={field.value}
+                onBlur={field.onBlur}
+                disabled={field.disabled || isLoading}
               />
             )}
           />
@@ -190,7 +202,10 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type, lng }) =
                   [global.redBorder]: errors.phone,
                 })}
                 type="phone"
-                {...field}
+                onChange={field.onChange}
+                value={field.value}
+                onBlur={field.onBlur}
+                disabled={field.disabled || isLoading}
               />
             )}
           />
@@ -215,7 +230,10 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ onSuccess, type, lng }) =
                   [global.redBorder]: errors.notes,
                 })}
                 rows={5}
-                {...field}
+                onChange={field.onChange}
+                value={field.value}
+                onBlur={field.onBlur}
+                disabled={field.disabled || isLoading}
               />
             )}
           />
