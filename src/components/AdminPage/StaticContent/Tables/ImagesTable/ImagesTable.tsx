@@ -29,7 +29,6 @@ const ImagesTable: FC<Props> = ({ activeTableType }) => {
       <li className={styles.titleRow}>
         <p>Image</p>
         <p>Alt text</p>
-        <p>Weight</p>
       </li>
 
       {staticImages ? (

@@ -12,6 +12,7 @@ import {
 //API
 import { serverDomain } from "@/services/API";
 import axios from "axios";
+import { adminInstance } from "@/services/AdminAPI";
 
 interface AboutMeInitialState {
   aboutMe: AboutMeItemType[];
@@ -36,7 +37,7 @@ export const fetchAboutMe = createAsyncThunk(
 export const deleteAboutMe = createAsyncThunk(
   "aboutMe/deleteAboutMe",
   async (id: number) => {
-    await axios.delete(`${serverDomain}/about-me/${id}`, {
+    await adminInstance.delete(`/about-me/${id}`, {
       headers: {},
     });
     return id;
@@ -47,21 +48,20 @@ export const createAboutMe = createAsyncThunk<
   AboutMeItemType,
   CreateAboutMeItemType
 >("aboutMe/createAboutMe", async (payload) => {
-  const { request } = useHttp();
-  return request(`${serverDomain}/about-me/`, "POST", payload.formData, {});
+  const { data } = await adminInstance.post("/about-me/", payload.formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  return data;
 });
 
 export const updateAboutMe = createAsyncThunk<
   AboutMeItemType,
   UpdateAboutMeItemType
 >("aboutMe/updateAboutMe", async (payload) => {
-  const { request } = useHttp();
-  return request(
-    `${serverDomain}/about-me/${payload.id}/`,
-    "PATCH",
-    payload.formData,
-    {}
-  );
+  return adminInstance.patch(`/about-me/${payload.id}/`, payload.formData);
 });
 
 export const updateAboutMeOrder = createAsyncThunk(
@@ -84,22 +84,21 @@ export const updateAboutMeOrder = createAsyncThunk(
     const hoveredFormData = new FormData();
     hoveredFormData.append("order", hoverItem.order.toString());
 
-    const draggedItemResponse = await axios.patch(
+    const draggedItemResponse = await adminInstance.patch(
       `${serverDomain}/about-me/${dragItem.id}/`,
       hoveredFormData
     );
 
-    const hoveredItemResponse = await axios.patch(
+    const hoveredItemResponse = await adminInstance.patch(
       `${serverDomain}/about-me/${hoverItem.id}/`,
       draggedFormData
     );
 
     const { request } = useHttp();
-   
+
     return await request(`${serverDomain}/about-me/`, "GET", null, {
       "Content-Type": "application/json",
     });
-
   }
 );
 
@@ -138,7 +137,7 @@ const aboutMeSlice = createSlice({
       .addCase(updateAboutMeOrder.fulfilled, (state, { payload }) => {
         state.fetchAboutMeStatus = "idle";
         state.aboutMe = [...payload];
-        console.log(payload)
+        console.log(payload);
       })
       .addCase(updateAboutMeOrder.rejected, (state, { payload }) => {
         state.fetchAboutMeStatus = "error";

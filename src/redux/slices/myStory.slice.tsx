@@ -12,6 +12,7 @@ import {
 //API
 import { serverDomain } from "@/services/API";
 import axios from "axios";
+import { adminInstance } from "@/services/AdminAPI";
 
 interface MyStoryInitialState {
   myStory: MyStoryItemType[];
@@ -36,7 +37,7 @@ export const fetchMyStory = createAsyncThunk(
 export const deleteMyStory = createAsyncThunk(
   "myStory/deleteMyStory",
   async (id: number) => {
-    await axios.delete(`${serverDomain}/my-story/${id}`, {
+    await adminInstance.delete(`/my-story/${id}`, {
       headers: {},
     });
     return id;
@@ -47,21 +48,21 @@ export const createMyStory = createAsyncThunk<
   MyStoryItemType,
   CreateMyStoryItemType
 >("myStory/createMyStory", async (payload) => {
-  const { request } = useHttp();
-  return request(`${serverDomain}/my-story/`, "POST", payload.formData, {});
+  const { data } = await adminInstance.post(`/my-story/`, payload.formData);
+
+  return data;
 });
 
 export const updateMyStory = createAsyncThunk<
   MyStoryItemType,
   UpdateMyStoryItemType
 >("myStory/updateMyStory", async (payload) => {
-  const { request } = useHttp();
-  return request(
-    `${serverDomain}/my-story/${payload.id}/`,
-    "PATCH",
-    payload.formData,
-    {}
+  const { data } = await adminInstance.patch(
+    `/my-story/${payload.id}/`,
+    payload.formData
   );
+
+  return data;
 });
 
 export const updateMyStoryOrder = createAsyncThunk(
@@ -84,12 +85,12 @@ export const updateMyStoryOrder = createAsyncThunk(
     const hoveredFormData = new FormData();
     hoveredFormData.append("order", hoverItem.order.toString());
 
-    const draggedItemResponse = await axios.patch(
+    const draggedItemResponse = await adminInstance.patch(
       `${serverDomain}/my-story/${dragItem.id}/`,
       hoveredFormData
     );
 
-    const hoveredItemResponse = await axios.patch(
+    const hoveredItemResponse = await adminInstance.patch(
       `${serverDomain}/my-story/${hoverItem.id}/`,
       draggedFormData
     );

@@ -12,6 +12,7 @@ import {
 //API
 import { serverDomain } from "@/services/API";
 import axios from "axios";
+import { adminInstance } from "@/services/AdminAPI";
 
 interface VictoriesInitialState {
   victories: VictoriesItemType[];
@@ -36,7 +37,7 @@ export const fetchVictories = createAsyncThunk(
 export const deleteVictories = createAsyncThunk(
   "victories/deleteVictories",
   async (id: number) => {
-    await axios.delete(`${serverDomain}/victories/${id}`, {
+    await adminInstance.delete(`${serverDomain}/victories/${id}`, {
       headers: {},
     });
     return id;
@@ -47,21 +48,25 @@ export const createVictories = createAsyncThunk<
   VictoriesItemType,
   CreateVictoriesItemType
 >("victories/createVictories", async (payload) => {
-  const { request } = useHttp();
-  return request(`${serverDomain}/victories/`, "POST", payload.formData, {});
+  const { data } = await adminInstance.post(
+    `${serverDomain}/victories/`,
+    payload.formData
+  );
+
+  return data;
 });
 
 export const updateVictories = createAsyncThunk<
   VictoriesItemType,
   UpdateVictoriesItemType
 >("victories/updateVictories", async (payload) => {
-  const { request } = useHttp();
-  return request(
+  const { data } = await adminInstance.patch(
     `${serverDomain}/victories/${payload.id}/`,
-    "PATCH",
-    payload.formData,
-    {}
+
+    payload.formData
   );
+
+  return data;
 });
 
 export const updateVictoriesOrder = createAsyncThunk(
@@ -84,12 +89,12 @@ export const updateVictoriesOrder = createAsyncThunk(
     const hoveredFormData = new FormData();
     hoveredFormData.append("order", hoverItem.order.toString());
 
-    const draggedItemResponse = await axios.patch(
+    const draggedItemResponse = await adminInstance.patch(
       `${serverDomain}/victories/${dragItem.id}/`,
       hoveredFormData
     );
 
-    const hoveredItemResponse = await axios.patch(
+    const hoveredItemResponse = await adminInstance.patch(
       `${serverDomain}/victories/${hoverItem.id}/`,
       draggedFormData
     );

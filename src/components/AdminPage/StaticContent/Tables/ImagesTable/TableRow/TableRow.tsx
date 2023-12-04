@@ -104,7 +104,6 @@ const TableRow: FC<Props> = ({ image, alt_text, weight, id, activeTableType }) =
           }}
         />
       </div>
-      <div className={styles.cell}>{weight}</div>
     </li>
   );
 };

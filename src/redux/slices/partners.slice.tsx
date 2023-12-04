@@ -12,6 +12,7 @@ import {
 //API
 import { serverDomain } from "@/services/API";
 import axios from "axios";
+import { adminInstance } from "@/services/AdminAPI";
 
 interface PartnersInitialState {
   partners: PartnersItemType[];
@@ -36,7 +37,7 @@ export const fetchPartners = createAsyncThunk(
 export const deletePartners = createAsyncThunk(
   "partners/deletePartners",
   async (id: number) => {
-    await axios.delete(`${serverDomain}/our-partners/${id}`, {
+    await adminInstance.delete(`${serverDomain}/our-partners/${id}`, {
       headers: {},
     });
     return id;
@@ -47,21 +48,24 @@ export const createPartners = createAsyncThunk<
   PartnersItemType,
   CreatePartnersItemType
 >("partners/createPartners", async (payload) => {
-  const { request } = useHttp();
-  return request(`${serverDomain}/our-partners/`, "POST", payload.formData, {});
+  const { data } = await adminInstance.post(
+    `${serverDomain}/our-partners/`,
+    payload.formData
+  );
+
+  return data;
 });
 
 export const updatePartners = createAsyncThunk<
   PartnersItemType,
   UpdatePartnersItemType
 >("partners/updatePartners", async (payload) => {
-  const { request } = useHttp();
-  return request(
+  const { data } = await adminInstance.patch(
     `${serverDomain}/our-partners/${payload.id}/`,
-    "PATCH",
-    payload.formData,
-    {}
+    payload.formData
   );
+
+  return data;
 });
 
 export const updatePartnersOrder = createAsyncThunk(
@@ -84,12 +88,12 @@ export const updatePartnersOrder = createAsyncThunk(
     const hoveredFormData = new FormData();
     hoveredFormData.append("order", hoverItem.order.toString());
 
-    const draggedItemResponse = await axios.patch(
+    const draggedItemResponse = await adminInstance.patch(
       `${serverDomain}/our-partners/${dragItem.id}/`,
       hoveredFormData
     );
 
-    const hoveredItemResponse = await axios.patch(
+    const hoveredItemResponse = await adminInstance.patch(
       `${serverDomain}/our-partners/${hoverItem.id}/`,
       draggedFormData
     );

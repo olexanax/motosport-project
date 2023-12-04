@@ -6,14 +6,14 @@ import classNames from "classnames";
 // //redux
 import { deleteAboutMe, updateAboutMe } from "@/redux/slices/aboutMe.slice";
 import { AppDispatch } from "@/redux/types";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 // //components
 import ImageUploader from "@/components/ImageUploader/ImageUploader";
 // //type
 import { AboutMeItemType } from "@/redux/types";
 //images
-import deleteBtn from "../../../../../../public/images/icons/deleteBtn.svg"
-import editIcon from "../../../../../../public/images/icons/editIcon.svg"
+import deleteBtn from "../../../../../../public/images/icons/deleteBtn.svg";
+import editIcon from "../../../../../../public/images/icons/editIcon.svg";
 
 import Image from "next/image";
 import axios from "axios";
@@ -36,10 +36,8 @@ const AboutMeCard: FC<Props> = ({ image, imagesLength, order, id }) => {
   });
 
   const onDelete = () => {
-    dispatch(deleteAboutMe(id))
+    dispatch(deleteAboutMe(id));
   };
-
-
 
   const onImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target instanceof HTMLInputElement && e.target.files) {
@@ -47,7 +45,7 @@ const AboutMeCard: FC<Props> = ({ image, imagesLength, order, id }) => {
       const formData = new FormData();
       formData.append("image", file);
       formData.append("order", order.toString());
-      dispatch(updateAboutMe({ id, formData }))
+      dispatch(updateAboutMe({ id, formData }));
     }
   };
 

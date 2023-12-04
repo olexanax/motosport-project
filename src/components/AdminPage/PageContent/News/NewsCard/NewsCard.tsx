@@ -39,7 +39,7 @@ const NewsCard: FC<Props> = ({ id, image, short_description, title, query: { lan
   return (
     <div className={styles.card}>
       <div className={styles.dataBlock}>
-        <Image width={179} height={123} className={styles.image} alt={title} src={image} />
+        <Image width={235} height={123} className={styles.image} alt={title} src={image} />
         <div className={styles.textBlock}>
           <h5 className={styles.title}>{title}</h5>
           <p className={styles.position}>{short_description}</p>

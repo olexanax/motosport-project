@@ -78,6 +78,7 @@ const DNDWrapper: React.FC<DNDWrapperProps> = ({
         opacity: isDragging ? 0.5 : 1,
         scale: isDragging ? 1.05 : 1,
         filter: hovered ? "blur(1px)" : "blur(0px)",
+        zIndex: 1,
       }}
     >
       {children}

@@ -12,6 +12,7 @@ import {
 //API
 import { serverDomain } from "@/services/API";
 import axios from "axios";
+import { adminInstance } from "@/services/AdminAPI";
 
 interface GalleryInitialState {
   gallery: GalleryItemType[];
@@ -36,7 +37,7 @@ export const fetchGallery = createAsyncThunk(
 export const deleteGallery = createAsyncThunk(
   "gallery/deleteGallery",
   async (id: number) => {
-    await axios.delete(`${serverDomain}/gallery/${id}`, {
+    await adminInstance.delete(`${serverDomain}/gallery/${id}`, {
       headers: {},
     });
     return id;
@@ -47,21 +48,24 @@ export const createGallery = createAsyncThunk<
   GalleryItemType,
   CreateGalleryItemType
 >("gallery/createGallery", async (payload) => {
-  const { request } = useHttp();
-  return request(`${serverDomain}/gallery/`, "POST", payload.formData, {});
+  const { data } = await adminInstance.post(
+    `${serverDomain}/gallery/`,
+    payload.formData
+  );
+
+  return data;
 });
 
 export const updateGallery = createAsyncThunk<
   GalleryItemType,
   UpdateGalleryItemType
 >("gallery/updateGallery", async (payload) => {
-  const { request } = useHttp();
-  return request(
-    `${serverDomain}/gallery/${payload.id}/`,
-    "PATCH",
-    payload.formData,
-    {}
+  const { data } = await adminInstance.patch(
+    `/gallery/${payload.id}/`,
+    payload.formData
   );
+
+  return data;
 });
 
 export const updateGalleryOrder = createAsyncThunk(
@@ -84,12 +88,12 @@ export const updateGalleryOrder = createAsyncThunk(
     const hoveredFormData = new FormData();
     hoveredFormData.append("order", hoverItem.order.toString());
 
-    const draggedItemResponse = await axios.patch(
+    const draggedItemResponse = await adminInstance.patch(
       `${serverDomain}/gallery/${dragItem.id}/`,
       hoveredFormData
     );
 
-    const hoveredItemResponse = await axios.patch(
+    const hoveredItemResponse = await adminInstance.patch(
       `${serverDomain}/gallery/${hoverItem.id}/`,
       draggedFormData
     );
