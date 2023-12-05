@@ -11,9 +11,7 @@ import classNames from "classnames";
 // @ts-ignore
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 //images
-import slide1 from "../../../../public/images/aboutMeSlider/aboutMeSlider.png";
 import { AboutMe } from "@/actions/get-about-me";
-const images = [slide1, slide1, slide1];
 interface ReviewsSliderProps {
   aboutMe: AboutMe[] | undefined;
 }
