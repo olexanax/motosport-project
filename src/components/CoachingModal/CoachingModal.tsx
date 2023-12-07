@@ -32,9 +32,6 @@ const CoachingModal: React.FC<CoachingModalProps> = ({ onSuccess, lng }) => {
           <h3 className={styles.formName}>
             {t("content.coaching_form_name")}
           </h3>
-          <p className={styles.formSubtitle}>
-            {t("content.coaching_form_text")}
-          </p>
         </div>
         <div className={styles.formRight}>
           <ContactUsForm {...{ lng }} onSuccess={onSuccess} type="coaching" />

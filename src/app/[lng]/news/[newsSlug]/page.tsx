@@ -6,23 +6,28 @@ import classNames from "classnames";
 import { getNewsBySlug } from "@/actions/get-new-by-slug";
 //utils
 import makePargraphs from "@/utils/makePargraphs";
+//i18n
+import { I18PageProps } from "@/types/i18NextTypes";
+import { useTranslation } from "../../../i18n";
 
 interface PostOverviewProps {
   params: {
     newsSlug: string;
+    lng: I18PageProps['params']['lng']
   };
 }
 
 const NewsPage: React.FC<PostOverviewProps> = async ({
-  params: { newsSlug },
+  params: { newsSlug, lng },
 }) => {
   const news = await getNewsBySlug(newsSlug);
+  const { t } = await useTranslation(lng, "translation");
 
   return (
     <>
       {news && (
         <>
-          <div className={styles.TopContainer} style={{background: `url(${news.image})`}}>
+          <div className={styles.TopContainer} style={{ background: `url(${news.image})` }}>
             <div className={styles.overlay}></div>
             <div className={styles.TopContent}>
               <p className={classNames(global.smallTitle, styles.date)}>
@@ -67,7 +72,7 @@ const NewsPage: React.FC<PostOverviewProps> = async ({
                 href={"/"}
                 className={classNames(global.primaryButton, styles.btn)}
               >
-                Back
+                {t("content.news_backButon")}
               </Link>
             </div>
           </div>
