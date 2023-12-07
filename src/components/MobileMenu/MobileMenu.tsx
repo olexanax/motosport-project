@@ -116,6 +116,7 @@ const MobileMenu: FC<Props> = ({
       <nav className={styles.navBlock}>
         {NAV_ITEMS.map(({ name, path }, i) => (
           <Link
+            onClick={() => setIsMobileMenuOpen(false)}
             key={i}
             href={`/${lng}${path}`}
             className={classNames(styles.navItem, getClassName(path))}
