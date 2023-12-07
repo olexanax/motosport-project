@@ -9,7 +9,8 @@ jobs:
     name: "Deploy to production"
     runs-on: ubuntu-latest
     env:
-      DISCORD_WEBHOOK: https://discord.com/api/webhooks/1181615497565962381/nhkRifLJwk4LVqBcjFEVtzJZX2XIoKEwnzU6lSM33gRWsosocVpyg16i0WqywX30n36v
+      TESR: tesat
+      #DISCORD_WEBHOOK: https://discord.com/api/webhooks/1181615497565962381/nhkRifLJwk4LVqBcjFEVtzJZX2XIoKEwnzU6lSM33gRWsosocVpyg16i0WqywX30n36v
     steps:
       - name: "Checkout the files"
         uses: actions/checkout@v3
@@ -21,7 +22,6 @@ jobs:
         run: |
           npm i --lockfile-version 3   
           npm install
-          npm i sharp
           npm run build
       - name: 'Copy folder to the production server'
         uses: burnett01/rsync-deployments@6.0.0
@@ -40,6 +40,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /var/www/my-next-app
+            npm i sharp
             sudo kill -9 $(sudo lsof -t -i:3000)
             npm run start -d
             
