@@ -12,7 +12,7 @@ import {
   UpdateStaticImagesResponse,
 } from "../types";
 //API
-import { serverDomain } from "@/services/API";
+import { adminInstance } from "@/services/AdminAPI";
 import axios from "axios";
 
 interface StaticContentInitialState {
@@ -39,19 +39,19 @@ const initialState: StaticContentInitialState = {
 
 export const fetchStaticContent = createAsyncThunk(
   "staticContent/fetchStaticContent",
-  () => {
-    const { request } = useHttp();
-    return request(`${serverDomain}/languages/`, "GET", null, {
-      "Content-Type": "application/json",
-    });
+  async () => {
+    const { data } = await adminInstance.get(`/languages/`);
+
+    return data;
   }
 );
 
 export const fetchStaticImages = createAsyncThunk(
   "staticContent/fetchStaticImages",
-  () => {
-    const { request } = useHttp();
-    return request(`${serverDomain}/static-images/`, "GET", null, {});
+  async () => {
+    const { data } = await adminInstance.get(`/static-images/`);
+
+    return data;
   }
 );
 
@@ -62,33 +62,30 @@ type getPending_changes_statusPayload = {
 export const getPending_changes_status =
   createAsyncThunk<getPending_changes_statusPayload>(
     "staticContent/getPending_changes_status",
-    () => {
-      const { request } = useHttp();
-      return request(
-        `${serverDomain}/languages/pending_changes_status/`,
-        "GET",
-        null,
-        {
-          "Content-Type": "application/json",
-        }
+    async () => {
+      const { data } = await adminInstance.get(
+        `/languages/pending_changes_status/`
       );
+
+      return data;
     }
   );
 
 export const setPending_changes_status = createAsyncThunk<
   getPending_changes_statusPayload,
   { pending_changes: boolean }
->("staticContent/setPending_changes_status", (payload) => {
-  const { request } = useHttp();
-  return request(
-    `${serverDomain}/languages/pending_changes_status/`,
-    "PATCH",
-    JSON.stringify(payload),
+>("staticContent/setPending_changes_status", async (payload) => {
+  const { data } = await adminInstance.patch(
+    `/languages/pending_changes_status/`,
+    payload,
     {
-      Authorization: `Bearer ${localStorage.getItem("access")}`,
-      "Content-Type": "application/json",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     }
   );
+
+  return data;
 });
 
 export const generateWebpageData =
@@ -117,28 +114,29 @@ export const updateStaticImage = createAsyncThunk<
   UpdateStaticImagesResponse,
   UpdateStaticImagesItemType
 >("staticContent/updateStaticImage", async (payload) => {
-  const { request } = useHttp();
-  return request(
-    `${serverDomain}api/v1/static-images/${payload.id}/`,
-    "PATCH",
+  const { data } = await adminInstance.patch(
+    `/static-images/${payload.id}/`,
     payload.formData,
-    {}
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
+
+  return data;
 });
 
 export const updateStaticContent = createAsyncThunk<
   UpdateStaticContentResponse,
   UpdateStaticContentItemType
 >("staticContent/updateStaticContent", async (payload) => {
-  const { request } = useHttp();
-  return request(
-    `${serverDomain}/languages/${payload.id}/`,
-    "PATCH",
-    JSON.stringify(payload.data),
-    {
-      "Content-Type": "application/json",
-    }
+  const { data } = await adminInstance.patch(
+    `/languages/${payload.id}/`,
+    payload.data
   );
+
+  return data;
 });
 
 const marketingWebPageSlice = createSlice({

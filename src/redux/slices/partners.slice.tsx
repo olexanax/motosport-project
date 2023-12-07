@@ -11,7 +11,6 @@ import {
 } from "../types";
 //API
 import { serverDomain } from "@/services/API";
-import axios from "axios";
 import { adminInstance } from "@/services/AdminAPI";
 
 interface PartnersInitialState {
