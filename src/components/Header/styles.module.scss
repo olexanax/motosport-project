@@ -2,6 +2,7 @@
 
 .container {
     @include pageWrapper;
+    z-index: 99999;
 }
 .content {
     @include pageContent;
