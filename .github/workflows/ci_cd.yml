@@ -39,8 +39,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /var/www/my-next-app
-            pm2 delete all 
-            pm2 start npm --name "my-next-app" -- start
+            sudo kill -9 $(sudo lsof -t -i:3000)
+            npm run start
+            
 
       - name: Discord notification when not manually
         uses: Ilshidur/action-discord@master
