@@ -9,8 +9,7 @@ jobs:
     name: "Deploy to production"
     runs-on: ubuntu-latest
     env:
-      TESR: tesat
-      #DISCORD_WEBHOOK: https://discord.com/api/webhooks/1181615497565962381/nhkRifLJwk4LVqBcjFEVtzJZX2XIoKEwnzU6lSM33gRWsosocVpyg16i0WqywX30n36v
+      DISCORD_WEBHOOK: https://discord.com/api/webhooks/1181615497565962381/nhkRifLJwk4LVqBcjFEVtzJZX2XIoKEwnzU6lSM33gRWsosocVpyg16i0WqywX30n36v
     steps:
       - name: "Checkout the files"
         uses: actions/checkout@v3
@@ -40,9 +39,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /var/www/my-next-app
-            npm i sharp
-            sudo kill -9 $(sudo lsof -t -i:3000)
-            npm run start -d
+            pm2 delete all 
+            pm2 start npm --name "my-next-app" -- start
+
             
 
       - name: Discord notification when not manually
