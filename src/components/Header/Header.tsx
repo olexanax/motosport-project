@@ -9,6 +9,9 @@ import Hamburger from 'hamburger-react'
 import { useEffect, useState } from "react"
 import classNames from "classnames"
 import { usePathname } from "next/navigation"
+import lockScroll from "@/utils/lockScroll"
+import unlockScroll from "@/utils/unlockScroll"
+
 //styles
 import styles from "./styles.module.scss"
 import global from "@/styles/global.module.scss"
@@ -26,20 +29,15 @@ function Header({ lng }: I18ComponentProps) {
   const pathname = usePathname()
 
   useEffect(() => {
-    const html = document.querySelector("html")
     if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-      if (html) html.style.overflow = "hidden"
+      lockScroll()
     } else {
-      document.body.style.overflowY = "unset";
-      if (html) html.style.overflow = "unset"
+      unlockScroll()
     }
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    const html = document.querySelector("html")
-    document.body.style.overflowY = 'unset'
-    if (html) html.style.overflow = "unset"
+    unlockScroll
     setIsMobileMenuOpen(false)
   }, [pathname])
 
