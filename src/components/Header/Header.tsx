@@ -26,15 +26,20 @@ function Header({ lng }: I18ComponentProps) {
   const pathname = usePathname()
 
   useEffect(() => {
+    const html = document.querySelector("html")
     if (isMobileMenuOpen) {
-      document.body.style.overflowY = "hidden";
+      document.body.style.overflow = "hidden";
+      if (html) html.style.overflow = "hidden"
     } else {
       document.body.style.overflowY = "unset";
+      if (html) html.style.overflow = "unset"
     }
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
+    const html = document.querySelector("html")
     document.body.style.overflowY = 'unset'
+    if (html) html.style.overflow = "unset"
     setIsMobileMenuOpen(false)
   }, [pathname])
 

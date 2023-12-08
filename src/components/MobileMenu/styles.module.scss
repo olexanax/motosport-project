@@ -1,5 +1,14 @@
 @import "@/styles/variables";
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    z-index: 999998;
+}
 .container {
     position: fixed;
     top: 0;
@@ -7,7 +16,7 @@
     right: 30%;
     bottom: 0;
     min-width: 286px;
-    z-index: 100;
+    z-index: 999999;
     padding: 35px 18px;
     display: flex;
     flex-direction: column;

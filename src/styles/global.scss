@@ -3,134 +3,133 @@
 
 //Unbounded
 @font-face {
-  font-family: "Unbounded";
-  src: url("../../fonts/Unbounded/static/Unbounded-Bold.ttf");
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Unbounded";
+    src: url("../../fonts/Unbounded/static/Unbounded-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
 }
 @font-face {
-  font-family: "Unbounded";
-  src: url("../../fonts/Unbounded/static/Unbounded-SemiBold.ttf");
-  font-weight: 600;
-  font-style: normal;
+    font-family: "Unbounded";
+    src: url("../../fonts/Unbounded/static/Unbounded-SemiBold.ttf");
+    font-weight: 600;
+    font-style: normal;
 }
 //Inter
 @font-face {
-  font-family: "Inter";
-  src: url("../../fonts/Inter/static/Inter-Bold.ttf");
-  font-weight: 600;
-  font-style: normal;
+    font-family: "Inter";
+    src: url("../../fonts/Inter/static/Inter-Bold.ttf");
+    font-weight: 600;
+    font-style: normal;
 }
 @font-face {
-  font-family: "Inter";
-  src: url("../../fonts/Inter/static/Inter-Medium.ttf");
-  font-weight: 500;
-  font-style: normal;
+    font-family: "Inter";
+    src: url("../../fonts/Inter/static/Inter-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
 }
 @font-face {
-  font-family: "Inter";
-  src: url("../../fonts/Inter/static/Inter-Regular.ttf");
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Inter";
+    src: url("../../fonts/Inter/static/Inter-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
 }
 
 html {
-  overflow-x: hidden !important;
+    overflow-x: hidden !important;
 }
 
 body {
-  color: $white;
-  background-color: $black;
-  font-family: "Inter";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100vh;
-  align-items: center;
-  overflow-x: hidden !important;
-  overflow-wrap: break-word;
-  padding: relative;
+    color: $white;
+    background-color: $black;
+    font-family: "Inter";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    align-items: center;
+    overflow-wrap: break-word;
+    padding: relative;
 }
 
 main {
-  flex: 1 1 auto;
-  overflow-x: hidden !important;
+    flex: 1 1 auto;
+    overflow-x: hidden !important;
 }
 
 #root {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 .react-international-phone-country-selector {
-  display: none;
+    display: none;
 }
 
 .splide__arrow {
-  background: #a10f0f !important;
-  width: 4em !important;
-  height: 4em !important;
+    background: #a10f0f !important;
+    width: 4em !important;
+    height: 4em !important;
 
-  @media (max-width: $tabletSize) {
-    width: 3em !important;
-    height: 3em !important;
-  }
-
-  svg {
-    fill: $white !important;
-  }
-
-  &s {
-    .splide__arrow--prev {
-      left: 43px;
-
-      @media (max-width: $tabletSize) {
-        left: 15px;
-      }
+    @media (max-width: $tabletSize) {
+        width: 3em !important;
+        height: 3em !important;
     }
 
-    .splide__arrow--next {
-      right: 43px;
-
-      @media (max-width: $tabletSize) {
-        right: 15px;
-      }
+    svg {
+        fill: $white !important;
     }
 
-    &.victory-arrows {
-      button {
-        top: 80%;
-      }
+    &s {
+        .splide__arrow--prev {
+            left: 43px;
 
-      .splide__arrow--prev {
-        left: 35px !important;
-      }
-
-      .splide__arrow--next {
-        right: 35px !important;
-      }
-    }
-
-    &.news-arrows {
-      @media (max-width: $tabletSize) {
-        button {
-          top: 90%;
+            @media (max-width: $tabletSize) {
+                left: 15px;
+            }
         }
-      }
 
-      .splide__arrow--prev {
-        left: 23px !important;
-      }
+        .splide__arrow--next {
+            right: 43px;
 
-      .splide__arrow--next {
-        right: 23px !important;
-      }
+            @media (max-width: $tabletSize) {
+                right: 15px;
+            }
+        }
+
+        &.victory-arrows {
+            button {
+                top: 80%;
+            }
+
+            .splide__arrow--prev {
+                left: 35px !important;
+            }
+
+            .splide__arrow--next {
+                right: 35px !important;
+            }
+        }
+
+        &.news-arrows {
+            @media (max-width: $tabletSize) {
+                button {
+                    top: 90%;
+                }
+            }
+
+            .splide__arrow--prev {
+                left: 23px !important;
+            }
+
+            .splide__arrow--next {
+                right: 23px !important;
+            }
+        }
     }
-  }
 }
 
 //slider customization
