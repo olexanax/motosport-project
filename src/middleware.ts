@@ -27,6 +27,7 @@ export function middleware(req: NextRequest) {
     ),
     notBuild: !req.nextUrl.pathname.startsWith("/_next"),
     notSeoTools:
+      req.nextUrl.pathname !== "/favicon.ico" &&
       req.nextUrl.pathname !== "/robots.txt" &&
       !req.nextUrl.pathname.includes("sitemap"),
   };
