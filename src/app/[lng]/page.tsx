@@ -16,6 +16,10 @@ import { Metadata } from "next";
 import { I18PageProps } from "@/types/i18NextTypes";
 import { useTranslation } from "../i18n";
 
+export const fetchCache = 'force-no-store';
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 export default async function Home({ params: { lng } }: I18PageProps) {
   const { t } = await useTranslation(lng, "translation");
   return (

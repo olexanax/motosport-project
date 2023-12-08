@@ -10,6 +10,10 @@ import makePargraphs from "@/utils/makePargraphs";
 import { I18PageProps } from "@/types/i18NextTypes";
 import { useTranslation } from "../../../i18n";
 
+export const fetchCache = 'force-no-store';
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 interface PostOverviewProps {
   params: {
     newsSlug: string;
