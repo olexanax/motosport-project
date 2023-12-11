@@ -6,7 +6,7 @@ import VicoriesForm from "./VicoriesForm/VicoriesForm";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 //types
-import { AdminPageQuries } from '@/components/AdminPage/types';
+import { AdminPageQuries } from "@/components/AdminPage/types";
 
 //styles
 import styles from "./index.module.scss";
@@ -22,17 +22,15 @@ const Victories = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
     lang && query.set("lang", lang);
     query.delete("victoryId");
 
-    router.push(`${window.location.pathname}?${query.toString()}`)
+    router.push(`${window.location.pathname}?${query.toString()}`);
   };
 
-  if (victoryId || victoryAddNew) return <VicoriesForm {...{ victoryAddNew, victoryId, lang }} />;
+  if (victoryId || victoryAddNew)
+    return <VicoriesForm {...{ victoryAddNew, victoryId, lang }} />;
 
   return (
     <div className={styles.container}>
-      <div
-        onClick={onAdd}
-        className={classNames(styles.addBtn)}
-      >
+      <div onClick={onAdd} className={classNames(styles.addBtn)}>
         <Image src={smallPlus} alt="add" />
         <p className={global.text1}>Add new</p>
       </div>

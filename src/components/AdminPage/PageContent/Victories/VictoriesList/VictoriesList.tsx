@@ -26,6 +26,7 @@ const VictoriesList = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
   );
   const dispatch = useDispatch<AppDispatch>();
 
+
   useEffect(() => {
     dispatch(fetchVictories());
     //eslint-disable-next-line
@@ -35,7 +36,6 @@ const VictoriesList = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
     (dragOrder: number, hoverOrder: number) => {
       const dragItem = victories.find((item) => item.order === dragOrder);
       const hoverItem = victories.find((item) => item.order === hoverOrder);
-      console.log(dragOrder, hoverOrder);
 
       if (dragItem && hoverItem) {
         dispatch(
