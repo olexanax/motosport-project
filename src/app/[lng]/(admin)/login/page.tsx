@@ -14,6 +14,10 @@ import { AppDispatch, LoginFormInputs, RootStateType } from "@/redux/types";
 import { loginUser } from "@/redux/slices/login.slice";
 import { useDispatch, useSelector } from "react-redux";
 
+export const fetchCache = 'force-no-store';
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 const LoginPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const error = useSelector((state: RootStateType) => state.login.isLoginError);
