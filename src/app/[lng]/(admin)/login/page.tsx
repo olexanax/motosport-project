@@ -14,7 +14,7 @@ import { AppDispatch, LoginFormInputs, RootStateType } from "@/redux/types";
 import { loginUser } from "@/redux/slices/login.slice";
 import { useDispatch, useSelector } from "react-redux";
 
-export const fetchCache = 'force-no-store';
+export const fetchCache = "force-no-store";
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
 
@@ -25,12 +25,12 @@ const LoginPage = () => {
     (state: RootStateType) => state.login.isLoginLoading
   );
   const router = useRouter();
-  useEffect(() => {
-    if (!isLogining && localStorage.getItem("accessMotosport") != null) {
-      router.push("/admin");
-    }
-    // eslint-disable-next-line
-  }, [isLogining]);
+  // useEffect(() => {
+  //   if (!isLogining && localStorage.getItem("accessMotosport") != null) {
+  //     router.push("/admin");
+  //   }
+  //   // eslint-disable-next-line
+  // }, [isLogining]);
 
   const {
     register,

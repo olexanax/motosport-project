@@ -33,8 +33,6 @@ export default function RootLayout({
   children: React.ReactNode;
   params: I18PageProps["params"];
 }) {
-  revalidatePath("/", "layout");
-
   return (
     <html lang={lng} dir={dir(lng)}>
       <body>
