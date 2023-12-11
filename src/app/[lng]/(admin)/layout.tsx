@@ -8,11 +8,11 @@ export const fetchCache = 'force-no-store';
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
 
-interface AdminLayoutProps {
+interface PortfolioLayoutProps {
   children: React.ReactNode;
 }
 
-const Admin: React.FC<AdminLayoutProps> = ({ children }) => {
+const Admin: React.FC<PortfolioLayoutProps> = ({ children }) => {
   return <DndProvider backend={HTML5Backend}>{children}</DndProvider>;
 };
 
