@@ -1,0 +1,83 @@
+on:
+  push:
+    branches:
+      - main
+name: Create release
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash 
+    if: ${{ contains(github.event.head_commit.message, 'Minor') || contains(github.event.head_commit.message, 'Major') || contains(github.event.head_commit.message, 'Patch') }}
+    steps:
+      - name: Get last release tag
+        id: last-release
+        run: |
+          echo "last_tag=$(curl -L -k   -H "Accept: application/vnd.github+json"   -H "Authorization: Bearer ${{ github.token }}"   -H "X-GitHub-Api-Version: 2022-11-28" \
+           https://api.github.com/repos/${{ github.repository }}/releases/latest | jq .tag_name)" >> "$GITHUB_OUTPUT"
+           
+        if: ${{ contains(github.event.head_commit.message, 'Minor') || contains(github.event.head_commit.message, 'Major') || contains(github.event.head_commit.message, 'Patch') }}
+      - name: New minor version 
+        id: new-minor
+        run: |
+          version=${{ steps.last-release.outputs.last_tag }}
+          major=$(echo $version | cut -d. -f1 | tr -d 'v')
+          minor=$(echo $version | cut -d. -f2)
+          patch=$(echo $version | cut -d. -f3)
+          minor=$((minor+1))
+          echo "new_version=v$major.$minor.$patch" >>"$GITHUB_ENV"
+          echo "Original version: $version"
+          echo "New version: $new_version"
+        if: ${{ contains(github.event.head_commit.message, 'Minor') }}
+      - name: New major version 
+        id: new-major
+        run: |
+          version=${{ steps.last-release.outputs.last_tag }}
+          major=$(echo $version | cut -d. -f1 | tr -d 'v')
+          minor=$(echo $version | cut -d. -f2)
+          patch=$(echo $version | cut -d. -f3)
+          major=$((major+1))
+          echo "new_version=v$major.$minor.$patch">>"$GITHUB_ENV"
+          echo "Original version: $version"
+          echo "New version: $new_version"
+        if: ${{ contains(github.event.head_commit.message, 'Major') }}
+      - name: New patch version 
+        id: new-patch
+        run: |
+          version=${{ steps.last-release.outputs.last_tag }}
+          major=$(echo $version | cut -d. -f1 | tr -d 'v')
+          minor=$(echo $version | cut -d. -f2)
+          patch=$(echo $version | cut -d. -f3)
+          patch=$((patch+1))
+          echo "new_version=v$major.$minor.$patch">>"$GITHUB_ENV"
+          echo "Original version: $version"
+          echo "New version: $new_version"
+        if: ${{ contains(github.event.head_commit.message, 'Patch') }}
+      - name: Get commits from last actions
+        if: ${{ contains(github.event.head_commit.message, 'Minor') || contains(github.event.head_commit.message, 'Major') || contains(github.event.head_commit.message, 'Patch') }}
+        id: get-last-commits
+        run: |
+            START_DATE=$(curl -L   -H "Accept: application/vnd.github+json"   -H "Authorization: Bearer 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"   -H "X-GitHub-Api-Version: 2022-11-28" \
+             "https://api.github.com/repos/${{ github.repository }}/actions/workflows/ci_cd.yml/runs?status=completed" | jq -r '.workflow_runs[0].updated_at')
+            commits_array=()
+            while IFS= read -r line; do   commits_array+=("$line");    done < <(curl -L   -H "Accept: application/vnd.github+json" \
+             -H "Authorization: Bearer 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"   -H "X-GitHub-Api-Version: 2022-11-28"      \
+             "https://api.github.com/repos/${{ github.repository }}/commits?since=$START_DATE" |jq -r '.[].commit.message')
+            echo 'RESULT<<EOF'>>$GITHUB_OUTPUT  
+            for commit in "${commits_array[@]}"; do   
+              echo "$commit">>$GITHUB_OUTPUT;                  
+            done
+            echo 'EOF' >>$GITHUB_OUTPUT
+            echo $new_version
+      - name: Create new release
+        uses: ncipollo/release-action@v1
+        with:
+          makeLatest: true
+          tag: ${{ env.new_version }}
+          token: ${{ secrets.GIT_TOKEN }}
+          name: Release ${{ env.new_version }}
+          body: |
+            ${{ steps.get-last-commits.outputs.RESULT }}
+          prerelease: false
+          draft: false
