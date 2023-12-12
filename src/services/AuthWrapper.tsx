@@ -21,7 +21,7 @@ const withAuth = (WrappedComponent: FC) => {
     const isUnauthorizedReq = useSelector(
       (state: RootStateType) => state.login.isUnauthorizedRequest
     );
-    // const router = useRouter();
+    const router = useRouter();
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const withAuth = (WrappedComponent: FC) => {
       ) {
         localStorage.removeItem("accessMotosport");
         localStorage.removeItem("refreshMotosport");
-        // router.push("/login");
+        router.push("/login");
         return;
       } else if (new Date(access.exp) < new Date()) {
         dispatch(refreshToken(refresh.token)).then((res) =>
@@ -57,7 +57,7 @@ const withAuth = (WrappedComponent: FC) => {
         alert(
           "An error occurred related to the authorization token. Please log in again and repeat your steps!"
         );
-        // router.push("/login");
+        router.push("/login");
       }
       //eslint-disable-next-line
     }, [isUnauthorizedReq]);
