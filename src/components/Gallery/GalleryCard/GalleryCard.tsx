@@ -1,20 +1,23 @@
 
 import React, { useEffect, useState, FC } from "react";
 import styles from "./styles.module.scss";
+import classNames from "classnames";
 import Image from "next/image";
 import ImageViewer from "@/components/ImageViewer/ImageViewer";
+import { number } from "zod";
 
+interface Props {
+  image: string
+  id: number,
+  onClick: () => void
+}
 
-const GalleryCard: FC<{ image: string, id: number, }> = ({ image, id }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const GalleryCard: FC<Props> = ({ image, id, onClick }) => {
+
 
   return (
-    <div className={styles.imageWrapper}
-      key={id}
-      onClick={() => {
-        if (!isModalOpen) setIsModalOpen(true)
-      }
-      }>
+    <div onClick={onClick} className={classNames(styles.imageWrapper)}
+      key={id}>
       {
         image && (
           <Image
@@ -28,14 +31,7 @@ const GalleryCard: FC<{ image: string, id: number, }> = ({ image, id }) => {
           />
         )
       }
-      {
-        isModalOpen ?
-          <ImageViewer
-            onClose={() => setIsModalOpen(false)}
-            image={image}
-            isModalOpen={isModalOpen}
-          /> : null
-      }
+
     </div >
   )
 }

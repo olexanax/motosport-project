@@ -54,4 +54,42 @@ $modal-bg: linear-gradient(
     top: 46px;
     right: 29px;
     cursor: pointer;
+    @media (max-width: $tabletSize) {
+        width: 24px;
+        height: 24px;
+    }
+}
+.nextBtn,
+.prevBtn {
+    width: 51px;
+    height: 51px;
+    background: $red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+        background: #6b0000;
+    }
+    @media (max-width: $tabletSize) {
+        width: 24px;
+        height: 24px;
+    }
+}
+.prevBtn {
+    position: absolute;
+    margin: auto 0;
+    left: 24px;
+}
+.nextBtn {
+    position: absolute;
+    margin: auto 0;
+    right: 24px;
+    transform: rotate(180deg);
+}
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }

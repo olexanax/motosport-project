@@ -17,16 +17,25 @@ interface GalleryGridProps {
 
 const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // console.log({ setIsOpen })
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openImageIndex, setOpenImageIndex] = useState<null | number>(null);
+
   return (
     <>
       {images && !!images.length && (
         <>
           <div className={styles.imagesList}>
             {(isOpen ? images : images.slice(0, 16)).map(
-              (img) => <GalleryCard image={img.image} id={img.id} key={img.id} />)}
+              (img, i) => <GalleryCard
+                onClick={() => {
+                  setIsModalOpen(true)
+                  setOpenImageIndex(i)
+                }}
+                image={img.image}
+                id={img.id}
+                key={img.id} />)}
           </div>
-          {!isOpen && images.length && 16 && (
+          {!isOpen && images.length > 16 && (
             <div
               onClick={() => setIsOpen(true)}
               className={classNames(global.primaryButton, styles.btn)}
@@ -34,6 +43,17 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
               {moreButton}
             </div>
           )}
+          {
+            isModalOpen && openImageIndex !== null ?
+              <ImageViewer
+                onNext={() => setOpenImageIndex(openImageIndex + 1)}
+                onPrev={() => setOpenImageIndex(openImageIndex - 1)}
+                onClose={() => setIsModalOpen(false)}
+                image={images[openImageIndex].image}
+                isModalOpen={isModalOpen}
+                imageIndex={openImageIndex === images.length - 1 ? "last" : openImageIndex === 0 ? "first" : undefined}
+              /> : null
+          }
         </>
       )}
     </>
