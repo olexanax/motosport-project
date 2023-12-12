@@ -61,6 +61,7 @@ const VictoriesSlider: FC<VictoriesSliderProps> = ({ victories, lng }) => {
                     arrows: "splide__arrows victory-arrows",
                   },
                   perPage: 4,
+                  perMove: 1
                 }}
                 className={styles.slider}
               >

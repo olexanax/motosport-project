@@ -40,7 +40,7 @@ const NewsSlider: React.FC<NewsSliderProps> = ({ news, learnMoreText }) => {
       options={{
         rewind: true,
         type: "loop",
-        pagination: false,
+        pagination: true,
         perPage: 3,
         classes: {
           arrows: "splide__arrows news-arrows",

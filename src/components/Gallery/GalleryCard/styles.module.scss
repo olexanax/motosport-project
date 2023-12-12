@@ -3,10 +3,14 @@
 .imageWrapper {
     flex: 1 1 auto;
     min-width: 250px;
+    max-width: 400px;
     height: 200px;
     border-radius: 10px;
     position: relative;
     z-index: 1;
+    @media (max-width: $tabletSize) {
+        max-width: unset;
+    }
 }
 .image {
     flex: 1 1 auto;
@@ -18,5 +22,11 @@
     cursor: pointer;
     &:hover {
         outline: 3px solid #a10f0f;
+    }
+}
+.biggerHeight {
+    height: 400px;
+    @media (max-width: $tabletSize) {
+        height: 250px;
     }
 }
