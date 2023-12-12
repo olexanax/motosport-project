@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 // styles
 import classNames from "classnames";
@@ -13,6 +13,7 @@ import ModalSuccess from "../ui/ModalSuccess/ModalSuccess";
 import CoachingModal from "../CoachingModal/CoachingModal";
 // images
 import instagramLogo from "../../../public/images/icons/instagramLogoRed.png";
+import instagramLogoHovered from "../../../public/images/icons/instagramLogoRedHovered.png";
 //i18n
 import { I18ComponentProps } from "@/types/i18NextTypes"
 import { useTranslation } from "@/app/i18n/client";
@@ -28,6 +29,7 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title, lng }) => {
   const { t } = useTranslation(lng, "translation");
   const [isModal, setIsModal] = React.useState<boolean>(false);
   const [isSuccess, setIsSuccess] = React.useState<boolean>(false);
+  const [isInstLogoHovered, setIsInstLogoHovered] = useState<boolean>(false);
 
   const openModal = () => {
     setIsModal(true);
@@ -63,9 +65,12 @@ const CoachingHero: React.FC<CoachingHeroProps> = ({ text, title, lng }) => {
               target="_blank"
               href={t("content.instagram_link")}
               className={styles.instagramLogo}
+              onMouseOver={() => setIsInstLogoHovered(true)}
+              onMouseOut={() => setIsInstLogoHovered(false)}
             >
               <Image
-                src={instagramLogo}
+                className={styles.instagramLogoIcon}
+                src={isInstLogoHovered ? instagramLogoHovered : instagramLogo}
                 width={52}
                 height={52}
                 alt="Instagram Logo"
