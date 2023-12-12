@@ -1,7 +1,8 @@
 import styles from "./styles.module.scss";
 import global from "@/styles/global.module.scss";
+//libs
 //components
-import MyStoryCard from "./MyStoryCard/MyStoryCard";
+import MyStoryList from "./MyStoryList/MyStoryList";
 import VictoriesSlider from "./VictoriesSlider/VictoriesSlider";
 import classNames from "classnames";
 import { getMyStory } from "@/actions/get-my-story";
@@ -17,6 +18,8 @@ const MyStory = async ({ lng }: I18ComponentProps) => {
   const stories = await getMyStory(lng);
   const victories = await getVictories(lng);
   const { t } = await useTranslation(lng, "translation");
+
+
 
   return (
     <>
@@ -40,25 +43,17 @@ const MyStory = async ({ lng }: I18ComponentProps) => {
                   .map((story) => (
                     <MyStoryCard key={story.id} {...story} />
                   ))} */}
-                  {stories
-                    .filter((_, i) => !(i % 2))
-                    .map((story) => (
-                      <MyStoryCard key={story.id} {...story} />
-                    ))}
+                  <MyStoryList cards={stories
+                    .filter((_, i) => !(i % 2))} />
                 </div>
                 <div className={styles.rightCol}>
-                  {stories
-                    .filter((_, i) => i % 2)
-                    .map((story) => (
-                      <MyStoryCard key={story.id} {...story} />
-                    ))}
+                  <MyStoryList cards={stories
+                    .filter((_, i) => i % 2)} />
                 </div>
               </div>
               <div className={styles.mobileWrapper}>
                 <div className={styles.leftCol}>
-                  {stories.map((story) => (
-                    <MyStoryCard key={story.id} {...story} />
-                  ))}
+                  <MyStoryList cards={stories} />
                 </div>
               </div>
             </div>
