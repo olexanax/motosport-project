@@ -39,6 +39,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /var/www/my-next-app
+            npm i sharp
             pm2 delete all 
             pm2 start npm --name "my-next-app" -- start
 
