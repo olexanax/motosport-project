@@ -106,4 +106,6 @@ const ClientWrapper = ({
   );
 };
 
-export default withAuth(ClientWrapper);
+// export default withAuth(ClientWrapper);
+export default ClientWrapper;
+
