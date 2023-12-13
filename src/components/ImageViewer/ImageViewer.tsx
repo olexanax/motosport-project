@@ -28,14 +28,6 @@ interface Props {
 }
 
 const ImageViewer: FC<Props> = ({ isModalOpen, onClose, images, startFrom }) => {
-  const sliderRef = useRef<Splide>(null);
-  useEffect(() => {
-    if (sliderRef.current) {
-      const splide = sliderRef.current.splide;
-      splide.go(startFrom);
-    }
-  }, [])
-
   useEffect(() => {
     if (isModalOpen) {
       lockScroll()
@@ -74,10 +66,10 @@ const ImageViewer: FC<Props> = ({ isModalOpen, onClose, images, startFrom }) => 
               rewind: true,
               type: "loop",
               perPage: 1,
-              pagination: false
+              pagination: false,
+              start: startFrom
             }}
             className={styles.slider}
-            ref={sliderRef}
           >
             {images.map((image) => (
               <SplideSlide className={styles.slide} key={image.id}>
