@@ -14,12 +14,11 @@ interface GalleryGridProps {
   images: GalleryPhoto[] | undefined;
   moreButton: string
 }
-
 const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openImageIndex, setOpenImageIndex] = useState<null | number>(null);
-
+  console.log(openImageIndex);
   return (
     <>
       {images && !!images.length && (

@@ -1,39 +1,40 @@
 @import "@/styles/variables.scss";
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  padding: 30px 0px;
-
-  .content {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 80px;
-    color: $white;
-    text-align: center;
-    font-family: Unbounded;
-    font-style: normal;
-    line-height: 20px;
-    width: 592px;
+    background: transparent;
+    padding: 30px 0px;
+    max-width: 100%;
+    box-sizing: border-box;
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 80px;
+        color: $white;
+        text-align: center;
+        font-family: Unbounded;
+        font-style: normal;
+        line-height: 20px;
+        width: 100%;
 
-    &.dark {
-      color: $black;
-    }
+        &.dark {
+            color: $black;
+        }
 
-    .title {
-      font-size: 24px;
-      font-weight: 500;
-    }
+        .title {
+            font-size: 24px;
+            font-weight: 500;
+        }
 
-    .subtitle {
-      font-family: Inter;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 20px;
+        .subtitle {
+            font-family: Inter;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+        }
     }
-  }
 }
