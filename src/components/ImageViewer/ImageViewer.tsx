@@ -9,6 +9,7 @@ import { FC } from "react"
 import Image from "next/image";
 //libs
 import { motion } from 'framer-motion';
+import { useSwipeable } from "react-swipeable";
 //utils
 import lockScroll from "@/utils/lockScroll";
 import unlockScroll from "@/utils/unlockScroll";
@@ -28,6 +29,11 @@ interface Props {
 }
 
 const ImageViewer: FC<Props> = ({ image, isModalOpen, onClose, onNext, onPrev, imageIndex }) => {
+
+  const handlers = useSwipeable({
+    onSwipedLeft: (eventData) => onPrev(),
+    onSwipedRight: (eventData) => onNext(),
+  });
 
   useEffect(() => {
     if (isModalOpen) {
@@ -57,6 +63,7 @@ const ImageViewer: FC<Props> = ({ image, isModalOpen, onClose, onNext, onPrev, i
     <>
       <Portal>
         <motion.div
+          {...handlers}
           initial="hidden"
           whileInView="visible"
           variants={variants1}
