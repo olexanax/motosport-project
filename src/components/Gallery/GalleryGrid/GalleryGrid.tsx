@@ -46,12 +46,10 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
           {
             isModalOpen && openImageIndex !== null ?
               <ImageViewer
-                onNext={() => setOpenImageIndex(openImageIndex + 1)}
-                onPrev={() => setOpenImageIndex(openImageIndex - 1)}
+                images={images}
                 onClose={() => setIsModalOpen(false)}
-                image={images[openImageIndex].image}
                 isModalOpen={isModalOpen}
-                imageIndex={openImageIndex === images.length - 1 ? "last" : openImageIndex === 0 ? "first" : undefined}
+                startFrom={openImageIndex}
               /> : null
           }
         </>
