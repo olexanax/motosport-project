@@ -2,38 +2,39 @@
 //styles
 import styles from "./styles.module.scss";
 import global from "@/styles/global.module.scss";
+import "@splidejs/react-splide/css";
 import scale from "../../../public/images/icons/edit.png"
-import { useState, useEffect } from "react"
+import { useEffect, useRef } from "react"
 import ReactDOM from "react-dom"
 import { FC } from "react"
 import Image from "next/image";
 //libs
 import { motion } from 'framer-motion';
-import { useSwipeable } from "react-swipeable";
+// @ts-ignore
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 //utils
 import lockScroll from "@/utils/lockScroll";
 import unlockScroll from "@/utils/unlockScroll";
 //images
-import sliderArr from "../../../public/images/icons/sliderArr.svg"
 import closeImageModal from "../../../public/images/icons/closeImageModal.svg"
-import classNames from "classnames";
+import { GalleryPhoto } from "@/actions/get-galery";
 
 
 interface Props {
-  image: string
   isModalOpen: boolean
   onClose: () => void,
-  onPrev: () => void
-  onNext: () => void
-  imageIndex?: "last" | "first"
+  images: GalleryPhoto[],
+  startFrom: number
 }
 
-const ImageViewer: FC<Props> = ({ image, isModalOpen, onClose, onNext, onPrev, imageIndex }) => {
-
-  const handlers = useSwipeable({
-    onSwipedLeft: (eventData) => imageIndex !== "last" && onNext(),
-    onSwipedRight: (eventData) => imageIndex !== "first" && onPrev(),
-  });
+const ImageViewer: FC<Props> = ({ isModalOpen, onClose, images, startFrom }) => {
+  const sliderRef = useRef<Splide>(null);
+  useEffect(() => {
+    if (sliderRef.current) {
+      const splide = sliderRef.current.splide;
+      splide.go(startFrom);
+    }
+  }, [])
 
   useEffect(() => {
     if (isModalOpen) {
@@ -63,20 +64,28 @@ const ImageViewer: FC<Props> = ({ image, isModalOpen, onClose, onNext, onPrev, i
     <>
       <Portal>
         <motion.div
-          {...handlers}
           initial="hidden"
           whileInView="visible"
           variants={variants1}
           viewport={{ once: true, amount: 0.8 }}
           className={styles.modal__window} >
-          <Image width={800} height={548} className={styles.modalImage} src={image} alt="" />
+          <Splide
+            options={{
+              rewind: true,
+              type: "loop",
+              perPage: 1,
+              pagination: false
+            }}
+            className={styles.slider}
+            ref={sliderRef}
+          >
+            {images.map((image) => (
+              <SplideSlide className={styles.slide} key={image.id}>
+                <Image className={styles.modalImage} src={image.image} width={800} height={548} alt="" />
+              </SplideSlide>
+            ))}
+          </Splide>
           <Image onClick={() => onClose()} width={46} height={46} className={styles.closeImageModal} src={closeImageModal} alt="" />
-          <div className={classNames(styles.prevBtn, imageIndex === 'first' ? styles.disabled : '')} onClick={onPrev}>
-            <Image alt="prev" src={sliderArr} />
-          </div>
-          <div className={classNames(styles.nextBtn, imageIndex === 'last' ? styles.disabled : '')} onClick={onNext}>
-            <Image alt="next" src={sliderArr} />
-          </div>
         </motion.div>
       </Portal>
     </>
