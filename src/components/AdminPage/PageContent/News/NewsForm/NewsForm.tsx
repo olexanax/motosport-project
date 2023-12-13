@@ -221,7 +221,7 @@ const NewsForm = ({ newsAddNew, newsId, lang }: AdminPageQuries) => {
           )}
         </div>
         <div className={classNames(global.inputBlock, styles.inputBlock)}>
-          <span>Short Title*</span>
+          <span>Meta Title*</span>
           <Controller
             name="meta_title"
             control={control}
