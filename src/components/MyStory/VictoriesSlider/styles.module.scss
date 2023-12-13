@@ -31,8 +31,12 @@
     padding: 0 11px;
     min-height: 287px;
     box-sizing: border-box;
+    .slideContent {
+        height: 100%;
+    }
 }
 .slideContent {
+    max-width: 100%;
     position: relative;
     padding: 40px 24px 117px 24px;
     border-radius: 5px 5px 60px 5px;
@@ -85,10 +89,13 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
-    width: max-content;
+    width: 100%;
+    max-width: 356px;
+    box-sizing: border-box;
     justify-content: center;
     align-self: center;
     display: none;
+    padding: 0 8px;
     @media (max-width: $tabletSize) {
         display: flex;
     }
