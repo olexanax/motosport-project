@@ -25,7 +25,7 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
       {images && !!images.length && (
         <>
           <div className={styles.imagesList}>
-            {(isOpen ? images : images.slice(0, 16)).map(
+            {(isOpen ? images : images.slice(0, 12)).map(
               (img, i) => <GalleryCard
                 onClick={() => {
                   setIsModalOpen(true)
