@@ -4,6 +4,8 @@ import styles from "./styles.module.scss";
 import global from "@/styles/global.module.scss";
 import classNames from "classnames";
 import { getNewsBySlug } from "@/actions/get-new-by-slug";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
 //utils
 import makePargraphs from "@/utils/makePargraphs";
 //i18n
@@ -85,5 +87,23 @@ const NewsPage: React.FC<PostOverviewProps> = async ({
     </>
   );
 };
+
+export async function generateMetadata({
+  params,
+}: PostOverviewProps): Promise<Metadata> {
+  const news = await getNewsBySlug(params.newsSlug);
+
+
+  if (!news) {
+    redirect("/not-found");
+  }
+
+  const { meta_description, meta_title } = news;
+
+  return {
+    title: meta_title,
+    description: meta_description,
+  };
+}
 
 export default NewsPage;
