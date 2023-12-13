@@ -1,10 +1,11 @@
 "use client";
-
+//libs
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import global from "@/styles/global.module.scss";
 import classNames from "classnames";
 import Image from "next/image";
+//components
 import { GalleryPhoto } from "@/actions/get-galery";
 import ImageViewer from "@/components/ImageViewer/ImageViewer";
 import GalleryCard from "../GalleryCard/GalleryCard";
@@ -18,7 +19,7 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openImageIndex, setOpenImageIndex] = useState<null | number>(null);
-  console.log(openImageIndex);
+
   return (
     <>
       {images && !!images.length && (
