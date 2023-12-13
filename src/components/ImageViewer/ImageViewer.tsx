@@ -31,8 +31,8 @@ interface Props {
 const ImageViewer: FC<Props> = ({ image, isModalOpen, onClose, onNext, onPrev, imageIndex }) => {
 
   const handlers = useSwipeable({
-    onSwipedLeft: (eventData) => onPrev(),
-    onSwipedRight: (eventData) => onNext(),
+    onSwipedLeft: (eventData) => imageIndex !== "last" && onNext(),
+    onSwipedRight: (eventData) => imageIndex !== "first" && onPrev(),
   });
 
   useEffect(() => {
