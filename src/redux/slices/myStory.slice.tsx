@@ -138,7 +138,6 @@ const myStorySlice = createSlice({
       .addCase(updateMyStoryOrder.fulfilled, (state, { payload }) => {
         state.fetchMyStoryStatus = "idle";
         state.myStory = [...payload];
-        console.log(payload);
       })
       .addCase(updateMyStoryOrder.rejected, (state, { payload }) => {
         state.fetchMyStoryStatus = "error";

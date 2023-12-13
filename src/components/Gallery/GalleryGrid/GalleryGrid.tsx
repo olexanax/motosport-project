@@ -18,7 +18,7 @@ interface GalleryGridProps {
 const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [openImageIndex, setOpenImageIndex] = useState<null | number>(null);
+  const [openImageIndex, setOpenImageIndex] = useState<null | number>(0);
 
   return (
     <>

@@ -43,7 +43,6 @@ const PartnersList = () => {
     (dragOrder: number, hoverOrder: number) => {
       const dragItem = partners.find((item) => item.order === dragOrder);
       const hoverItem = partners.find((item) => item.order === hoverOrder);
-      console.log(dragOrder, hoverOrder);
 
       if (dragItem && hoverItem) {
         dispatch(

@@ -137,7 +137,6 @@ const aboutMeSlice = createSlice({
       .addCase(updateAboutMeOrder.fulfilled, (state, { payload }) => {
         state.fetchAboutMeStatus = "idle";
         state.aboutMe = [...payload];
-        console.log(payload);
       })
       .addCase(updateAboutMeOrder.rejected, (state, { payload }) => {
         state.fetchAboutMeStatus = "error";

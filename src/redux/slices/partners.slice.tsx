@@ -140,7 +140,6 @@ const partnersSlice = createSlice({
       .addCase(updatePartnersOrder.fulfilled, (state, { payload }) => {
         state.fetchPartnersStatus = "idle";
         state.partners = [...payload];
-        console.log(payload);
       })
       .addCase(updatePartnersOrder.rejected, (state, { payload }) => {
         state.fetchPartnersStatus = "error";

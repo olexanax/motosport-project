@@ -141,7 +141,6 @@ const gallerySlice = createSlice({
       .addCase(updateGalleryOrder.fulfilled, (state, { payload }) => {
         state.fetchGalleryStatus = "idle";
         state.gallery = [...payload];
-        console.log(payload);
       })
       .addCase(updateGalleryOrder.rejected, (state, { payload }) => {
         state.fetchGalleryStatus = "error";

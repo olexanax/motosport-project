@@ -30,7 +30,6 @@ const NewsList = ({ newsAddNew, newsId, lang }: AdminPageQuries) => {
     (dragOrder: number, hoverOrder: number) => {
       const dragItem = news.find((item) => item.order === dragOrder);
       const hoverItem = news.find((item) => item.order === hoverOrder);
-      console.log(dragOrder, hoverOrder);
 
       if (dragItem && hoverItem) {
         dispatch(
@@ -53,13 +52,13 @@ const NewsList = ({ newsAddNew, newsId, lang }: AdminPageQuries) => {
   const content =
     news && fetchNewsStatus === "idle"
       ? news
-          .filter((vict) => vict.language === lang?.toUpperCase())
-          .sort((a, b) => a.order - b.order)
-          .map((news) => (
-            <DNDWrapper moveItem={moveItem} target={news} key={uuid()}>
-              <NewsCard {...news} query={{ newsAddNew, newsId, lang }} />
-            </DNDWrapper>
-          ))
+        .filter((vict) => vict.language === lang?.toUpperCase())
+        .sort((a, b) => a.order - b.order)
+        .map((news) => (
+          <DNDWrapper moveItem={moveItem} target={news} key={uuid()}>
+            <NewsCard {...news} query={{ newsAddNew, newsId, lang }} />
+          </DNDWrapper>
+        ))
       : null;
   const error = fetchNewsStatus === "error" ? <p>loading...</p> : null;
   const spinner = fetchNewsStatus === "error" ? <p>error...</p> : null;
