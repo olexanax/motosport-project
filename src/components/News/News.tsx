@@ -21,7 +21,7 @@ const News = async ({ lng }: I18ComponentProps) => {
         <h2 className={classNames(global.sectionTitle, styles.title)}>
           {t('heading_tags.h2__NewsTitle')}
         </h2>
-        {news && !!news.length && <NewsSlider learnMoreText={learnMoreText} news={news} />}
+        {news && !!news.length && <NewsSlider lng={lng} learnMoreText={learnMoreText} news={news} />}
       </div>
     </div>
   );

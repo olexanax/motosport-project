@@ -16,9 +16,14 @@ import classNames from "classnames";
 interface NewsSliderProps {
   news: News[];
   learnMoreText: string;
+  lng: "en" | "ua";
 }
 
-const NewsSlider: React.FC<NewsSliderProps> = ({ news, learnMoreText }) => {
+const NewsSlider: React.FC<NewsSliderProps> = ({
+  news,
+  learnMoreText,
+  lng,
+}) => {
   const sliderRefDesktop = useRef<Splide>(null);
 
   useEffect(() => {
@@ -49,29 +54,37 @@ const NewsSlider: React.FC<NewsSliderProps> = ({ news, learnMoreText }) => {
           720: {
             perPage: 1,
           },
-        }
+        },
       }}
     >
-      {news?.sort((a, b) => a.order - b.order).map((item) => (
-        <SplideSlide className={styles.slide} key={item.id}>
-          <div className={styles.slideContent}>
-            <div className={styles.overlay}></div>
-            <Image
-              className={styles.slideImage}
-              width={450}
-              height={254}
-              alt=""
-              src={item.image}
-            />
-            <p className={classNames(styles.title, global.text2)}>
-              {item.title}
-            </p>
-            <Link href={`/news/${item.slug}`} className={styles.learnMoreBtn}>
-              {learnMoreText}
-            </Link>
-          </div>
-        </SplideSlide>
-      ))}
+      {news
+        ?.sort((a, b) => a.order - b.order)
+        .map((item) => (
+          <SplideSlide className={styles.slide} key={item.id}>
+            <div className={styles.slideContent}>
+              <div className={styles.overlay}></div>
+              <Image
+                className={styles.slideImage}
+                width={450}
+                height={254}
+                alt=""
+                src={item.image}
+              />
+              <p className={classNames(styles.title, global.text2)}>
+                {item.title}
+              </p>
+              <Link
+                href={{
+                  pathname: `/news/${item.slug}`,
+                  query: { lng, from: "news" },
+                }}
+                className={styles.learnMoreBtn}
+              >
+                {learnMoreText}
+              </Link>
+            </div>
+          </SplideSlide>
+        ))}
     </Splide>
   );
 };

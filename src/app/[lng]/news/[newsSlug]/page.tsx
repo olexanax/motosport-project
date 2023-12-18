@@ -11,20 +11,25 @@ import makePargraphs from "@/utils/makePargraphs";
 //i18n
 import { I18PageProps } from "@/types/i18NextTypes";
 import { useTranslation } from "../../../i18n";
+import NewsButton from "./components/NewsButton/NewsButton";
 
-export const fetchCache = 'force-no-store';
+export const fetchCache = "force-no-store";
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
 
 interface PostOverviewProps {
   params: {
     newsSlug: string;
-    lng: I18PageProps['params']['lng']
+    lng: I18PageProps["params"]["lng"];
+  };
+  searchParams: {
+    from: "hero" | "news";
   };
 }
 
 const NewsPage: React.FC<PostOverviewProps> = async ({
   params: { newsSlug, lng },
+  searchParams: { from },
 }) => {
   const news = await getNewsBySlug(newsSlug);
   const { t } = await useTranslation(lng, "translation");
@@ -33,7 +38,10 @@ const NewsPage: React.FC<PostOverviewProps> = async ({
     <>
       {news && (
         <>
-          <div className={styles.TopContainer} style={{ background: `url(${news.image})` }}>
+          <div
+            className={styles.TopContainer}
+            style={{ background: `url(${news.image})` }}
+          >
             <div className={styles.overlay}></div>
             <div className={styles.TopContent}>
               <p className={classNames(global.smallTitle, styles.date)}>
@@ -74,12 +82,10 @@ const NewsPage: React.FC<PostOverviewProps> = async ({
           <div className={styles.BottomContainer}>
             <div className={styles.BottomContent}>
               {makePargraphs(news.description, { [global.text2]: true })}
-              <Link
-                href={"/"}
-                className={classNames(global.primaryButton, styles.btn)}
-              >
-                {t("content.news_backButon")}
-              </Link>
+              <NewsButton
+                fromSection={from}
+                buttonText={t("content.news_backButon")}
+              />
             </div>
           </div>
         </>
@@ -92,7 +98,6 @@ export async function generateMetadata({
   params,
 }: PostOverviewProps): Promise<Metadata> {
   const news = await getNewsBySlug(params.newsSlug);
-
 
   if (!news) {
     redirect("/not-found");
