@@ -47,6 +47,11 @@ const AboutMeSlider: FC<ReviewsSliderProps> = ({ aboutMe }) => {
               rewind: true,
               type: "loop",
               perPage: 1,
+              interval: 5000,
+              speed: 1200,
+              autoplay: true,
+              pauseOnHover: true,
+              resetProgress: false,
             }}
             className={styles.slider}
           >

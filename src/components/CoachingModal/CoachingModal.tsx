@@ -24,6 +24,7 @@ const CoachingModal: React.FC<CoachingModalProps> = ({ onSuccess, lng }) => {
       <div className={styles.formContainer}>
         <div className={styles.formLeft}>
           <Image
+            style={{ objectFit: "cover" }}
             src={contactPhoto}
             alt="Contact Form Photo"
             width={383}
