@@ -1,0 +1,42 @@
+name: "Continuous Deployment"
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: 
+jobs:
+  deploy_prod:
+    name: "Deploy to production"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout the files"
+        uses: actions/checkout@v3
+      - name: Setting up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' 
+      - name: 'Install dependencies'
+        run: |
+          npm i --lockfile-version 3   
+          npm install
+          npm run build
+      - name: 'Copy folder to the production server'
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr --delete
+          path: ./
+          remote_path: /var/www/my-next-app/
+          remote_user: ${{ secrets.REMOTE_USER }}
+          remote_host: ${{ secrets.REMOTE_HOST }}
+          remote_key: ${{ secrets.SSH_KEY }}
+      - name: 'Executing remote ssh command to server'
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /var/www/my-next-app
+            npm i sharp
+            pm2 delete all 
+            pm2 start npm --name "my-next-app" -- start
