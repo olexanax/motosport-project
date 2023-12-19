@@ -53,9 +53,9 @@ $modal-bg: linear-gradient(
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: auto 0;
 }
 .modalImage {
-    height: auto;
     width: 80%;
     height: 80%;
     max-width: 1000px;
