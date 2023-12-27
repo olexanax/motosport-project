@@ -9,6 +9,7 @@ import ReactDOM from "react-dom"
 import { FC } from "react"
 import Image from "next/image";
 //libs
+import classNames from "classnames";
 import { motion } from 'framer-motion';
 // @ts-ignore
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -25,9 +26,10 @@ interface Props {
   onClose: () => void,
   images: GalleryPhoto[],
   startFrom: number
+  firstMount: boolean
 }
 
-const ImageViewer: FC<Props> = ({ isModalOpen, onClose, images, startFrom }) => {
+const ImageViewer: FC<Props> = ({ isModalOpen, onClose, images, startFrom, firstMount }) => {
   useEffect(() => {
     if (isModalOpen) {
       lockScroll()
@@ -41,6 +43,14 @@ const ImageViewer: FC<Props> = ({ isModalOpen, onClose, images, startFrom }) => 
       unlockScroll()
     }
   }, [])
+
+  const options = {
+    rewind: true,
+    type: "loop",
+    perPage: 1,
+    pagination: false,
+    start: startFrom
+  }
 
   const variants1 = {
     hidden: { opacity: 0 },
@@ -60,15 +70,9 @@ const ImageViewer: FC<Props> = ({ isModalOpen, onClose, images, startFrom }) => 
           whileInView="visible"
           variants={variants1}
           viewport={{ once: true, amount: 0.8 }}
-          className={styles.modal__window} >
+          className={classNames(styles.modal__window, firstMount ? styles.firstMount : '')} >
           <Splide
-            options={{
-              rewind: true,
-              type: "loop",
-              perPage: 1,
-              pagination: false,
-              start: startFrom
-            }}
+            {...{ options }}
             className={styles.slider}
           >
             {images.map((image) => (
