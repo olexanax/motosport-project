@@ -19,6 +19,15 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openImageIndex, setOpenImageIndex] = useState<null | number>(0);
+  const [firstMount, setFirstMount] = useState<boolean>(false);
+
+  //we have bug in ImageViewer => splidejs : on first mount current slide was images[images.length - 1], so this code fix this problrm
+  useEffect(() => {
+    setFirstMount(true)
+    setTimeout(() => {
+      setFirstMount(false)
+    }, 1000)
+  }, [])
 
   return (
     <>
@@ -44,12 +53,13 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
             </div>
           )}
           {
-            isModalOpen && openImageIndex !== null ?
+            (isModalOpen && openImageIndex !== null) || (firstMount) ?
               <ImageViewer
                 images={images}
                 onClose={() => setIsModalOpen(false)}
                 isModalOpen={isModalOpen}
-                startFrom={openImageIndex}
+                startFrom={openImageIndex || 0}
+                firstMount={firstMount}
               /> : null
           }
         </>
