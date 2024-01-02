@@ -36,7 +36,7 @@ $modal-bg: linear-gradient(
     width: 100%;
     height: 80%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 .slide {
@@ -48,6 +48,7 @@ $modal-bg: linear-gradient(
     margin: auto 0;
 }
 .modalImage {
+    margin: auto;
     width: 80%;
     height: 80%;
     max-width: 1000px;
@@ -63,5 +64,11 @@ $modal-bg: linear-gradient(
     @media (max-width: $tabletSize) {
         width: 24px;
         height: 24px;
+    }
+}
+.customArrow {
+    margin: 10px;
+    @media (max-width: $tabletSize) {
+        display: none;
     }
 }
