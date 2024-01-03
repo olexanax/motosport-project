@@ -1,37 +1,43 @@
 @import "@/styles/variables.scss";
 
 .container {
-    border-radius: 10px 10px 0px 0px;
-    background: rgba(30, 30, 30, 0.7);
-    padding: 42px 21px;
-    display: flex;
-    flex-direction: column;
-    align-self: stretch;
-    gap: 36px;
-    width: 321px;
-    transition: transform ease-in-out 0.2s;
-    &:hover {
-        transform: scale(1.06);
-    }
-    @media (max-width: $tabletSize) {
-        max-width: 90%;
-        width: 330px;
-        padding: 12px;
-        border-radius: 10px;
-        gap: 24px;
-    }
+  border-radius: 10px 10px 0px 0px;
+  background: rgba(30, 30, 30, 0.7);
+  padding: 42px 21px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  gap: 36px;
+  width: 321px;
+  transition: transform ease-in-out 0.2s;
+  &:hover {
+    transform: scale(1.06);
+  }
+  @media (max-width: $tabletSize) {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 10px 0px 0px 10px;
+    padding: 12px;
+    gap: 24px;
+  }
 }
 .title {
-    color: #fff;
-    font-family: Unbounded;
-    line-height: normal;
-    max-height: 88px;
-    height: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  color: #fff;
+  font-family: Unbounded;
+  line-height: normal;
+  max-height: 88px;
+  height: 100%;
+  overflow: hidden;
+  font-size: 16px;
+  text-overflow: ellipsis;
 }
 .link {
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration-line: underline;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+
+  @media (max-width: $mobileSize) {
+    font-size: 14px;
+  }
 }
