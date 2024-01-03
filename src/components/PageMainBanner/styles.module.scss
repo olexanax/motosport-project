@@ -54,6 +54,10 @@
     line-height: normal;
   }
 
+  @media (max-width: $mobileSize) {
+    padding-right: 10px;
+  }
+
   &Author {
     @media (max-width: $mobileSize) {
       font-weight: 400 !important;
