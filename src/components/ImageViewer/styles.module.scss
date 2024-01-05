@@ -1,74 +1,114 @@
 @import "@/styles/variables.scss";
 
 $modal-bg: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.6) 100%
+  0deg,
+  rgba(0, 0, 0, 0.6) 0%,
+  rgba(0, 0, 0, 0.6) 100%
 );
 
 .firstMount {
-    opacity: 0 !important;
-    width: 100px !important;
-    height: 100px !important;
+  opacity: 0 !important;
+  width: 100px !important;
+  height: 100px !important;
 }
 
 .modal {
-    &__window {
-        width: 100vw;
-        height: 100vh;
-        box-sizing: border-box;
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: $modal-bg;
-        z-index: 100000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 11;
-    }
-}
-.slider {
-    position: relative;
-    z-index: 11;
-    width: 100%;
-    height: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.slide {
-    width: 100%;
-    height: 100%;
+  &__window {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: $modal-bg;
+    z-index: 100000;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto 0;
+    z-index: 11;
+  }
+}
+.slider {
+  position: relative;
+  z-index: 11;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0;
 }
 .modalImage {
-    margin: auto;
-    width: 80%;
-    height: 80%;
-    max-width: 1000px;
-    max-height: 700px;
-    object-fit: contain;
+  margin: auto;
+  width: 80%;
+  height: 80%;
+  max-width: 1000px;
+  max-height: 700px;
+  object-fit: contain;
+
+  @media (max-width: $mobileSize) {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+  }
 }
 .closeImageModal {
-    position: absolute;
-    z-index: 12;
-    top: 46px;
-    right: 29px;
-    cursor: pointer;
-    @media (max-width: $tabletSize) {
-        width: 24px;
-        height: 24px;
-    }
+  position: absolute;
+  z-index: 12;
+  top: 46px;
+  right: 29px;
+  cursor: pointer;
+  @media (max-width: $tabletSize) {
+    width: 24px;
+    height: 24px;
+  }
 }
 .customArrow {
-    margin: 10px;
-    @media (max-width: $tabletSize) {
-        display: none;
-    }
+  margin: 10px;
+}
+
+.arrowPrev {
+  @media (max-width: $tabletSize) {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    z-index: 12;
+  }
+
+  @media (max-width: $mobileSize) {
+    position: absolute;
+    top: 80%;
+    left: 20%;
+    transform: translate(0, -80%);
+    z-index: 12;
+  }
+}
+
+.arrowNext {
+  @media (max-width: $tabletSize) {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    z-index: 12;
+  }
+
+  @media (max-width: $mobileSize) {
+    position: absolute;
+    top: 80%;
+    right: 20%;
+    transform: translate(0, -80%);
+    z-index: 12;
+  }
 }

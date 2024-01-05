@@ -10,10 +10,9 @@ import { GalleryPhoto } from "@/actions/get-galery";
 import ImageViewer from "@/components/ImageViewer/ImageViewer";
 import GalleryCard from "../GalleryCard/GalleryCard";
 
-
 interface GalleryGridProps {
   images: GalleryPhoto[] | undefined;
-  moreButton: string
+  moreButton: string;
 }
 const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,15 +24,17 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
       {images && !!images.length && (
         <>
           <div className={styles.imagesList}>
-            {(isOpen ? images : images.slice(0, 12)).map(
-              (img, i) => <GalleryCard
+            {(isOpen ? images : images.slice(0, 12)).map((img, i) => (
+              <GalleryCard
                 onClick={() => {
-                  setIsModalOpen(true)
-                  setOpenImageIndex(i)
+                  setIsModalOpen(true);
+                  setOpenImageIndex(i);
                 }}
                 image={img.image}
                 id={img.id}
-                key={img.id} />)}
+                key={img.id}
+              />
+            ))}
           </div>
           {!isOpen && images.length > 16 && (
             <div
@@ -43,15 +44,14 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, moreButton }) => {
               {moreButton}
             </div>
           )}
-          {
-            (isModalOpen && openImageIndex !== null) ?
-              <ImageViewer
-                images={images}
-                onClose={() => setIsModalOpen(false)}
-                isModalOpen={isModalOpen}
-                startFrom={openImageIndex || 0}
-              /> : null
-          }
+          {isModalOpen && openImageIndex !== null ? (
+            <ImageViewer
+              images={images}
+              onClose={() => setIsModalOpen(false)}
+              isModalOpen={isModalOpen}
+              startFrom={openImageIndex || 0}
+            />
+          ) : null}
         </>
       )}
     </>
