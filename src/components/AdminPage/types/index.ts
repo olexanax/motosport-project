@@ -11,6 +11,7 @@ export enum IAdminPagesType {
     "Gallery" = "Gallery",
     "Partners" = "Partners",
     "My story" = "My story",
+    "Become a Partner" = "Become a Partner",
     "Static Info" = "Static Info",
 }
 export interface AdminPageQuries {

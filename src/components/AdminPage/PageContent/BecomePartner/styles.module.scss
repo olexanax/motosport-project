@@ -1,0 +1,38 @@
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.fileDownload {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  &ButtonWrapper {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+}
+
+.fileCard {
+  border-radius: 10px;
+  border: 1px solid #fff;
+  max-width: 400px;
+  width: 100%;
+  padding: 19px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &Button {
+    max-width: 200px;
+    width: 100%;
+    display: block;
+  }
+}
+
+.inputFile {
+  display: none;
+}

@@ -93,7 +93,7 @@ export const generateWebpageData =
     "marketing/webPages/generateWebpageData",
     async () => {
       const response = await axios.post(
-        "https://api.github.com/repos/ICAPGroupgmbh/motosport-website/actions/workflows/upload_json.yml/dispatches",
+        "https://api.github.com/repos/olexanax/motosport-project/actions/workflows/upload_json.yml/dispatches",
         {
           ref: "main",
         },
@@ -102,7 +102,7 @@ export const generateWebpageData =
             "Content-Type": "application/vnd.github+json",
             Accept: "application/vnd.github+json",
             "X-GitHub-Api-Version": "2022-11-28",
-            Authorization: "Bearer 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",
+            Authorization: "Bearer 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",
           },
         }
       );

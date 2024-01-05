@@ -7,18 +7,20 @@ import myStory from "@/redux/slices/myStory.slice";
 import news from "@/redux/slices/news.slice";
 import staticContent from "@/redux/slices/staticContent.slice";
 import login from "@/redux/slices/login.slice";
+import becomePartner from "@/redux/slices/becomePartnet.slice";
 
 const rootReducer = combineReducers({
-    gallery,
-    aboutMe,
-    partners,
-    victories,
-    myStory,
-    news,
-    staticContent,
-    login,
+  gallery,
+  aboutMe,
+  partners,
+  victories,
+  myStory,
+  news,
+  staticContent,
+  login,
+  becomePartner,
 });
 
 export const store = configureStore({
-    reducer: rootReducer,
+  reducer: rootReducer,
 });

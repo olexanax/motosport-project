@@ -24,6 +24,7 @@ import MyStory from "@/components/AdminPage/PageContent/MyStory";
 import StaticContent from "../StaticContent/StaticContent";
 import News from "../PageContent/News";
 import withAuth from "@/services/AuthWrapper";
+import BecomePartner from "../PageContent/BecomePartner";
 
 const ClientWrapper = ({
   victoryId,
@@ -50,6 +51,7 @@ const ClientWrapper = ({
     [IAdminPagesType["My story"]]: (
       <MyStory {...{ myStoryAddNew, myStoryId, lang }} />
     ),
+    [IAdminPagesType["Become a Partner"]]: <BecomePartner {...{ lang }} />,
   };
 
   const router = useRouter();
@@ -108,4 +110,3 @@ const ClientWrapper = ({
 
 export default withAuth(ClientWrapper);
 // export default ClientWrapper;
-
