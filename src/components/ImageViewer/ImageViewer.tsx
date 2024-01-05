@@ -54,7 +54,6 @@ const ImageViewer: FC<Props> = ({
     slidesToScroll: 1,
     initialSlide: startFrom,
     centerMode: true,
-    adaptiveHeight: true,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
     classNames: "TESTTEST",
