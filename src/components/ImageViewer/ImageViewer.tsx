@@ -56,7 +56,7 @@ const ImageViewer: FC<Props> = ({
     centerMode: true,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
-    classNames: "TESTTEST",
+    className: "TESTTEST",
     responsive: [
       {
         breakpoint: 500,
