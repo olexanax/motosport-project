@@ -4,7 +4,7 @@ const nextConfig = {
     // unoptimized: true,
     remotePatterns: [
       {
-        hostname: "164.90.230.225",
+        hostname: "api.ivanpeklin-racing.com",
       },
     ],
   },
