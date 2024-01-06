@@ -1,6 +1,8 @@
 //components
 import VictoriesCard from "../VictoriesCard/VictoriesCard";
 import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
+// @ts-ignore
+import withScrolling from "react-dnd-scrolling";
 //redux
 import {
   fetchVictories,
@@ -17,6 +19,8 @@ import { AppDispatch, RootStateType } from "@/redux/types";
 // libs
 import { v4 as uuid } from "uuid";
 
+const ScrollingComponent = withScrolling("div");
+
 const VictoriesList = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
   const victories = useSelector(
     (state: RootStateType) => state.victories.victories
@@ -25,7 +29,6 @@ const VictoriesList = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
     (state: RootStateType) => state.victories.fetchVictoriesStatus
   );
   const dispatch = useDispatch<AppDispatch>();
-
 
   useEffect(() => {
     dispatch(fetchVictories());
@@ -74,7 +77,9 @@ const VictoriesList = ({ victoryAddNew, victoryId, lang }: AdminPageQuries) => {
 
   return (
     <div className={styles.vacanciesList}>
-      {content}
+      {content && (
+        <ScrollingComponent className="container">{content}</ScrollingComponent>
+      )}
       {error}
       {spinner}
     </div>

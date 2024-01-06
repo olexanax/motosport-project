@@ -13,6 +13,10 @@ import { AdminPageQuries } from "@/components/AdminPage/types";
 import { AppDispatch, RootStateType } from "@/redux/types";
 // libs
 import { v4 as uuid } from "uuid";
+// @ts-ignore
+import withScrolling from "react-dnd-scrolling";
+
+const ScrollingComponent = withScrolling("div");
 
 const NewsList = ({ newsAddNew, newsId, lang }: AdminPageQuries) => {
   const news = useSelector((state: RootStateType) => state.news.news);
@@ -52,20 +56,22 @@ const NewsList = ({ newsAddNew, newsId, lang }: AdminPageQuries) => {
   const content =
     news && fetchNewsStatus === "idle"
       ? news
-        .filter((vict) => vict.language === lang?.toUpperCase())
-        .sort((a, b) => a.order - b.order)
-        .map((news) => (
-          <DNDWrapper moveItem={moveItem} target={news} key={uuid()}>
-            <NewsCard {...news} query={{ newsAddNew, newsId, lang }} />
-          </DNDWrapper>
-        ))
+          .filter((vict) => vict.language === lang?.toUpperCase())
+          .sort((a, b) => a.order - b.order)
+          .map((news) => (
+            <DNDWrapper moveItem={moveItem} target={news} key={uuid()}>
+              <NewsCard {...news} query={{ newsAddNew, newsId, lang }} />
+            </DNDWrapper>
+          ))
       : null;
   const error = fetchNewsStatus === "error" ? <p>loading...</p> : null;
   const spinner = fetchNewsStatus === "error" ? <p>error...</p> : null;
 
   return (
     <div className={styles.vacanciesList}>
-      {content}
+      {content && (
+        <ScrollingComponent className="container">{content}</ScrollingComponent>
+      )}
       {error}
       {spinner}
     </div>

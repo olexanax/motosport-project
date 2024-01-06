@@ -15,6 +15,10 @@ import DNDWrapper from "@/components/AdminPage/DNDWrapper/DNDWrapper";
 import styles from "./index.module.scss";
 // libs
 import { v4 as uuid } from "uuid";
+// @ts-ignore
+import withScrolling from "react-dnd-scrolling";
+
+const ScrollingComponent = withScrolling("div");
 
 const GalleryList = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -75,7 +79,9 @@ const GalleryList = () => {
 
   return (
     <div className={styles.list}>
-      {content}
+      {content && (
+        <ScrollingComponent className="container">{content}</ScrollingComponent>
+      )}
       {error}
       {spinner}
     </div>

@@ -13,6 +13,10 @@ import { AdminPageQuries } from "@/components/AdminPage/types";
 import { AppDispatch, RootStateType } from "@/redux/types";
 // libs
 import { v4 as uuid } from "uuid";
+// @ts-ignore
+import withScrolling from "react-dnd-scrolling";
+
+const ScrollingComponent = withScrolling("div");
 
 const MyStoryList = ({ myStoryAddNew, myStoryId, lang }: AdminPageQuries) => {
   const myStory = useSelector((state: RootStateType) => state.myStory.myStory);
@@ -66,7 +70,9 @@ const MyStoryList = ({ myStoryAddNew, myStoryId, lang }: AdminPageQuries) => {
 
   return (
     <div className={styles.vacanciesList}>
-      {content}
+      {content && (
+        <ScrollingComponent className="container">{content}</ScrollingComponent>
+      )}
       {error}
       {spinner}
     </div>
