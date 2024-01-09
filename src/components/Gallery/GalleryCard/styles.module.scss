@@ -20,8 +20,13 @@
     object-fit: cover;
     border-radius: 10px;
     cursor: pointer;
+    
     &:hover {
         outline: 3px solid #a10f0f;
+    }
+
+    @media (max-width: $tabletSize) {
+        object-position: 50% 35%;
     }
 }
 .biggerHeight {
