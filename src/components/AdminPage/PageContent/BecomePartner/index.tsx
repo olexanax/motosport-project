@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 //conmpoments
 
 interface UploadPDF {
-  fileUpload: FileList;
+  fileUpload: File;
 }
 
 const BecomePartner: React.FC<AdminPageQuries> = ({ lang }) => {
@@ -33,20 +33,23 @@ const BecomePartner: React.FC<AdminPageQuries> = ({ lang }) => {
   const {
     register,
     handleSubmit,
-    formState: { isValid },
+    formState: { isValid, errors },
     setValue,
     watch,
   } = useForm<UploadPDF>();
 
-  const submitForm = (data: UploadPDF) => {
-    const files = data.fileUpload;
+  console.log(errors);
 
-    if (!!files.length && currentFile) {
-      const file = files[0];
+  const submitForm = (data: UploadPDF) => {
+    const file = data.fileUpload;
+
+    if (file && currentFile) {
+      console.log("works");
       const formData = new FormData();
       formData.append("pdf", file);
       formData.append("id", currentFile?.id.toString());
       formData.append("language", lang?.toLocaleUpperCase() as "EN" | "UA");
+      console.log(file);
 
       dispatch(
         updateBecomePartner({
@@ -62,6 +65,7 @@ const BecomePartner: React.FC<AdminPageQuries> = ({ lang }) => {
 
     if (file) {
       setTargetFile(file.name);
+      setValue("fileUpload", file);
     }
   };
 
@@ -98,7 +102,7 @@ const BecomePartner: React.FC<AdminPageQuries> = ({ lang }) => {
             >
               <div className={styles.fileCardUpload}>
                 <input
-                  {...register("fileUpload", { required: true })}
+                  {...register("fileUpload")}
                   type="file"
                   id="fileUpload"
                   className={styles.inputFile}
